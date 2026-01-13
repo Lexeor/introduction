@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@theme inline {
+  --color-background-50: #1a1a1a;
+  --color-background-100: #2a2a2a;
+  --color-background-200: #3a3a3a;
+  --color-background-300: #4a4a4a;
+  --color-background-400: #5a5a5a;
+  --color-background-500: #111111;
+  --color-background-600: #0d0d0d;
+  --color-background-700: #090909;
+  --color-background-800: #050505;
+  --color-background-900: #000000;
+  --color-background-950: #000000;
+}
+
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color: #e7e7e7;
+  --background: #111111;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.bg-panel,
+.bg-panel-item {
+  background-color: #1c1c1c;
+}
+
+.bg-panel-item:hover {
+  background-color: #252525;
+}
+
+.bg-panel-item-active {
+  background-color: #2d2d2d;
+}
+
+.text-secondary {
+  color: #585858;
+}
+
+/* Стили для Swiper - скрываем скроллбар и улучшаем внешний вид */
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Скрываем стандартный скроллбар */
+.swiper-wrapper {
+  -webkit-overflow-scrolling: touch;
+}

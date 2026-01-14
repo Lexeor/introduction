@@ -3,7 +3,11 @@ import { useTranslation } from 'react-i18next';
 import Container from '../components/Container';
 import ProjectCard from '../components/ProjectCard';
 
-const ProjectsSlide: FC = () => {
+interface ProjectsSlideProps {
+  onOpenProject: (projectId: string) => void;
+}
+
+const ProjectsSlide: FC<ProjectsSlideProps> = ({ onOpenProject }) => {
   const { t } = useTranslation();
 
   return (
@@ -13,7 +17,7 @@ const ProjectsSlide: FC = () => {
           {t('projects.title')}
         </h1>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <ProjectCard title="Kvarum" subtitle="Test project for debug" />
+          <ProjectCard title="Kvarum" subtitle="Test project for debug" onClick={() => onOpenProject('configurator')} />
           <ProjectCard />
           <ProjectCard />
         </div>

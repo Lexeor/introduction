@@ -21,7 +21,7 @@ const MenuItem: FC<PropsWithChildren<MenuItemProps>> = ({ children, isActive = f
       {/* Desktop */}
       <div
         className={`hidden md:flex rounded-lg w-10 h-10 lg:h-12 lg:w-12 items-center justify-center transition-colors duration-400 ${
-          isActive ? 'bg-panel-item-active' : 'bg-panel-item'
+          isActive ? 'bg-primary-500' : 'bg-panel-item'
         }`}
       >
         {children}

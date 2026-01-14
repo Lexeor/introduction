@@ -4,9 +4,10 @@ import { cn } from '../lib/utils';
 interface ProjectCardProps {
   title?: string;
   subtitle?: string;
+  onClick?(): void;
 }
 
-const ProjectCard: FC<ProjectCardProps> = ({ title, subtitle }) => {
+const ProjectCard: FC<ProjectCardProps> = ({ title, subtitle, onClick }) => {
   const [hovered, setHovered] = useState(false);
 
   return (
@@ -14,7 +15,8 @@ const ProjectCard: FC<ProjectCardProps> = ({ title, subtitle }) => {
       hovered ? 'bg-background-100' : 'bg-background-50',
     )}
          onMouseEnter={() => setHovered(true)}
-         onMouseLeave={() => setHovered(false)}>
+         onMouseLeave={() => setHovered(false)}
+         onClick={onClick}>
       <div className="min-h-48">
 
       </div>

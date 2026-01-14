@@ -57,7 +57,7 @@ const ParallaxSlide: FC<PropsWithChildren<ParallaxSlideProps>> = ({ imageUrl, ch
       />
 
       {/* Content */}
-      <div className="relative flex flex-col items-center justify-center gap-6 z-30">
+      <div className="relative flex flex-col items-center justify-center gap-6 z-30 pb-4">
         {children}
       </div>
     </div>

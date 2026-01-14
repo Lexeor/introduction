@@ -153,3 +153,30 @@ button {
   width: 100%;
   margin: 0 auto;
 }
+
+/* Кастомизация OverlayScrollbars для темной темы */
+.os-scrollbar-handle {
+  background: var(--color-primary-500) !important;
+  border-radius: 10px;
+}
+
+.os-scrollbar-handle:hover {
+  background: rgba(255, 255, 255, 0.5) !important;
+}
+
+.os-scrollbar-handle:active {
+  background: var(--color-primary-500) !important;
+}
+
+.os-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05) !important;
+}
+
+/* Если хочешь более яркий скроллбар */
+.os-theme-dark .os-scrollbar-handle {
+  background: var(--color-primary-500) !important;
+}
+
+.os-theme-dark .os-scrollbar-handle:hover {
+  background: var(--color-primary-500) !important;
+}

@@ -8,12 +8,24 @@ interface MenuItemProps {
 const MenuItem: FC<PropsWithChildren<MenuItemProps>> = ({ children, isActive = false, onClick }) => {
   return (
     <div
-      className={`rounded-lg w-8 h-8 md:w-10 md:h-10 lg:h-12 lg:w-12 flex items-center justify-center cursor-pointer transition-colors duration-400 ${
-        isActive ? 'bg-panel-item-active' : 'bg-panel-item'
-      }`}
+      className="w-6 h-6 md:w-10 md:h-10 lg:h-12 lg:w-12 flex items-center justify-center cursor-pointer"
       onClick={onClick}
     >
-      {children}
+      {/* Mobile */}
+      <div
+        className={`md:hidden rounded-full transition-all duration-300 m-1 ${
+          isActive ? 'w-3 h-3 bg-panel-item-active ring-1 ring-white/20' : 'w-1.5 h-1.5 bg-white/25 ring-1 ring-white/30'
+        }`}
+      />
+
+      {/* Desktop */}
+      <div
+        className={`hidden md:flex rounded-lg w-10 h-10 lg:h-12 lg:w-12 items-center justify-center transition-colors duration-400 ${
+          isActive ? 'bg-panel-item-active' : 'bg-panel-item'
+        }`}
+      >
+        {children}
+      </div>
     </div>
   );
 };

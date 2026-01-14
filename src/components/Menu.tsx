@@ -14,10 +14,10 @@ const Menu: FC<MenuProps> = ({ activeIndex, onItemClick, isVisible }) => {
     <motion.div
       className="fixed left-0 top-0 h-screen p-2 flex flex-col gap-2 justify-center z-50"
       initial={{ x: '-100%' }}
-      animate={{ x: isVisible ? '16px' : '-100%' }}
+      animate={{ x: isVisible ? '8px' : '-100%' }}
       transition={{ type: 'spring', stiffness: 300, damping: 30 }}
     >
-      <div className="bg-black/50 backdrop-blur-lg flex flex-col gap-2 rounded-xl p-2">
+      <div className="bg-black/50 backdrop-blur-lg flex flex-col gap-0 md:gap-2 rounded-xl p-2">
         <MenuItem isActive={activeIndex === 0} onClick={() => onItemClick(0)}>
           <HandshakeIcon className="h-5 md:h-6 lg:h-8" strokeWidth={1} />
         </MenuItem>

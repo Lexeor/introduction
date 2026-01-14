@@ -1,7 +1,7 @@
 {
   "greeting": "Hi, I'm Alex!",
   "frontend.pre": "And I've heard you're looking for",
-  "frontend.dev": "Frontend Software Engineer",
+  "frontend.dev": "Frontend Developer",
   "menu": {
     "handshake": "Handshake",
     "user": "User"

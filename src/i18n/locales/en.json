@@ -5,6 +5,9 @@
   "menu": {
     "handshake": "Handshake",
     "user": "User"
+  },
+  "projects": {
+    "title": "My Projects"
   }
 }
 

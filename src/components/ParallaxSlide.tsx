@@ -2,61 +2,41 @@ import { type FC, type PropsWithChildren, useEffect, useRef, useState } from 're
 
 type ParallaxSlideProps = {
   imageUrl: string;
-  activeIndex: number;
-  slideIndex: number;
 };
 
-const ParallaxSlide: FC<PropsWithChildren<ParallaxSlideProps>> = ({
-  imageUrl,
-  activeIndex,
-  slideIndex,
-  children,
-}) => {
+const ParallaxSlide: FC<PropsWithChildren<ParallaxSlideProps>> = ({ imageUrl, children }) => {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [parallaxOffset, setParallaxOffset] = useState(0);
-  const animationFrameRef = useRef<number | null>(null);
 
   useEffect(() => {
-    const updateParallax = () => {
-      if (containerRef.current) {
-        const rect = containerRef.current.getBoundingClientRect();
-        const windowHeight = window.innerHeight;
+    const handleScroll = () => {
+      if (!containerRef.current) return;
 
-        // Прогресс видимости слайда: от 0 (вне экрана) до ~1 (на экране)
-        const progress = (windowHeight - rect.top) / (windowHeight + rect.height);
+      const rect = containerRef.current.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
 
-        // Более заметный обратный параллакс
-        const offset = (progress - 0.5) * 500 * 1.2;
-        setParallaxOffset(offset);
-      }
+      // Прогресс видимости слайда: от 0 (вне экрана) до 1 (на экране)
+      const progress = (windowHeight - rect.top) / (windowHeight + rect.height);
+      const clamped = Math.max(0, Math.min(1, progress));
 
-      if (Math.abs(activeIndex - slideIndex) <= 1) {
-        animationFrameRef.current = requestAnimationFrame(updateParallax);
-      }
+      // Обратный параллакс
+      const offset = (clamped - 0.5) * 400;
+      setParallaxOffset(offset);
     };
 
-    const shouldAnimate = Math.abs(activeIndex - slideIndex) <= 1;
-    if (shouldAnimate) {
-      animationFrameRef.current = requestAnimationFrame(updateParallax);
-    } else {
-      setParallaxOffset(0);
-      if (animationFrameRef.current) {
-        cancelAnimationFrame(animationFrameRef.current);
-      }
-    }
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
 
     return () => {
-      if (animationFrameRef.current) {
-        cancelAnimationFrame(animationFrameRef.current);
-      }
+      window.removeEventListener('scroll', handleScroll);
     };
-  }, [activeIndex, slideIndex]);
+  }, []);
 
   return (
-    <div ref={containerRef} className="h-screen relative overflow-hidden">
+    <div ref={containerRef} className="min-h-screen relative overflow-hidden">
       {/* Base parallax background */}
       <div
-        className="absolute inset-0 w-full h-[150%] -z-20"
+        className="absolute inset-0 w-full h-[140%] z-0"
         style={{
           backgroundImage: `url(${imageUrl})`,
           backgroundSize: 'cover',
@@ -66,21 +46,21 @@ const ParallaxSlide: FC<PropsWithChildren<ParallaxSlideProps>> = ({
         }}
       />
 
-      {/* Backdrop-filter layer */}
+      {/* Backdrop blur + soft dark overlay */}
       <div
-        className="absolute inset-0 -z-10"
+        className="absolute inset-0 z-10"
         style={{
-          backdropFilter: 'blur(3px)',
-          backgroundColor: 'rgba(0, 0, 0, 0.5)',
-          willChange: 'backdrop-filter',
+          backdropFilter: 'blur(4px)',
+          WebkitBackdropFilter: 'blur(4px)',
+          backgroundColor: 'rgba(0, 0, 0, 0.45)',
         }}
       />
 
-      {/* Additional bg */}
-      <div className="absolute inset-0 z-0 bg-gradient-to-b from-black/60 via-black/45 to-black/65" />
+      {/* Gradient vignette */}
+      <div className="absolute inset-0 z-20 bg-gradient-to-b from-black/40 via-black/25 to-black/55" />
 
       {/* Content */}
-      <div className="relative h-full flex flex-col items-center justify-center gap-6 px-8 z-10">
+      <div className="relative min-h-screen flex flex-col items-center justify-center gap-6 px-8 z-30">
         {children}
       </div>
     </div>

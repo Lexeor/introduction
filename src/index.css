@@ -5,12 +5,13 @@
 @tailwind utilities;
 
 @theme inline {
+  --color-primary-500: #1b8353;
   --color-background-50: #1a1a1a;
   --color-background-100: #2a2a2a;
   --color-background-200: #3a3a3a;
   --color-background-300: #4a4a4a;
   --color-background-400: #5a5a5a;
-  --color-background-500: #111111;
+  --color-background-500: #181818;
   --color-background-600: #0d0d0d;
   --color-background-700: #090909;
   --color-background-800: #050505;
@@ -31,7 +32,8 @@
   font-weight: 400;
 
   color: #e7e7e7;
-  --background: #111111;
+  --background: #181818;
+  --primary: #1b8353;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;

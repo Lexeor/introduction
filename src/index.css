@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
-@import "tailwindcss/preflight";
-
+@tailwind base;
+@tailwind components;
 @tailwind utilities;
 
 @theme inline {
@@ -22,12 +22,12 @@
 @layer base {
   html,
   body {
-    font-family: "Noto Sans Math", sans-serif;
+    font-family: "Noto Sans", sans-serif;
   }
 }
 
 :root {
-  font-family: "Noto Sans Math", sans-serif;
+  font-family: "Noto Sans", sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -69,10 +69,10 @@ body, html {
   h4,
   h5,
   h6 {
-    font-weight: 700;
+    font-weight: 300;
     line-height: 1.2;
     letter-spacing: -0.01em;
-    margin: 0 0 0.75em;
+    margin: 0;
   }
 
   h1 {
@@ -145,4 +145,11 @@ button {
 /* Скрываем стандартный скроллбар */
 .swiper-wrapper {
   -webkit-overflow-scrolling: touch;
+}
+
+.container {
+  position: relative;
+  max-width: 100%;
+  width: 100%;
+  margin: 0 auto;
 }

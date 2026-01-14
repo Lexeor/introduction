@@ -33,7 +33,7 @@ const ParallaxSlide: FC<PropsWithChildren<ParallaxSlideProps>> = ({ imageUrl, ch
   }, []);
 
   return (
-    <div ref={containerRef} className="min-h-screen relative overflow-hidden">
+    <div ref={containerRef} className="relative overflow-hidden">
       {/* Base parallax background */}
       <div
         className="absolute inset-0 w-full h-[140%] z-0"
@@ -56,11 +56,8 @@ const ParallaxSlide: FC<PropsWithChildren<ParallaxSlideProps>> = ({ imageUrl, ch
         }}
       />
 
-      {/* Gradient vignette */}
-      <div className="absolute inset-0 z-20 bg-gradient-to-b from-black/40 via-black/25 to-black/55" />
-
       {/* Content */}
-      <div className="relative min-h-screen flex flex-col items-center justify-center gap-6 px-8 z-30">
+      <div className="relative flex flex-col items-center justify-center gap-6 z-30">
         {children}
       </div>
     </div>

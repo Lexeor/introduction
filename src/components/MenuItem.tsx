@@ -8,7 +8,7 @@ interface MenuItemProps {
 const MenuItem: FC<PropsWithChildren<MenuItemProps>> = ({ children, isActive = false, onClick }) => {
   return (
     <div
-      className="w-6 h-6 md:w-10 md:h-10 lg:h-12 lg:w-12 flex items-center justify-center cursor-pointer"
+      className="w-5 h-5 md:w-10 md:h-10 lg:h-12 lg:w-12 flex items-center justify-center cursor-pointer"
       onClick={onClick}
     >
       {/* Mobile */}

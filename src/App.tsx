@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import Menu from './components/Menu';
 import ParallaxSlide from './components/ParallaxSlide';
+import ContactSlide from './pages/ContactSlide.tsx';
 import GreetingsSlide from './pages/GreetingsSlide';
 import ProjectsSlide from './pages/ProjectsSlide';
 
@@ -127,7 +128,7 @@ function App() {
             sectionsRef.current[2] = el;
           }}
         >
-          <div className="min-h-screen flex flex-col items-center justify-center gap-4">
+          <div className="flex flex-col items-center justify-center gap-4">
             <ProjectsSlide />
           </div>
         </section>
@@ -139,9 +140,12 @@ function App() {
         >
           <ParallaxSlide
             imageUrl="https://images.unsplash.com/photo-1629319890842-323e7ac7347d?q=80&w=2874&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
-            <div className="min-h-screen flex flex-col items-center justify-center gap-4">
-              <h2 className="text-4xl">Слайд 4</h2>
-              <p className="text-secondary">Последний слайд</p>
+            <ContactSlide />
+            <div
+              className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-background-500 to-transparent w-full text-center">
+              <div className=" p-2">
+                © 2026
+              </div>
             </div>
           </ParallaxSlide>
         </section>

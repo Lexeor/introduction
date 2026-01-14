@@ -1,16 +1,23 @@
 import { Contact2Icon, FileTextIcon, HandshakeIcon, UserIcon } from 'lucide-react';
+import { motion } from 'motion/react';
 import { type FC } from 'react';
 import MenuItem from './MenuItem';
 
 interface MenuProps {
   activeIndex: number;
   onItemClick: (index: number) => void;
+  isVisible: boolean;
 }
 
-const Menu: FC<MenuProps> = ({ activeIndex, onItemClick }) => {
+const Menu: FC<MenuProps> = ({ activeIndex, onItemClick, isVisible }) => {
   return (
-    <div className="fixed left-0 top-0 h-screen p-2 flex flex-col gap-2 justify-center z-50">
-      <div className="bg-panel rounded-xl p-2">
+    <motion.div
+      className="fixed left-0 top-0 h-screen p-2 flex flex-col gap-2 justify-center z-50"
+      initial={{ x: '-100%' }}
+      animate={{ x: isVisible ? '16px' : '-100%' }}
+      transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+    >
+      <div className="bg-black/50 backdrop-blur-lg flex flex-col gap-2 rounded-xl p-2">
         <MenuItem isActive={activeIndex === 0} onClick={() => onItemClick(0)}>
           <HandshakeIcon className="h-5 md:h-6 lg:h-8" strokeWidth={1} />
         </MenuItem>
@@ -24,7 +31,7 @@ const Menu: FC<MenuProps> = ({ activeIndex, onItemClick }) => {
           <Contact2Icon className="h-5 md:h-6 lg:h-8" strokeWidth={1} />
         </MenuItem>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

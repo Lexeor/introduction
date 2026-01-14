@@ -1,5 +1,5 @@
-import { useTranslation } from 'react-i18next';
 import { type FC } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const LanguageSwitcher: FC = () => {
   const { i18n } = useTranslation();
@@ -13,6 +13,8 @@ const LanguageSwitcher: FC = () => {
     i18n.changeLanguage(lng);
     // Mark that user has explicitly selected a language
     localStorage.setItem('i18nextUserSelected', 'true');
+    // Dispatch custom event to notify other components
+    window.dispatchEvent(new CustomEvent('languageSelected'));
   };
 
   return (
@@ -21,11 +23,7 @@ const LanguageSwitcher: FC = () => {
         <button
           key={lang.code}
           onClick={() => changeLanguage(lang.code)}
-          className={`px-3 py-1 rounded text-sm font-medium transition-colors ${
-            i18n.language === lang.code
-              ? 'bg-panel-item text-foreground'
-              : 'bg-panel text-foreground/70 hover:bg-panel-item'
-          }`}
+          className="px-3! py-1! rounded! text-sm font-medium transition-colors bg-panel! cursor-pointer!"
         >
           {lang.label}
         </button>

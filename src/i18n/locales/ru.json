@@ -1,5 +1,7 @@
 {
-  "greeting": "Привет!",
+  "greeting": "Привет, я Саша.",
+  "frontend.pre": "И я слышал что вы ищете",
+  "frontend.dev": "Frontend Разработчика",
   "menu": {
     "handshake": "Рукопожатие",
     "user": "Пользователь"

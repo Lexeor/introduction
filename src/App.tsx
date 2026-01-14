@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { Swiper as SwiperType } from 'swiper';
 import { Keyboard, Mousewheel } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -6,12 +6,37 @@ import Menu from './components/Menu';
 import ParallaxSlide from './components/ParallaxSlide';
 import GreetingsSlide from './pages/GreetingsSlide';
 
-// Импортируем стили Swiper
 import 'swiper/swiper.css';
 
 function App() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isMenuVisible, setIsMenuVisible] = useState(false);
   const swiperRef = useRef<SwiperType | null>(null);
+
+  useEffect(() => {
+    // Check if user has selected a language
+    const checkLanguageSelection = () => {
+      const userSelected = localStorage.getItem('i18nextUserSelected');
+      setIsMenuVisible(userSelected === 'true');
+    };
+
+    // Check on mount
+    checkLanguageSelection();
+
+    // Listen for custom event when language is selected
+    const handleLanguageSelected = () => {
+      setIsMenuVisible(true);
+    };
+
+    window.addEventListener('languageSelected', handleLanguageSelected);
+    // Also listen for storage changes (in case language is changed in another tab)
+    window.addEventListener('storage', checkLanguageSelection);
+
+    return () => {
+      window.removeEventListener('languageSelected', handleLanguageSelected);
+      window.removeEventListener('storage', checkLanguageSelection);
+    };
+  }, []);
 
   const handleSlideChange = (swiper: SwiperType) => {
     setActiveIndex(swiper.activeIndex);
@@ -23,10 +48,43 @@ function App() {
     }
   };
 
+  useEffect(() => {
+    const checkLanguageSelection = () => {
+      const userSelected = localStorage.getItem('i18nextUserSelected');
+      const menuVisible = userSelected === 'true';
+      setIsMenuVisible(menuVisible);
+
+      // Lock swiper until language is selected
+      if (swiperRef.current) {
+        if (menuVisible) {
+          swiperRef.current.enable();
+        } else {
+          swiperRef.current.disable();
+        }
+      }
+    };
+
+    checkLanguageSelection();
+
+    const handleLanguageSelected = () => {
+      setIsMenuVisible(true);
+      if (swiperRef.current) {
+        swiperRef.current.enable();
+      }
+    };
+
+    window.addEventListener('languageSelected', handleLanguageSelected);
+    window.addEventListener('storage', checkLanguageSelection);
+
+    return () => {
+      window.removeEventListener('languageSelected', handleLanguageSelected);
+      window.removeEventListener('storage', checkLanguageSelection);
+    };
+  }, []);
 
   return (
     <div className="bg-background-500 w-full h-full min-h-screen">
-      <Menu activeIndex={activeIndex} onItemClick={handleMenuItemClick} />
+      <Menu activeIndex={activeIndex} onItemClick={handleMenuItemClick} isVisible={isMenuVisible} />
       <div className="overflow-hidden h-screen">
         <Swiper
           direction="vertical"
@@ -36,7 +94,7 @@ function App() {
           keyboard={true}
           speed={800}
           modules={[Mousewheel, Keyboard]}
-          className="h-full"
+          className="h-full swiper-no-swiping"
           onSwiper={(swiper: SwiperType) => {
             swiperRef.current = swiper;
           }}

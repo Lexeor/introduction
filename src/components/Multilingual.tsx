@@ -1,15 +1,26 @@
 import { AnimatePresence, motion } from 'motion/react';
-import { type FC, useEffect, useState } from 'react';
+import { type ElementType, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-interface MultilingualProps {
-  values: string[];
+const languageOrder = ['en', 'ru']; // Match the order in LanguageSwitcher
+
+interface MultilingualProps<T extends ElementType = 'span'> {
+  translationKey: string;
   interval?: number;
   selectedLanguage?: number;
+  align?: 'left' | 'center' | 'right';
+  as?: T;
   className?: string;
 }
 
-const Multilingual: FC<MultilingualProps> = ({ values, interval = 5000, selectedLanguage, className }) => {
+const Multilingual = <T extends ElementType = 'span'>({
+  translationKey,
+  interval = 5000,
+  selectedLanguage,
+  align = 'center',
+  as,
+  className,
+}: MultilingualProps<T>) => {
   const { i18n } = useTranslation();
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [hasSavedLanguage, setHasSavedLanguage] = useState<boolean>(false);
@@ -31,6 +42,12 @@ const Multilingual: FC<MultilingualProps> = ({ values, interval = 5000, selected
       window.removeEventListener('storage', checkUserSelectedLanguage);
     };
   }, [i18n.language]);
+
+  // Build translations for all configured languages based on the provided key
+  const values = languageOrder.map((lng) => {
+    const fixedT = i18n.getFixedT(lng);
+    return fixedT(translationKey);
+  });
 
   useEffect(() => {
     // If language is saved in localStorage, don't auto-switch
@@ -55,8 +72,6 @@ const Multilingual: FC<MultilingualProps> = ({ values, interval = 5000, selected
     // Find the index that matches the current language
     // Extract base language code (e.g., "en" from "en-US")
     const baseLanguage = i18n.language.split('-')[0].toLowerCase();
-    // Assuming values are ordered: [en, ru, ...] based on language codes
-    const languageOrder = ['en', 'ru']; // Match the order in LanguageSwitcher
     const currentLangIndex = languageOrder.indexOf(baseLanguage);
     displayIndex = currentLangIndex >= 0 && currentLangIndex < values.length ? currentLangIndex : 0;
   } else if (selectedLanguage !== undefined) {
@@ -68,8 +83,13 @@ const Multilingual: FC<MultilingualProps> = ({ values, interval = 5000, selected
   // Validate index
   const safeDisplayIndex: number = displayIndex >= 0 && displayIndex < values.length ? displayIndex : 0;
 
+  const alignClass =
+    align === 'left' ? 'text-left' : align === 'right' ? 'text-right' : 'text-center';
+
+  const Element = (as ?? 'span') as ElementType;
+
   return (
-    <div className={`relative inline-block min-h-[1.2em] w-full ${className}`}>
+    <div className={`relative block min-h-[1.2em] w-full ${alignClass} ${className ?? ''}`}>
       <AnimatePresence mode="wait">
         <motion.div
           key={hasSavedLanguage ? `saved-${safeDisplayIndex}` : selectedLanguage !== undefined ? `selected-${safeDisplayIndex}` : `auto-${safeDisplayIndex}`}
@@ -82,11 +102,13 @@ const Multilingual: FC<MultilingualProps> = ({ values, interval = 5000, selected
           }}
           className="absolute inset-0"
         >
-          {values[safeDisplayIndex]}
+          <Element>{values[safeDisplayIndex]}</Element>
         </motion.div>
       </AnimatePresence>
       {/* Invisible element to maintain layout space */}
-      <span className="invisible">{values[safeDisplayIndex]}</span>
+      <span className="invisible">
+        <Element>{values[safeDisplayIndex]}</Element>
+      </span>
     </div>
   );
 };

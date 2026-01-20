@@ -29,7 +29,6 @@
 :root {
   font-family: "Noto Sans", sans-serif;
   line-height: 1.5;
-  font-weight: 400;
 
   color: #e7e7e7;
   --background: #181818;
@@ -69,7 +68,6 @@ body, html {
   h4,
   h5,
   h6 {
-    font-weight: 300;
     line-height: 1.2;
     letter-spacing: -0.01em;
     margin: 0;
@@ -108,6 +106,7 @@ body, html {
 
 button {
   all: unset;
+  cursor: pointer;
 }
 
 .bg-panel {

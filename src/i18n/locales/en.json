@@ -1,5 +1,6 @@
 {
   "greeting": "Hi, I'm Alex!",
+  "selectLanguage": "Let's select language first, so we can understand each other :)",
   "frontend.pre": "And I've heard you're looking for",
   "frontend.dev": "Frontend Developer",
   "menu": {

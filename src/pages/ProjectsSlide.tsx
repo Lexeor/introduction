@@ -1,4 +1,4 @@
-import type { FC } from 'react';
+import type { FC, ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 import Container from '../components/Container';
 import ProjectCard from '../components/ProjectCard';
@@ -6,6 +6,31 @@ import ProjectCard from '../components/ProjectCard';
 interface ProjectsSlideProps {
   onOpenProject: (projectId: string) => void;
 }
+
+export interface Project {
+  title: string;
+  subtitle: string;
+  thumbnail: string;
+  description?: string | ReactNode;
+}
+
+const projects = [
+  {
+    title: 'Kvarum',
+    subtitle: 'Scheduling application for lectors and listeners to stay in touch',
+    thumbnail: '/images/kvarum-thumb.jpg',
+  },
+  {
+    title: 'Bus Tracker',
+    subtitle: 'Platform for bus drivers to track their routes',
+    thumbnail: '/images/bus-tracker-thumb.jpg',
+  },
+  {
+    title: 'Craftistry',
+    subtitle: 'Platform for artisans to sell their products',
+    thumbnail: '/images/craftistry-thumb.jpg',
+  },
+];
 
 const ProjectsSlide: FC<ProjectsSlideProps> = ({ onOpenProject }) => {
   const { t } = useTranslation();
@@ -17,11 +42,10 @@ const ProjectsSlide: FC<ProjectsSlideProps> = ({ onOpenProject }) => {
           {t('projects.title')}
         </h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          <ProjectCard title="Kvarum" subtitle="Scheduling application for lectors and listeners to stay in touch"
+          <ProjectCard project={projects[0]}
                        onClick={() => onOpenProject('configurator')} />
-          <ProjectCard title="Craftistry" subtitle="Platform for crafters to present and sell their production" />
-          <ProjectCard title="Apartment Configurator Widget"
-                       subtitle="React widget for apartment configuration using SVG files" />
+          <ProjectCard project={projects[1]} />
+          <ProjectCard project={projects[2]} />
         </div>
       </Container>
     </section>

@@ -1,34 +1,51 @@
 import { type FC, useState } from 'react';
 import { cn } from '../lib/utils';
+import type { Project } from '../pages/ProjectsSlide';
 
 interface ProjectCardProps {
-  title?: string;
-  subtitle?: string;
+  project: Project;
   onClick?(): void;
 }
 
-const ProjectCard: FC<ProjectCardProps> = ({ title, subtitle, onClick }) => {
+const ProjectCard: FC<ProjectCardProps> = ({ project, onClick }) => {
   const [hovered, setHovered] = useState(false);
 
   return (
     <div
-      className={cn('flex flex-col bg-[#222222] rounded-3xl w-full min-h-10 transition-colors duration-600 cursor-pointer',
+      className={cn(
+        'flex flex-col rounded-3xl w-full min-h-10 cursor-pointer overflow-hidden',
+        'transition-colors duration-600',
         hovered ? 'bg-background-100' : 'bg-background-50',
       )}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      onClick={onClick}>
-      <div className="min-h-48">
-
+      onClick={onClick}
+    >
+      <div className="relative min-h-48 overflow-hidden">
+        <img
+          src={project.thumbnail}
+          alt={project.title}
+          className={cn(
+            'w-full h-full object-cover transition-transform duration-600',
+            hovered ? 'scale-105' : 'scale-100',
+          )}
+        />
       </div>
-      <div className={cn('flex flex-col gap-2 grow', 'bg-[#2d2d2d] rounded-3xl p-2! transition-colors duration-600',
-        hovered ? 'bg-primary-500' : 'bg-background-100',
-      )}>
+
+      <div
+        className={cn(
+          'relative -mt-6 z-10',
+          'flex flex-col gap-2 grow',
+          'rounded-3xl p-2!',
+          'transition-all duration-600',
+          hovered ? 'bg-primary-500 -mt-10' : 'bg-background-100',
+        )}
+      >
         <h2 className="w-full p-4 pb-0 font-[400]">
-          {title}
+          {project.title}
         </h2>
         <h3 className="w-full p-4 pt-0">
-          {subtitle}
+          {project.subtitle}
         </h3>
       </div>
     </div>

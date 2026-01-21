@@ -15,8 +15,8 @@ const GreetingsSlide: FC<GreetingsSlideProps> = ({ isInitialLanguageSelected, mo
   return (
     <Container className="min-h-screen flex flex-col items-center justify-center gap-2">
       <div className="flex-grow flex flex-col items-center justify-end">
-        <Multilingual as="h2" translationKey="greeting" className="" />
-        <Multilingual as="h3" translationKey="frontend.pre" className="" />
+        <Multilingual as="h2" translationKey="greeting" className="mb-4" />
+        <Multilingual as="h3" translationKey="frontend.pre" className="mb-6" />
         <Multilingual as="h1" translationKey="frontend.dev" className="text-primary-500 font-[600]!" />
       </div>
 

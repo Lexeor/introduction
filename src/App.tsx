@@ -1,13 +1,12 @@
 import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
 import { useRef } from 'react';
-import { useSearchParams } from 'react-router-dom';
 import Menu from './components/Menu';
 import ParallaxSlide from './components/ParallaxSlide';
-import ProjectModal from './components/ProjectModal';
 import { useLanguageSelection } from './hooks/useLanguageSelection';
 import { useOverlayScrollbarsOptions } from './hooks/useOverlayScrollbarsOptions';
 import { useScrollTracking } from './hooks/useScrollTracking';
 import { useSmoothScroll } from './hooks/useSmoothScroll';
+import AboutMeSlide from './pages/AboutMeSlide';
 import ContactSlide from './pages/ContactSlide';
 import GreetingsSlide from './pages/GreetingsSlide';
 import ProjectsSlide from './pages/ProjectsSlide';
@@ -15,7 +14,6 @@ import ProjectsSlide from './pages/ProjectsSlide';
 function App() {
   const sectionsRef = useRef<(HTMLElement | null)[]>([]);
   const scrollRef = useRef<any>(null);
-  const [searchParams, setSearchParams] = useSearchParams();
 
   const isLanguageSelected = useLanguageSelection();
   const scrollToSection = useSmoothScroll(sectionsRef);
@@ -29,16 +27,6 @@ function App() {
     scrollRef,
     enabled: isLanguageSelected,
   });
-
-  const projectId = searchParams.get('project');
-
-  const handleOpenProject = (id: string) => {
-    setSearchParams({ project: id });
-  };
-
-  const handleCloseProject = () => {
-    setSearchParams({});
-  };
 
   const setSectionRef = (index: number) => (el: HTMLDivElement | null) => {
     sectionsRef.current[index] = el;
@@ -78,16 +66,13 @@ function App() {
           <section ref={setSectionRef(1)}>
             <ParallaxSlide
               imageUrl="https://images.unsplash.com/photo-1513346940221-6f673d962e97?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
-              <div className="min-h-screen flex flex-col items-center justify-center gap-4">
-                <h2 className="text-4xl">Слайд 2</h2>
-                <p className="text-secondary">Продолжайте прокручивать</p>
-              </div>
+              <AboutMeSlide />
             </ParallaxSlide>
           </section>
 
           <section ref={setSectionRef(2)}>
             <div className="flex flex-col items-center justify-center gap-4">
-              <ProjectsSlide onOpenProject={handleOpenProject} />
+              <ProjectsSlide scrollRef={scrollRef} />
             </div>
           </section>
 
@@ -102,10 +87,6 @@ function App() {
             </ParallaxSlide>
           </section>
         </main>
-
-        {projectId && (
-          <ProjectModal projectId={projectId} onClose={handleCloseProject} />
-        )}
       </div>
     </OverlayScrollbarsComponent>
   );

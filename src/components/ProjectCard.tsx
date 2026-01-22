@@ -69,17 +69,19 @@ const ProjectCard: FC<ProjectCardProps> = ({ project, isSelected, onClick }) => 
           <h3 className="w-full p-4 pt-0 text-[18px] text-white/60">
             {project.subtitle}
           </h3>
-          <div className="px-4 pb-4 flex flex-wrap gap-2">
+          <div className="px-4 pb-4 flex flex-col gap-2">
             {project.keyPoints.map((point) => (
-              <span
-                key={point}
-                className={cn(
-                  'px-3 py-1 rounded-full text-[12px] font-medium transition-colors duration-600',
-                  hovered && !isSelected ? 'bg-white/20 text-white' : 'bg-white/5 text-white/40'
-                )}
-              >
-                {point}
-              </span>
+              <div>
+                <span
+                  key={point}
+                  className={cn(
+                    'inline-block px-3 py-1 rounded-full text-[12px] font-medium transition-colors duration-600',
+                    hovered && !isSelected ? 'bg-white/20 text-white' : 'bg-white/5 text-white/40',
+                  )}
+                >
+                  {point}
+                </span>
+              </div>
             ))}
           </div>
         </motion.div>

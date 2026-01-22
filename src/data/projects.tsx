@@ -42,6 +42,7 @@ export const projects: Project[] = [
       { name: 'AntDesign', icon: <></> },
       { name: 'WebSockets', icon: <></> },
       { name: 'Figma', icon: <></> },
+      { name: 'Zustand', icon: <></> },
     ],
     url: 'https://kvarum.app',
   },
@@ -88,6 +89,7 @@ export const projects: Project[] = [
       { name: 'TypeScript', icon: <></> },
       { name: 'Tailwind CSS', icon: <></> },
       { name: 'Figma', icon: <></> },
+      { name: 'MobX', icon: <></> },
     ],
   },
 ];

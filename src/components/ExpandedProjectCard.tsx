@@ -1,7 +1,7 @@
 import { X } from 'lucide-react';
-import { motion, AnimatePresence } from 'motion/react';
+import { AnimatePresence, motion } from 'motion/react';
 import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
-import { type FC, useState, useEffect, useRef } from 'react';
+import { type FC, useEffect, useRef, useState } from 'react';
 import type { Project } from '../data/projects';
 import { cn } from '../lib/utils';
 
@@ -181,7 +181,7 @@ const ExpandedProjectCard: FC<ExpandedProjectCardProps> = ({ project, onClose })
                     {project.goal && (
                       <div className="space-y-3">
                         <h4 className="text-sm font-semibold uppercase tracking-wider text-text-500/50">Goal</h4>
-                        <div className="text-text-300 leading-relaxed">
+                        <div className="text-text-300 leading-5.5">
                           {typeof project.goal === 'string' ? <p>{project.goal}</p> : project.goal}
                         </div>
                       </div>
@@ -190,7 +190,7 @@ const ExpandedProjectCard: FC<ExpandedProjectCardProps> = ({ project, onClose })
                     {project.solution && (
                       <div className="space-y-3">
                         <h4 className="text-sm font-semibold uppercase tracking-wider text-text-500/50">Solution</h4>
-                        <div className="text-text-300 leading-relaxed">
+                        <div className="text-text-300 leading-5.5">
                           {typeof project.solution === 'string' ? <p>{project.solution}</p> : project.solution}
                         </div>
                       </div>
@@ -205,9 +205,9 @@ const ExpandedProjectCard: FC<ExpandedProjectCardProps> = ({ project, onClose })
                         <div
                           key={item.name}
                           className={cn(
-                            "flex items-center gap-2 px-4 py-2 rounded-xl",
-                            "bg-background-200/50 text-text-400 border border-background-300/50",
-                            "hover:bg-background-200 transition-colors"
+                            'flex items-center gap-2 px-4 py-2 rounded-xl',
+                            'bg-background-200/50 text-text-400 border border-background-300/50',
+                            'hover:bg-background-200 transition-colors',
                           )}
                         >
                           {item.icon}

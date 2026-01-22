@@ -10,6 +10,12 @@
   "projects": {
     "title": "Recent Projects",
     "contact-me": "Contacts"
+  },
+  "contacts": {
+    "SendMessage": "Send",
+    "WriteMe": "Right here :)",
+    "FindMeOn": "Find me on",
+    "DropMeAMessage": "or drop me a message"
   }
 }
 

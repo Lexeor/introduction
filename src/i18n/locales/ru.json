@@ -10,6 +10,12 @@
   "projects": {
     "title": "Недавние проекты",
     "contact-me": "Мои контакты"
+  },
+  "contacts": {
+    "SendMessage": "Отправить",
+    "WriteMe": "Вот здесь :)",
+    "FindMeOn": "Меня можно найти тут",
+    "DropMeAMessage": "или оставьте мне сообщение"
   }
 }
 

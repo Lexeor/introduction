@@ -24,14 +24,15 @@ const skillCategories = [
     items: [
       { name: 'React', icon: 'Re' },
       { name: 'Next.js', icon: 'Nx' },
+      { name: 'Remix', icon: 'Rx' },
     ],
   },
   {
     title: 'Стейт',
     items: [
-      { name: 'Redux Toolkit', icon: 'Rd' },
       { name: 'Zustand', icon: 'Zu' },
       { name: 'MobX', icon: 'Mx' },
+      { name: 'Redux Toolkit', icon: 'Rd' },
     ],
   },
   {
@@ -39,7 +40,7 @@ const skillCategories = [
     items: [
       { name: 'Tailwind CSS', icon: 'Tw' },
       { name: 'CSS Modules', icon: 'Cs' },
-      { name: 'Styled', icon: 'Sc' },
+      { name: 'CSS-in-JS', icon: 'Js' },
     ],
   },
   {
@@ -54,8 +55,7 @@ const skillCategories = [
     title: 'API',
     items: [
       { name: 'REST', icon: 'Rs' },
-      { name: 'GraphQL', icon: 'Gq' },
-      { name: 'WebSocket', icon: 'Ws' },
+      { name: 'WebSockets', icon: 'Ws' },
     ],
   },
 ];

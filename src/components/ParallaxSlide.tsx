@@ -25,10 +25,10 @@ const ParallaxSlide: FC<PropsWithChildren<ParallaxSlideProps>> = ({ imageUrl, ch
     };
 
     handleScroll();
-    window.addEventListener('scroll', handleScroll, { passive: true });
+    document.addEventListener('scroll', handleScroll, { passive: true, capture: true });
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      document.removeEventListener('scroll', handleScroll, { capture: true });
     };
   }, []);
 

@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import Container from '../components/Container';
 import ExpandedProjectCard from '../components/ExpandedProjectCard';
 import ProjectCard from '../components/ProjectCard';
+import { asset } from '../lib/assets';
 
 interface ProjectsSlideProps {
   scrollRef?: React.RefObject<any>;
@@ -22,21 +23,21 @@ const projects: Project[] = [
     id: 'kvarum',
     title: 'Kvarum',
     subtitle: 'Scheduling application for lectors and listeners to stay in touch',
-    thumbnail: '/images/kvarum-thumb.jpg',
+    thumbnail: asset('/images/kvarum-thumb.jpg'),
     description: 'A comprehensive scheduling platform that connects educators with their audience. Built with real-time synchronization, calendar integration, and notification systems.',
   },
   {
     id: 'bus-tracker',
     title: 'Bus Tracker',
     subtitle: 'Platform for bus drivers to track their routes',
-    thumbnail: '/images/bus-tracker-thumb.jpg',
+    thumbnail: asset('/images/bus-tracker-thumb.jpg'),
     description: 'Real-time GPS tracking solution for public transportation. Features include route optimization, delay predictions, and passenger information displays.',
   },
   {
     id: 'craftistry',
     title: 'Craftistry',
     subtitle: 'Platform for artisans to sell their products',
-    thumbnail: '/images/craftistry-thumb.jpg',
+    thumbnail: asset('/images/craftistry-thumb.jpg'),
     description: 'E-commerce marketplace tailored for handmade goods. Includes custom storefront builder, secure payments, and inventory management.',
   },
 ];

@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { type FC, memo, useCallback, useState } from 'react';
+import { asset } from '../lib/assets';
 import { cn } from '../lib/utils';
 
 interface CVDownloadWidgetProps {
@@ -57,7 +58,7 @@ const ContactPlaceholder: FC = memo(() => (
 ));
 
 const CVDownloadWidget: FC<CVDownloadWidgetProps> = ({
-  cvUrl = '/docs/Tarasov_React_FE_CV.pdf',
+  cvUrl = asset('/docs/Tarasov_React_FE_CV.pdf'),
   fileName = 'Tarasov_React_FE_CV.pdf',
 }) => {
   const [isHovered, setIsHovered] = useState(false);

@@ -1,7 +1,7 @@
 import { motion } from 'motion/react';
 import { type FC, useState } from 'react';
+import type { Project } from '../data/projects';
 import { cn } from '../lib/utils';
-import type { Project } from '../pages/ProjectsSlide';
 
 interface ProjectCardProps {
   project: Project;
@@ -63,10 +63,10 @@ const ProjectCard: FC<ProjectCardProps> = ({ project, isSelected, onClick }) => 
           animate={{ opacity: isSelected ? 0 : 1 }}
           transition={{ duration: 0.1 }}
         >
-          <h2 className="w-full p-4 pb-0 font-[400]">
+          <h2 className="w-full p-4 pb-0 font-[400] mb-2">
             {project.title}
           </h2>
-          <h3 className="w-full p-4 pt-0">
+          <h3 className="w-full p-4 pt-0 text-[18px] text-white/60">
             {project.subtitle}
           </h3>
         </motion.div>

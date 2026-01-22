@@ -1,8 +1,8 @@
 import { X } from 'lucide-react';
 import { motion } from 'motion/react';
 import type { FC } from 'react';
+import type { Project } from '../data/projects';
 import { cn } from '../lib/utils';
-import type { Project } from '../pages/ProjectsSlide';
 
 interface ExpandedProjectCardProps {
   project: Project;
@@ -152,18 +152,9 @@ const ExpandedProjectCard: FC<ExpandedProjectCardProps> = ({ project, onClose })
                   'hover:bg-primary-600 transition-colors',
                   'font-medium',
                 )}
+                onClick={() => window.open(project.url, '_blank')}
               >
                 View Live
-              </button>
-              <button
-                className={cn(
-                  'px-6 py-3 rounded-xl',
-                  'bg-background-200 text-text-500',
-                  'hover:bg-background-300 transition-colors',
-                  'font-medium',
-                )}
-              >
-                Source Code
               </button>
             </motion.div>
           </motion.div>

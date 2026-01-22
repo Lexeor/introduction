@@ -1,6 +1,7 @@
 import { X } from 'lucide-react';
-import { motion } from 'motion/react';
-import type { FC } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
+import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
+import { type FC, useState, useEffect, useRef } from 'react';
 import type { Project } from '../data/projects';
 import { cn } from '../lib/utils';
 
@@ -10,6 +11,34 @@ interface ExpandedProjectCardProps {
 }
 
 const ExpandedProjectCard: FC<ExpandedProjectCardProps> = ({ project, onClose }) => {
+  const [showFloatingTitle, setShowFloatingTitle] = useState(false);
+  const scrollRef = useRef<any>(null);
+
+  useEffect(() => {
+    // Wait for OverlayScrollbars to initialize
+    const timer = setInterval(() => {
+      const osInstance = scrollRef.current?.osInstance();
+      const viewport = osInstance?.elements().viewport;
+
+      if (viewport) {
+        clearInterval(timer);
+
+        const handleScroll = () => {
+          setShowFloatingTitle(viewport.scrollTop > 20);
+        };
+
+        viewport.addEventListener('scroll', handleScroll, { passive: true });
+        handleScroll(); // Initial check
+
+        return () => {
+          viewport.removeEventListener('scroll', handleScroll);
+        };
+      }
+    }, 50);
+
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <>
       {/* Backdrop overlay */}
@@ -74,6 +103,22 @@ const ExpandedProjectCard: FC<ExpandedProjectCardProps> = ({ project, onClose })
               transition={{ delay: 0.2 }}
               className="absolute inset-0 bg-gradient-to-t from-background-50/80 to-transparent"
             />
+
+            {/* Floating Title Overlay */}
+            <AnimatePresence>
+              {showFloatingTitle && (
+                <motion.div
+                  initial={{ opacity: 0, y: -20, filter: 'blur(10px)' }}
+                  animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                  exit={{ opacity: 0, y: -10, filter: 'blur(10px)' }}
+                  className="absolute inset-0 flex items-center justify-center bg-black/20 backdrop-blur-[2px] z-10"
+                >
+                  <h2 className="text-3xl md:text-5xl font-bold text-white text-center px-6 drop-shadow-2xl">
+                    {project.title}
+                  </h2>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </motion.div>
 
           {/* Content section */}
@@ -82,90 +127,133 @@ const ExpandedProjectCard: FC<ExpandedProjectCardProps> = ({ project, onClose })
             layoutId={`card-content-${project.id}`}
             className={cn(
               'relative -mt-6 z-10 flex-1',
-              'flex flex-col rounded-3xl p-6',
-              'bg-background-100 overflow-y-auto',
+              'flex flex-col rounded-3xl',
+              'bg-background-100 overflow-hidden',
             )}
           >
-            {/* Текст появляется после завершения layout-анимации */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ delay: 0.2, duration: 0.25 }}
-            >
-              <h2 className="text-3xl md:text-4xl font-[400] mb-2">
-                {project.title}
-              </h2>
-
-              <h3 className="text-lg text-text-400 mb-6">
-                {project.subtitle}
-              </h3>
-            </motion.div>
-
-            {/* Extended description */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 10 }}
-              transition={{ delay: 0.3, duration: 0.3 }}
+            <OverlayScrollbarsComponent
+              ref={scrollRef}
+              defer
               className="flex-1"
+              options={{
+                scrollbars: {
+                  autoHide: 'scroll',
+                  theme: 'os-theme-dark',
+                },
+              }}
             >
-              {project.description ? (
-                typeof project.description === 'string' ? (
-                  <p className="text-text-300 leading-relaxed">{project.description}</p>
-                ) : (
-                  project.description
-                )
-              ) : (
-                <div className="space-y-4">
-                  <p className="text-text-300 leading-relaxed">
-                    This is a detailed description of the {project.title} project.
-                    Here you can add more information about the technologies used,
-                    challenges faced, and solutions implemented.
-                  </p>
-                  <div className="flex flex-wrap gap-2 mt-4">
-                    {['React', 'TypeScript', 'Tailwind CSS'].map((tech) => (
-                      <span
-                        key={tech}
-                        className="px-3 py-1 rounded-full bg-background-200 text-text-400 text-sm"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </motion.div>
+              <div className="p-6">
+                {/* Текст появляется после завершения layout-анимации */}
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ delay: 0.2, duration: 0.25 }}
+                >
+                  <h2 className="text-3xl md:text-4xl font-[400] mb-2">
+                    {project.title}
+                  </h2>
 
-            {/* Action buttons */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0 }}
-              transition={{ delay: 0.4, duration: 0.3 }}
-              className="flex gap-3 mt-6 pt-4 border-t border-background-200"
-            >
-              <button
-                className={cn(
-                  'px-6 py-3 rounded-xl',
-                  'bg-primary-500 text-white',
-                  'hover:bg-primary-600 transition-colors',
-                  'font-medium',
-                )}
-              >
-                View Live
-              </button>
-              <button
-                className={cn(
-                  'px-6 py-3 rounded-xl',
-                  'bg-background-200 text-text-500',
-                  'hover:bg-background-300 transition-colors',
-                  'font-medium',
-                )}
-              >
-                Source Code
-              </button>
-            </motion.div>
+                  <h3 className="text-lg text-text-400 mb-6">
+                    {project.subtitle}
+                  </h3>
+                </motion.div>
+
+                {/* Extended description */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 10 }}
+                  transition={{ delay: 0.3, duration: 0.3 }}
+                  className="flex-1 space-y-8"
+                >
+                  {project.description && (
+                    <div>
+                      {typeof project.description === 'string' ? (
+                        <p className="text-text-300 leading-relaxed text-lg">{project.description}</p>
+                      ) : (
+                        project.description
+                      )}
+                    </div>
+                  )}
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    {project.goal && (
+                      <div className="space-y-3">
+                        <h4 className="text-sm font-semibold uppercase tracking-wider text-text-500/50">Goal</h4>
+                        <div className="text-text-300 leading-relaxed">
+                          {typeof project.goal === 'string' ? <p>{project.goal}</p> : project.goal}
+                        </div>
+                      </div>
+                    )}
+
+                    {project.solution && (
+                      <div className="space-y-3">
+                        <h4 className="text-sm font-semibold uppercase tracking-wider text-text-500/50">Solution</h4>
+                        <div className="text-text-300 leading-relaxed">
+                          {typeof project.solution === 'string' ? <p>{project.solution}</p> : project.solution}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Tech Stack Section */}
+                  <div className="pt-6 border-t border-background-200/50">
+                    <h4 className="text-sm font-semibold uppercase tracking-wider text-text-500/50 mb-4">Tech Stack</h4>
+                    <div className="flex flex-wrap gap-2">
+                      {project.stack.map((item) => (
+                        <div
+                          key={item.name}
+                          className={cn(
+                            "flex items-center gap-2 px-4 py-2 rounded-xl",
+                            "bg-background-200/50 text-text-400 border border-background-300/50",
+                            "hover:bg-background-200 transition-colors"
+                          )}
+                        >
+                          {item.icon}
+                          <span className="text-sm font-medium">{item.name}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </motion.div>
+
+                {/* Action buttons */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ delay: 0.4, duration: 0.3 }}
+                  className="flex gap-3 mt-8 pt-6 border-t border-background-200"
+                >
+                  {project.url && (
+                    <a
+                      href={project.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={cn(
+                        'px-6 py-3 rounded-xl',
+                        'bg-primary-500 text-white',
+                        'hover:bg-primary-600 transition-colors',
+                        'font-medium text-center flex-1 md:flex-none',
+                      )}
+                    >
+                      View Live
+                    </a>
+                  )}
+                  <button
+                    className={cn(
+                      'px-6 py-3 rounded-xl',
+                      'bg-background-200 text-text-500',
+                      'hover:bg-background-300 transition-colors',
+                      'font-medium text-center flex-1 md:flex-none',
+                    )}
+                  >
+                    Source Code
+                  </button>
+                </motion.div>
+              </div>
+            </OverlayScrollbarsComponent>
           </motion.div>
         </motion.div>
       </div>

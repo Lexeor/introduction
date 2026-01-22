@@ -1,54 +1,77 @@
+import { motion } from 'motion/react';
 import { type FC, useState } from 'react';
 import { cn } from '../lib/utils';
 import type { Project } from '../pages/ProjectsSlide';
 
 interface ProjectCardProps {
   project: Project;
-  onClick?(): void;
+  isSelected: boolean;
+  onClick(): void;
 }
 
-const ProjectCard: FC<ProjectCardProps> = ({ project, onClick }) => {
+const ProjectCard: FC<ProjectCardProps> = ({ project, isSelected, onClick }) => {
   const [hovered, setHovered] = useState(false);
 
   return (
-    <div
-      className={cn(
-        'flex flex-col rounded-3xl w-full min-h-10 cursor-pointer overflow-hidden',
-        'transition-colors duration-600',
-        hovered ? 'bg-background-100' : 'bg-background-50',
-      )}
+    <motion.div
+      layout
+      layoutId={`card-container-${project.id}`}
+      onClick={onClick}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      onClick={onClick}
+      className={cn(
+        'flex flex-col rounded-3xl cursor-pointer overflow-hidden',
+        'transition-colors duration-600',
+        hovered && !isSelected ? 'bg-background-100' : 'bg-background-50',
+        isSelected && 'pointer-events-none',
+      )}
+      style={{ originX: 0.5, originY: 0.5 }}
     >
-      <div className="relative min-h-48 overflow-hidden">
-        <img
+      <motion.div
+        layout
+        layoutId={`card-image-container-${project.id}`}
+        className="relative overflow-hidden"
+        style={{ minHeight: '12rem' }}
+      >
+        <motion.img
+          layoutId={`card-image-${project.id}`}
           src={project.thumbnail}
           alt={project.title}
           className={cn(
-            'w-full h-full object-cover transition-transform duration-600',
-            hovered ? 'scale-105' : 'scale-100',
+            'w-full h-full object-cover',
+            !isSelected && 'transition-transform duration-600',
+            hovered && !isSelected ? 'scale-105' : 'scale-100',
           )}
         />
-      </div>
+      </motion.div>
 
-      <div
+      <motion.div
+        layout
+        layoutId={`card-content-${project.id}`}
         className={cn(
           'relative -mt-6 z-10',
           'flex flex-col gap-2 grow',
           'rounded-3xl p-2!',
-          'transition-all duration-600',
-          hovered ? 'bg-primary-500 -mt-10' : 'bg-background-100',
+          !isSelected && 'transition-all duration-600',
+          hovered && !isSelected ? 'bg-primary-500 -mt-10' : 'bg-background-100',
+          isSelected && 'bg-background-100 -mt-6',
         )}
       >
-        <h2 className="w-full p-4 pb-0 font-[400]">
-          {project.title}
-        </h2>
-        <h3 className="w-full p-4 pt-0">
-          {project.subtitle}
-        </h3>
-      </div>
-    </div>
+        {/* Текст быстро скрывается при выборе карточки */}
+        <motion.div
+          initial={false}
+          animate={{ opacity: isSelected ? 0 : 1 }}
+          transition={{ duration: 0.1 }}
+        >
+          <h2 className="w-full p-4 pb-0 font-[400]">
+            {project.title}
+          </h2>
+          <h3 className="w-full p-4 pt-0">
+            {project.subtitle}
+          </h3>
+        </motion.div>
+      </motion.div>
+    </motion.div>
   );
 };
 

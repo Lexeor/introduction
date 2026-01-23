@@ -4,6 +4,7 @@ import { type FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import Container from '../components/Container';
 import CVDownloadWidget from '../components/CVDownloadWidget';
+import Multilingual from '../components/Multilingual';
 import SvgIcon from '../components/SvgIcon';
 import { cn } from '../lib/utils';
 
@@ -63,7 +64,7 @@ const ContactSlide: FC<ContactSlideProps> = () => {
           viewport={{ once: true }}
           className="text-4xl md:text-5xl font-light mb-12 text-white"
         >
-          {t('projects.contact-me')}
+          <Multilingual translationKey="projects.contact-me" />
         </motion.h1>
 
         <CVDownloadWidget />
@@ -78,7 +79,7 @@ const ContactSlide: FC<ContactSlideProps> = () => {
             className="space-y-6"
           >
             <p className="text-white/60 text-sm uppercase tracking-wider mb-8">
-              {t('contacts.FindMeOn')}
+              <Multilingual translationKey="contacts.FindMeOn" align="left" />
             </p>
 
             <div className="space-y-4">
@@ -122,7 +123,7 @@ const ContactSlide: FC<ContactSlideProps> = () => {
             viewport={{ once: true }}
           >
             <p className="text-white/60 text-sm uppercase tracking-wider mb-8">
-              {t('contacts.DropMeAMessage')}
+              <Multilingual translationKey="contacts.DropMeAMessage" align="left" />
             </p>
 
             <form onSubmit={handleSubmit} className="space-y-4">

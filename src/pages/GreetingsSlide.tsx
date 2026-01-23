@@ -60,8 +60,9 @@ const GreetingsSlide: FC<GreetingsSlideProps> = ({ isInitialLanguageSelected, mo
               text={t('frontend.mask')}
               className="text-[16vw] leading-[0.8]"
             />
-            <span className="text-3xl sm:text-5xl md:text-6xl font-light tracking-[0.3em] uppercase text-text-500">
-              {t('frontend.developer')}
+            <span
+              className="text-3xl sm:text-5xl md:text-6xl font-light tracking-[0.3em] uppercase text-text-500 w-full">
+              <Multilingual translationKey="frontend.developer" className="w-full" />
             </span>
           </div>
         </div>

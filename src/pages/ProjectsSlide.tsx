@@ -1,8 +1,8 @@
 import { AnimatePresence, LayoutGroup, motion } from 'motion/react';
 import { type FC, useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import Container from '../components/Container';
 import ExpandedProjectCard from '../components/ExpandedProjectCard';
+import Multilingual from '../components/Multilingual';
 import ParticlesBackground from '../components/ParticlesBackground';
 import ProjectCard from '../components/ProjectCard';
 import { type Project, projects } from '../data/projects.tsx';
@@ -12,7 +12,6 @@ interface ProjectsSlideProps {
 }
 
 const ProjectsSlide: FC<ProjectsSlideProps> = ({ scrollRef }) => {
-  const { t } = useTranslation();
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   // Lock scroll when project is expanded
@@ -72,9 +71,9 @@ const ProjectsSlide: FC<ProjectsSlideProps> = ({ scrollRef }) => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-[36px] md:text-[36px] lg:text-[48px] mb-12 lg:mb-24 relative font-light z-10 mt-12"
+          className="text-[36px] md:text-[36px] lg:text-[48px] mb-12 lg:mb-24 relative font-light z-10 mt-12 w-full"
         >
-          {t('projects.title')}
+          <Multilingual translationKey="projects.title" />
         </motion.h1>
 
         <LayoutGroup>

@@ -6,6 +6,7 @@ import { useLanguageSelection } from './hooks/useLanguageSelection';
 import { useOverlayScrollbarsOptions } from './hooks/useOverlayScrollbarsOptions';
 import { useScrollTracking } from './hooks/useScrollTracking';
 import { useSmoothScroll } from './hooks/useSmoothScroll';
+import { Toaster } from 'sonner';
 import AboutMeSlide from './pages/AboutMeSlide';
 import ContactSlide from './pages/ContactSlide';
 import GreetingsSlide from './pages/GreetingsSlide';
@@ -55,6 +56,7 @@ function App() {
           onItemClick={scrollToSection}
           isVisible={isLanguageSelected}
         />
+        <Toaster position="bottom-center" theme="dark" closeButton />
         <main className="w-full">
           <section ref={setSectionRef(0)}>
             <GreetingsSlide

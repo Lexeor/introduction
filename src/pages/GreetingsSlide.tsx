@@ -1,6 +1,7 @@
 import { ArrowDownIcon } from 'lucide-react';
-import type { FC, ReactNode } from 'react';
+import { type FC, type ReactNode, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { toast } from 'sonner';
 import Container from '../components/Container';
 import LanguageSwitcher from '../components/LanguageSwitcher';
 import MaskedText from '../components/MaskedText';
@@ -17,16 +18,44 @@ interface GreetingsSlideProps {
 const GreetingsSlide: FC<GreetingsSlideProps> = ({ isInitialLanguageSelected, moveToNextSlide }) => {
   const { t } = useTranslation();
 
+  useEffect(() => {
+    if (!isInitialLanguageSelected) {
+      toast.custom(() => (
+        <div
+          className="min-h-48 bg-background/5 p-6 rounded-2xl font-light shadow-2xl flex flex-col items-center justify-between gap-4 min-w-[300px] backdrop-blur-sm animate-in fade-in slide-in-from-bottom-4 duration-500">
+          <Multilingual as="h3" translationKey="selectLanguage" className="text-xl" />
+          <LanguageSwitcher />
+        </div>
+      ), {
+        duration: Infinity,
+        position: 'bottom-center',
+        id: 'language-selection-toast',
+      });
+    } else {
+      toast.dismiss('language-selection-toast');
+    }
+  }, [isInitialLanguageSelected]);
+
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setIsVisible(true);
+    }, 2000);
+
+    return () => clearTimeout(timeout);
+  }, []);
+
   return (
     <Container className="min-h-screen flex flex-col items-center justify-center gap-2 relative overflow-hidden">
       <ParticlesBackground
         id="greeting-particles"
-        active={isInitialLanguageSelected}
+        active={isVisible}
         className="z-0"
       />
       <div className="flex-grow flex flex-col items-center justify-end w-full relative z-10">
         <Multilingual as="h2" translationKey="greeting"
-                      className="mb-2 text-[32px] sm:text-[48px] md:text-[48px] lg:text-[64px] font-light" />
+                      className="mb-2 text-[24px] sm:text-[32px] md:text-[32px] lg:text-[48px] font-light" />
         <Multilingual as="h2" translationKey="frontend.intro"
                       className="mb-8 text-[24px] sm:text-[32px] md:text-[32px] lg:text-[48px] font-light" />
 
@@ -46,10 +75,7 @@ const GreetingsSlide: FC<GreetingsSlideProps> = ({ isInitialLanguageSelected, mo
 
       <div className={cn('flex-grow h-full flex flex-col items-center w-full relative z-10',
         isInitialLanguageSelected ? 'justify-center' : 'justify-start')}>
-        {!isInitialLanguageSelected ? <>
-          <Multilingual as="h3" translationKey="selectLanguage" className="mt-8 max-w-[500px]" />
-          <LanguageSwitcher />
-        </> : (
+        {isInitialLanguageSelected && (
           <button
             className="h-full flex items-center justify-center motion-safe:animate-bounce mt-10"
             onClick={() => moveToNextSlide(1)}

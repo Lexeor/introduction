@@ -72,7 +72,7 @@ const ProjectsSlide: FC<ProjectsSlideProps> = ({ scrollRef }) => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-[48px] md:text-[48px] mb-12 lg:mb-24 relative z-10"
+          className="text-[36px] md:text-[36px] lg:text-[48px] mb-12 lg:mb-24 relative font-light z-10 mt-12"
         >
           {t('projects.title')}
         </motion.h1>
@@ -80,7 +80,7 @@ const ProjectsSlide: FC<ProjectsSlideProps> = ({ scrollRef }) => {
         <LayoutGroup>
           <motion.div
             layout
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 relative z-10"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 relative z-10 mb-12"
           >
             {projects.map((project) => (
               <ProjectCard

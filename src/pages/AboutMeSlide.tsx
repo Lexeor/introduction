@@ -168,7 +168,7 @@ const CardStack: FC<CardStackProps> = ({ cards }) => {
           <div
             key={index}
             className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${stack[0] === index ? 'bg-white/80 scale-125' : 'bg-white/20'
-            }`}
+              }`}
           />
         ))}
       </div>

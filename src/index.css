@@ -20,6 +20,7 @@
 }
 
 @layer base {
+
   html,
   body {
     font-family: "Noto Sans", sans-serif;
@@ -40,7 +41,8 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-body, html {
+body,
+html {
   background-color: var(--background);
 }
 

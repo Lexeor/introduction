@@ -1,5 +1,6 @@
 import { type FC } from 'react';
 import { useTranslation } from 'react-i18next';
+import { toast } from 'sonner';
 
 const LanguageSwitcher: FC = () => {
   const { i18n } = useTranslation();
@@ -15,6 +16,8 @@ const LanguageSwitcher: FC = () => {
     localStorage.setItem('i18nextUserSelected', 'true');
     // Dispatch custom event to notify other components
     window.dispatchEvent(new CustomEvent('languageSelected'));
+    // Dismiss language selection toast
+    toast.dismiss('language-selection-toast');
   };
 
   return (

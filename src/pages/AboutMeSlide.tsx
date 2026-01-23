@@ -1,3 +1,4 @@
+import { t } from 'i18next';
 import { motion, type Variants } from 'motion/react';
 import { type FC, type SVGProps, useEffect, useState } from 'react';
 import Container from '../components/Container';
@@ -166,12 +167,42 @@ const CardStack: FC<CardStackProps> = ({ cards }) => {
         {cards.map((_, index) => (
           <div
             key={index}
-            className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
-              stack[0] === index ? 'bg-white/80 scale-125' : 'bg-white/20'
+            className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${stack[0] === index ? 'bg-white/80 scale-125' : 'bg-white/20'
             }`}
           />
         ))}
       </div>
+    </div>
+  );
+};
+
+const LinearAchievements: FC<CardStackProps> = ({ cards }) => {
+  return (
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 w-full">
+      {cards.map((card, index) => (
+        <motion.div
+          key={index}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: index * 0.1 }}
+          whileHover={{ y: -5, backgroundColor: 'rgba(255,255,255,0.05)' }}
+          className="p-5 rounded-2xl border border-white/10 backdrop-blur-sm transition-colors flex flex-col h-full"
+          style={{
+            background: `linear-gradient(135deg, ${card.accent}10 0%, rgba(0,0,0,0.2) 100%)`,
+          }}
+        >
+          <div
+            className="w-8 h-1 rounded-full mb-4 shrink-0"
+            style={{ backgroundColor: card.accent }}
+          />
+          <h3 className="text-sm font-medium text-white mb-3">
+            {card.title}
+          </h3>
+          <p className="text-[11px] font-light text-white/60 leading-relaxed">
+            {card.description}
+          </p>
+        </motion.div>
+      ))}
     </div>
   );
 };
@@ -207,52 +238,59 @@ const AboutMeSlide = () => {
   };
 
   return (
-    <Container className="min-h-screen w-full flex items-center justify-center">
-      <div className="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 px-2">
-        <motion.div
-          className="flex flex-col justify-center lg:border-r lg:border-white/10 lg:pr-12"
-          variants={blockVariants}
-          initial="hidden"
-          animate={visibleBlocks >= 1 ? 'visible' : 'hidden'}
-        >
-          <div className="mb-8">
-            <div className="relative inline-block">
-              <h1 className="text-7xl md:text-8xl lg:text-9xl font-extralight tracking-tighter text-white">
-                React
-              </h1>
-              <span className="absolute -right-6 font-mono text-white/80 tracking-wider">
-                developer
+    <Container className="min-h-screen w-full flex items-center justify-center py-20">
+      <div className="w-full max-w-6xl flex flex-col gap-16 lg:gap-24 px-4 mt-16 md:mt-0">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
+          <motion.div
+            className="flex flex-col justify-center lg:border-r lg:border-white/10 lg:pr-12"
+            variants={blockVariants}
+            initial="hidden"
+            animate={visibleBlocks >= 1 ? 'visible' : 'hidden'}
+          >
+            <div className="mb-8">
+              <div className="relative inline-block">
+                <div className="absolute left-3 -top-4 md:-top-2 text-xl text-white/80 tracking-wider">
+                  {t`frontend.oneup`}
+                </div>
+                <h1 className="text-7xl md:text-8xl lg:text-9xl font-semibold tracking-tighter text-white">
+                  React
+                </h1>
+                <span className="absolute -right-2  text-xl text-white/80 tracking-wider">
+                  developer
+                </span>
+              </div>
+            </div>
+
+            <div className="flex items-baseline gap-4">
+              <span className="text-xl font-thin text-white leading-none">
+                with
               </span>
+              <span className="text-8xl md:text-9xl lg:text-[10rem] font-thin text-white leading-none">
+                4
+              </span>
+              <div className="flex flex-col">
+                <span className="text-2xl md:text-3xl font-extralight text-white/70">года</span>
+                <span className="text-lg font-light text-white/80">опыта</span>
+              </div>
             </div>
-          </div>
 
-          <div className="flex items-baseline gap-4">
-            <span className="text-8xl md:text-9xl lg:text-[10rem] font-thin text-white leading-none">
-              4
-            </span>
-            <div className="flex flex-col">
-              <span className="text-2xl md:text-3xl font-extralight text-white/70">года</span>
-              <span className="text-lg font-light text-white/80">опыта</span>
+            <div className="flex gap-3 mt-8 text-sm font-light text-white/80">
+              <span className="px-3 py-1 rounded-full border border-white/10">JavaScript / TypeScript</span>
             </div>
-          </div>
+          </motion.div>
 
-          <div className="flex gap-3 mt-8 text-sm font-light text-white/80">
-            <span className="px-3 py-1 rounded-full border border-white/10">JavaScript / TypeScript</span>
-          </div>
-        </motion.div>
-
-        <div className="flex flex-col gap-8 lg:gap-10">
           <motion.div
             variants={blockVariants}
             initial="hidden"
             animate={visibleBlocks >= 2 ? 'visible' : 'hidden'}
+            className="flex flex-col justify-center"
           >
-            <div className="flex items-center gap-4 mb-5">
-              <h2 className="text-xl font-light text-white/80 tracking-wide">Навыки</h2>
+            <div className="flex items-center gap-4 mb-8">
+              <h2 className="text-2xl font-light text-white/80 tracking-wide">Навыки</h2>
               <div className="h-px flex-1 bg-gradient-to-r from-white/10 to-transparent" />
             </div>
 
-            <div className="grid grid-cols-3 gap-x-6 gap-y-4">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-8 gap-y-8">
               {skillCategories.map((category, catIndex) => (
                 <motion.div
                   key={category.title}
@@ -266,24 +304,25 @@ const AboutMeSlide = () => {
                     },
                   }}
                 >
-                  <h3 className="text-[10px] font-medium uppercase tracking-widest text-white/30 mb-2">
+                  <h3 className="text-[11px] font-semibold uppercase tracking-[0.2em] text-white/30 mb-4">
                     {category.title}
                   </h3>
-                  <div className="space-y-1">
+                  <div className="space-y-3">
                     {category.items.map((skill) => (
                       <motion.div
                         key={skill.name}
                         variants={skillItemVariants}
-                        className="group flex items-center gap-2 py-1 cursor-default"
+                        className="group flex items-center gap-3 py-1 cursor-default"
                       >
                         <div
-                          className="w-5 h-5 rounded bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-white/25 transition-colors">
+                          className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-white/20 transition-all group-hover:bg-white/10">
                           <IconPlaceholder
                             label={skill.icon}
-                            className="w-3 h-3 text-white/80 group-hover:text-white/80 transition-colors"
+                            className="w-6 h-6 text-white/60 group-hover:text-white/90 transition-colors"
                           />
                         </div>
-                        <span className="text-xs font-light text-white/80 group-hover:text-white/80 transition-colors">
+                        <span
+                          className="text-sm md:text-base font-light text-white/70 group-hover:text-white transition-colors">
                           {skill.name}
                         </span>
                       </motion.div>
@@ -293,20 +332,26 @@ const AboutMeSlide = () => {
               ))}
             </div>
           </motion.div>
-
-          <motion.div
-            variants={blockVariants}
-            initial="hidden"
-            animate={visibleBlocks >= 3 ? 'visible' : 'hidden'}
-          >
-            <div className="flex items-center gap-4 mb-5">
-              <h2 className="text-xl font-light text-white/80 tracking-wide">Подход</h2>
-              <div className="h-px flex-1 bg-gradient-to-r from-white/10 to-transparent" />
-            </div>
-
-            <CardStack cards={achievements} />
-          </motion.div>
         </div>
+
+        <motion.div
+          variants={blockVariants}
+          initial="hidden"
+          animate={visibleBlocks >= 3 ? 'visible' : 'hidden'}
+          className="w-full"
+        >
+          <div className="flex items-center gap-4 mb-8">
+            <h2 className="text-2xl font-light text-white/80 tracking-wide">Подход</h2>
+            <div className="h-px flex-1 bg-gradient-to-r from-white/10 to-transparent" />
+          </div>
+
+          <div className="lg:hidden flex justify-center">
+            <CardStack cards={achievements} />
+          </div>
+          <div className="hidden lg:block">
+            <LinearAchievements cards={achievements} />
+          </div>
+        </motion.div>
       </div>
     </Container>
   );

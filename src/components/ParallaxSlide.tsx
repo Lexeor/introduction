@@ -1,4 +1,5 @@
-import { type FC, type PropsWithChildren, useEffect, useRef, useState } from 'react';
+import { type FC, type PropsWithChildren, useEffect, useRef } from 'react';
+import { motion, useMotionValue, useSpring, useTransform } from 'motion/react';
 
 type ParallaxSlideProps = {
   imageUrl: string;
@@ -6,7 +7,22 @@ type ParallaxSlideProps = {
 
 const ParallaxSlide: FC<PropsWithChildren<ParallaxSlideProps>> = ({ imageUrl, children }) => {
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const [parallaxOffset, setParallaxOffset] = useState(0);
+
+  // Progress value from 0 (bottom of screen) to 1 (top of screen)
+  const progress = useMotionValue(0.5);
+
+  // Smooth out the progress for a premium feel
+  const smoothProgress = useSpring(progress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
+
+  // Map progress to vertical offset
+  // When scrolling DOWN, progress goes from 0 to 1.
+  // We want the image to move UP slightly relative to the container.
+  // So we transform progress [0, 1] to y ["8%", "-8%"]
+  const y = useTransform(smoothProgress, [0, 1], ['8%', '-8%']);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,33 +31,35 @@ const ParallaxSlide: FC<PropsWithChildren<ParallaxSlideProps>> = ({ imageUrl, ch
       const rect = containerRef.current.getBoundingClientRect();
       const windowHeight = window.innerHeight;
 
-      // Прогресс видимости слайда: от 0 (вне экрана) до 1 (на экране)
-      const progress = (windowHeight - rect.top) / (windowHeight + rect.height);
-      const clamped = Math.max(0, Math.min(1, progress));
+      // Calculate visibility progress: 0 when just entered from bottom, 1 when just leaving at top
+      const scrollProgress = (windowHeight - rect.top) / (windowHeight + rect.height);
+      const clamped = Math.max(0, Math.min(1, scrollProgress));
 
-      // Обратный параллакс
-      const offset = (clamped - 0.5) * 400;
-      setParallaxOffset(offset);
+      progress.set(clamped);
     };
 
+    // Listen to scroll events on window with capture: true 
+    // This allows catching scroll events from custom containers like OverlayScrollbars
+    window.addEventListener('scroll', handleScroll, { passive: true, capture: true });
+
+    // Initial calculation
     handleScroll();
-    document.addEventListener('scroll', handleScroll, { passive: true, capture: true });
 
     return () => {
-      document.removeEventListener('scroll', handleScroll, { capture: true });
+      window.removeEventListener('scroll', handleScroll, { capture: true });
     };
-  }, []);
+  }, [progress]);
 
   return (
-    <div ref={containerRef} className="relative overflow-hidden">
+    <div ref={containerRef} className="relative overflow-hidden w-full">
       {/* Base parallax background */}
-      <div
-        className="absolute inset-0 w-full h-[140%] z-0"
+      <motion.div
+        className="absolute inset-x-0 -top-[20%] h-[140%] z-0"
         style={{
           backgroundImage: `url(${imageUrl})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-          transform: `translateY(${parallaxOffset}px)`,
+          y,
           willChange: 'transform',
         }}
       />
@@ -50,14 +68,14 @@ const ParallaxSlide: FC<PropsWithChildren<ParallaxSlideProps>> = ({ imageUrl, ch
       <div
         className="absolute inset-0 z-10"
         style={{
-          backdropFilter: 'blur(4px)',
-          WebkitBackdropFilter: 'blur(4px)',
-          backgroundColor: 'rgba(0, 0, 0, 0.45)',
+          backdropFilter: 'blur(3px)',
+          WebkitBackdropFilter: 'blur(3px)',
+          backgroundColor: 'rgba(0, 0, 0, 0.5)',
         }}
       />
 
       {/* Content */}
-      <div className="relative flex flex-col items-center justify-center gap-6 z-30 pb-4">
+      <div className="relative z-30 w-full">
         {children}
       </div>
     </div>

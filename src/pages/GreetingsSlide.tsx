@@ -1,7 +1,9 @@
 import { ArrowDownIcon } from 'lucide-react';
 import type { FC, ReactNode } from 'react';
+import { useTranslation } from 'react-i18next';
 import Container from '../components/Container';
 import LanguageSwitcher from '../components/LanguageSwitcher';
+import MaskedText from '../components/MaskedText';
 import Multilingual from '../components/Multilingual';
 import { cn } from '../lib/utils';
 
@@ -12,22 +14,42 @@ interface GreetingsSlideProps {
 }
 
 const GreetingsSlide: FC<GreetingsSlideProps> = ({ isInitialLanguageSelected, moveToNextSlide }) => {
+  const { t } = useTranslation();
+
   return (
     <Container className="min-h-screen flex flex-col items-center justify-center gap-2">
-      <div className="flex-grow flex flex-col items-center justify-end">
-        <Multilingual as="h2" translationKey="greeting" className="mb-4" />
-        <Multilingual as="h3" translationKey="frontend.pre" className="mb-6" />
-        <Multilingual as="h1" translationKey="frontend.dev" className="text-primary-500 font-[600]!" />
+      <div className="flex-grow flex flex-col items-center justify-end w-full">
+        <Multilingual as="h2" translationKey="greeting"
+                      className="mb-2 text-[32px] sm:text-[48px] md:text-[48px] lg:text-[64px] font-light" />
+        <Multilingual as="h2" translationKey="frontend.intro"
+                      className="mb-8 text-[24px] sm:text-[32px] md:text-[32px] lg:text-[48px] font-light" />
+
+        <div className="flex flex-col items-center min-h-[200px] justify-center text-center w-full">
+
+          <div className="flex flex-col items-center animate-in fade-in duration-1000 w-full overflow-hidden">
+            <MaskedText
+              text={t('frontend.mask')}
+              className="text-[16vw] leading-[0.8]"
+            />
+            <span className="text-3xl sm:text-5xl md:text-6xl font-light tracking-[0.3em] uppercase text-text-500">
+                {t('frontend.developer')}
+              </span>
+          </div>
+        </div>
       </div>
 
-      <div className={cn('flex-grow h-full flex flex-col items-center',
+      <div className={cn('flex-grow h-full flex flex-col items-center w-full',
         isInitialLanguageSelected ? 'justify-center' : 'justify-start')}>
         {!isInitialLanguageSelected ? <>
           <Multilingual as="h3" translationKey="selectLanguage" className="mt-8 max-w-[500px]" />
           <LanguageSwitcher />
         </> : (
-          <button className="h-full flex items-center justify-center" onClick={() => moveToNextSlide(1)}>
-            <ArrowDownIcon strokeWidth={1} className="border-1 border-text-500 rounded-full p-1 w-12 h-12" />
+          <button
+            className="h-full flex items-center justify-center motion-safe:animate-bounce mt-10"
+            onClick={() => moveToNextSlide(1)}
+          >
+            <ArrowDownIcon strokeWidth={1}
+                           className="border-1 border-text-500 rounded-full p-1 w-12 h-12 opacity-50 hover:opacity-100 transition-opacity" />
           </button>
         )}
       </div>

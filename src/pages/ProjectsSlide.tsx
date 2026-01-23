@@ -61,9 +61,15 @@ const ProjectsSlide: FC<ProjectsSlideProps> = ({ scrollRef }) => {
   return (
     <section className="flex flex-col gap-2 w-full min-h-screen">
       <Container className="flex flex-col gap-2 justify-center items-center min-h-screen">
-        <h1 className="text-[48px] md:text-[48px] mb-12 lg:mb-24">
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="text-[48px] md:text-[48px] mb-12 lg:mb-24"
+        >
           {t('projects.title')}
-        </h1>
+        </motion.h1>
 
         <LayoutGroup>
           <motion.div

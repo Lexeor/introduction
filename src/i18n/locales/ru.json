@@ -1,8 +1,9 @@
 {
   "greeting": "Привет, я Саша.",
   "selectLanguage": "Давайте для начала выберем язык, чтобы было проще понять друг друга :)",
-  "frontend.pre": "И я слышал что вы ищете",
-  "frontend.dev": "Frontend Разработчика",
+  "frontend.intro": "И я слышал что вы ищете",
+  "frontend.mask": "FRONTEND",
+  "frontend.developer": "разработчика",
   "menu": {
     "handshake": "Рукопожатие",
     "user": "Пользователь"
@@ -18,4 +19,3 @@
     "DropMeAMessage": "или оставьте мне сообщение"
   }
 }
-

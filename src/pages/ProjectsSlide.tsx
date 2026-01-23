@@ -3,6 +3,7 @@ import { type FC, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import Container from '../components/Container';
 import ExpandedProjectCard from '../components/ExpandedProjectCard';
+import ParticlesBackground from '../components/ParticlesBackground';
 import ProjectCard from '../components/ProjectCard';
 import { type Project, projects } from '../data/projects.tsx';
 
@@ -60,13 +61,18 @@ const ProjectsSlide: FC<ProjectsSlideProps> = ({ scrollRef }) => {
 
   return (
     <section className="flex flex-col gap-2 w-full min-h-screen">
-      <Container className="flex flex-col gap-2 justify-center items-center min-h-screen">
+      <Container className="flex flex-col gap-2 justify-center items-center min-h-screen relative overflow-hidden">
+        <ParticlesBackground
+          id="projects-particles"
+          active
+          className="z-0"
+        />
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-[48px] md:text-[48px] mb-12 lg:mb-24"
+          className="text-[48px] md:text-[48px] mb-12 lg:mb-24 relative z-10"
         >
           {t('projects.title')}
         </motion.h1>
@@ -74,7 +80,7 @@ const ProjectsSlide: FC<ProjectsSlideProps> = ({ scrollRef }) => {
         <LayoutGroup>
           <motion.div
             layout
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 relative z-10"
           >
             {projects.map((project) => (
               <ProjectCard

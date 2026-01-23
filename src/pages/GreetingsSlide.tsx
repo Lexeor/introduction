@@ -3,7 +3,7 @@ import { type FC, type ReactNode, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'sonner';
 import Container from '../components/Container';
-import LanguageSwitcher from '../components/LanguageSwitcher';
+import LanguageSelectionToast from '../components/LanguageSelectionToast';
 import MaskedText from '../components/MaskedText';
 import Multilingual from '../components/Multilingual';
 import ParticlesBackground from '../components/ParticlesBackground';
@@ -20,13 +20,7 @@ const GreetingsSlide: FC<GreetingsSlideProps> = ({ isInitialLanguageSelected, mo
 
   useEffect(() => {
     if (!isInitialLanguageSelected) {
-      toast.custom(() => (
-        <div
-          className="min-h-48 bg-background/5 p-6 rounded-2xl font-light shadow-2xl flex flex-col items-center justify-between gap-4 min-w-[300px] backdrop-blur-sm animate-in fade-in slide-in-from-bottom-4 duration-500">
-          <Multilingual as="h3" translationKey="selectLanguage" className="text-xl" />
-          <LanguageSwitcher />
-        </div>
-      ), {
+      toast.custom(() => <LanguageSelectionToast />, {
         duration: Infinity,
         position: 'bottom-center',
         id: 'language-selection-toast',

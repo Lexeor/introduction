@@ -1,4 +1,6 @@
+import { motion } from 'motion/react';
 import { type FC } from 'react';
+import ReactCountryFlag from 'react-country-flag';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'sonner';
 
@@ -6,30 +8,30 @@ const LanguageSwitcher: FC = () => {
   const { i18n } = useTranslation();
 
   const languages = [
-    { code: 'en', label: 'EN' },
-    { code: 'ru', label: 'RU' },
+    { code: 'en', label: 'English' },
+    { code: 'ru', label: 'Русский' },
   ];
 
   const changeLanguage = (lng: string) => {
     i18n.changeLanguage(lng);
-    // Mark that user has explicitly selected a language
     localStorage.setItem('i18nextUserSelected', 'true');
-    // Dispatch custom event to notify other components
     window.dispatchEvent(new CustomEvent('languageSelected'));
-    // Dismiss language selection toast
     toast.dismiss('language-selection-toast');
   };
 
   return (
     <div className="flex gap-2 p-2">
       {languages.map((lang) => (
-        <button
+        <motion.div
+          whileHover={{ scale: 1.1 }}
           key={lang.code}
           onClick={() => changeLanguage(lang.code)}
-          className="px-3! py-1! rounded! text-sm font-medium transition-colors bg-panel! cursor-pointer!"
+          className="flex flex-col gap-1 items-center relative px-3! py-1! rounded! text-sm font-medium transition-colors bg-panel! cursor-pointer"
         >
+          <ReactCountryFlag countryCode={lang.code === 'en' ? 'GB' : lang.code} svg
+                            className="w-12! h-12!" />
           {lang.label}
-        </button>
+        </motion.div>
       ))}
     </div>
   );

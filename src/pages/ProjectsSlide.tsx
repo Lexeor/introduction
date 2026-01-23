@@ -1,10 +1,10 @@
 import { AnimatePresence, LayoutGroup, motion } from 'motion/react';
 import { type FC, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { type Project, projects } from '../data/projects.tsx';
 import Container from '../components/Container';
 import ExpandedProjectCard from '../components/ExpandedProjectCard';
 import ProjectCard from '../components/ProjectCard';
+import { type Project, projects } from '../data/projects.tsx';
 
 interface ProjectsSlideProps {
   scrollRef?: React.RefObject<any>;
@@ -59,9 +59,9 @@ const ProjectsSlide: FC<ProjectsSlideProps> = ({ scrollRef }) => {
   };
 
   return (
-    <section className="flex flex-col gap-2 w-full">
-      <Container>
-        <h1 className="text-[48px] md:text-[48px] mb-12">
+    <section className="flex flex-col gap-2 w-full min-h-screen">
+      <Container className="flex flex-col gap-2 justify-center items-center min-h-screen">
+        <h1 className="text-[48px] md:text-[48px] mb-12 lg:mb-24">
           {t('projects.title')}
         </h1>
 

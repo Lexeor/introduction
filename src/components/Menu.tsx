@@ -4,7 +4,7 @@ import { type FC } from 'react';
 import ReactCountryFlag from 'react-country-flag';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'sonner';
-import MenuItem from './MenuItem';
+import MenuItem from '@/components/MenuItem';
 
 interface MenuProps {
   activeIndex: number;

@@ -2,11 +2,11 @@ import { motion } from 'framer-motion';
 import { Send } from 'lucide-react';
 import { type FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import Container from '../components/Container';
-import CVDownloadWidget from '../components/CVDownloadWidget';
-import Multilingual from '../components/Multilingual';
-import SvgIcon from '../components/SvgIcon';
-import { cn } from '../lib/utils';
+import Container from '@/components/Container';
+import CVDownloadWidget from '@/components/CVDownloadWidget';
+import Multilingual from '@/components/Multilingual';
+import SvgIcon from '@/components/SvgIcon';
+import { cn } from '@/lib/utils';
 
 interface ContactSlideProps {
 }

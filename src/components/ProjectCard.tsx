@@ -1,7 +1,8 @@
 import { motion } from 'motion/react';
 import { type FC, useState } from 'react';
-import type { Project } from '../data/projects';
-import { cn } from '../lib/utils';
+import { IconPlaceholder } from '@/pages/AboutMeSlide';
+import type { Project } from '@/data/projects';
+import { cn } from '@/lib/utils';
 
 interface ProjectCardProps {
   project: Project;
@@ -85,6 +86,20 @@ const ProjectCard: FC<ProjectCardProps> = ({ project, isSelected, onClick }) => 
             ))}
           </div>
         </motion.div>
+        {/* Stack panel */}
+        <div className="absolute bottom-4 right-4 max-h-10 flex flex-row">
+          {project.stack.map((item, i) => (
+            <div key={item.name}
+              className={cn('-mx-0.5 p-1 text-white/60 w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-white/20 transition-all group-hover:bg-white/10 group-hover:text-white',
+                `z-${10 + i}`)}>
+              <IconPlaceholder
+                label={item.name}
+                className="text-white/60 group-hover:text-white/90 transition-colors"
+              />
+              {/*<InlineSvg name={item.name} />*/}
+            </div>
+          ))}
+        </div>
       </motion.div>
     </motion.div>
   );

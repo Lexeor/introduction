@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+import InlineSvg from '../components/InlineSvg';
 import { asset } from '../lib/assets.ts';
 
 interface StackItem {
@@ -36,13 +37,13 @@ export const projects: Project[] = [
       'Scalable notification system',
     ],
     stack: [
-      { name: 'Next.js', icon: <></> },
+      { name: 'Next.js', icon: <InlineSvg name="/tech/nextjs" /> },
       { name: 'TypeScript', icon: <></> },
       { name: 'CSS-in-JS (Styled Components)', icon: <></> },
       { name: 'AntDesign', icon: <></> },
       { name: 'WebSockets', icon: <></> },
       { name: 'Figma', icon: <></> },
-      { name: 'Zustand', icon: <></> },
+      { name: 'Zustand', icon: <InlineSvg name="/tech/zustand" /> },
     ],
     url: 'https://kvarum.app',
   },

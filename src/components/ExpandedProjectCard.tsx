@@ -2,8 +2,8 @@ import { X } from 'lucide-react';
 import { AnimatePresence, motion } from 'motion/react';
 import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
 import { type FC, useEffect, useRef, useState } from 'react';
-import type { Project } from '../data/projects';
-import { cn } from '../lib/utils';
+import type { Project } from '@/data/projects';
+import { cn } from '@/lib/utils';
 
 interface ExpandedProjectCardProps {
   project: Project;

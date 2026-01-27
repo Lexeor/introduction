@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { type FC, memo, useCallback, useState } from 'react';
-import { asset } from '../lib/assets';
-import { cn } from '../lib/utils';
+import { asset } from '@/lib/assets';
+import { cn } from '@/lib/utils';
 
 interface CVDownloadWidgetProps {
   cvUrl?: string;
@@ -17,7 +17,7 @@ const PDFIcon = () => {
       <path d="M320 32 L320 130 C320 146 333 160 350 160 L448 160 Z" fill="#E0E0E0" />
       <path d="M320 32 L320 130 C320 146 333 160 350 160 L448 160 Z" fill="#BDBDBD" opacity="0.4" />
       <text x="256" y="340" font-family="Arial, sans-serif" font-size="120" font-weight="bold" fill="#E53935"
-            text-anchor="middle">PDF
+        text-anchor="middle">PDF
       </text>
     </svg>
   );

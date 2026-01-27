@@ -1,11 +1,11 @@
 import { AnimatePresence, LayoutGroup, motion } from 'motion/react';
 import { type FC, useEffect, useState } from 'react';
-import Container from '../components/Container';
-import ExpandedProjectCard from '../components/ExpandedProjectCard';
-import Multilingual from '../components/Multilingual';
-import ParticlesBackground from '../components/ParticlesBackground';
-import ProjectCard from '../components/ProjectCard';
-import { type Project, projects } from '../data/projects.tsx';
+import Container from '@/components/Container';
+import ExpandedProjectCard from '@/components/ExpandedProjectCard';
+import Multilingual from '@/components/Multilingual';
+import ParticlesBackground from '@/components/ParticlesBackground';
+import ProjectCard from '@/components/ProjectCard';
+import { type Project, projects } from '@/data/projects';
 
 interface ProjectsSlideProps {
   scrollRef?: React.RefObject<any>;

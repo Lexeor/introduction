@@ -1,5 +1,5 @@
 import React from 'react';
-import { asset } from '../lib/assets';
+import { asset } from '@/lib/assets';
 
 interface SvgIconProps extends React.SVGProps<SVGSVGElement> {
   name: string;

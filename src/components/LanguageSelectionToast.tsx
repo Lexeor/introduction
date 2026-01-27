@@ -1,7 +1,7 @@
 import { LanguagesIcon } from 'lucide-react';
 import type { FC } from 'react';
-import LanguageSwitcher from './LanguageSwitcher';
-import Multilingual from './Multilingual';
+import LanguageSwitcher from '@/components/LanguageSwitcher';
+import Multilingual from '@/components/Multilingual';
 
 const LanguageSelectionToast: FC = () => {
   return (

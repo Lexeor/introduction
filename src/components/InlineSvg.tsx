@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { asset } from '../lib/assets';
+import { asset } from '@/lib/assets';
 
 interface InlineSvgProps extends React.HTMLAttributes<HTMLDivElement> {
     name: string;

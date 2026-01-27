@@ -1,16 +1,16 @@
 import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
 import { useRef } from 'react';
-import Menu from './components/Menu';
-import ParallaxSlide from './components/ParallaxSlide';
-import { useLanguageSelection } from './hooks/useLanguageSelection';
-import { useOverlayScrollbarsOptions } from './hooks/useOverlayScrollbarsOptions';
-import { useScrollTracking } from './hooks/useScrollTracking';
-import { useSmoothScroll } from './hooks/useSmoothScroll';
+import Menu from '@/components/Menu';
+import ParallaxSlide from '@/components/ParallaxSlide';
+import { useLanguageSelection } from '@/hooks/useLanguageSelection';
+import { useOverlayScrollbarsOptions } from '@/hooks/useOverlayScrollbarsOptions';
+import { useScrollTracking } from '@/hooks/useScrollTracking';
+import { useSmoothScroll } from '@/hooks/useSmoothScroll';
 import { Toaster } from 'sonner';
-import AboutMeSlide from './pages/AboutMeSlide';
-import ContactSlide from './pages/ContactSlide';
-import GreetingsSlide from './pages/GreetingsSlide';
-import ProjectsSlide from './pages/ProjectsSlide';
+import AboutMeSlide from '@/pages/AboutMeSlide';
+import ContactSlide from '@/pages/ContactSlide';
+import GreetingsSlide from '@/pages/GreetingsSlide';
+import ProjectsSlide from '@/pages/ProjectsSlide';
 
 function App() {
   const sectionsRef = useRef<(HTMLElement | null)[]>([]);

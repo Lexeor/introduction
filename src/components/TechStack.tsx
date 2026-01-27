@@ -18,7 +18,6 @@ const TechStack: FC<TechStackProps> = ({ stack, hovered, className }) => {
 
   return (
     <>
-      {/* Основной инстанс Tippy, который будет перемещаться */}
       <Tippy
         singleton={source}
         moveTransition="transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.1)"
@@ -27,7 +26,6 @@ const TechStack: FC<TechStackProps> = ({ stack, hovered, className }) => {
         arrow={false}
         animation={false}
         onTrigger={(instance) => {
-          // Гарантируем, что активный элемент установлен до того, как Tippy начнет расчеты
           const name = instance.reference.getAttribute('data-tech-name');
           if (name) setActiveItem(name);
         }}
@@ -43,12 +41,12 @@ const TechStack: FC<TechStackProps> = ({ stack, hovered, className }) => {
                 <AnimatePresence mode="popLayout" initial={false}>
                   <motion.div
                     key={activeItem}
-                    initial={{ y: 12, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    exit={{ y: -12, opacity: 0 }}
+                    initial={{ x: 15, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    exit={{ x: -15, opacity: 0 }}
                     transition={{
-                      y: { type: "spring", stiffness: 400, damping: 30 },
-                      opacity: { duration: 0.15 }
+                      x: { duration: 0.3, ease: 'easeOut' },
+                      opacity: { duration: 0.2 },
                     }}
                     className="text-[11px] text-white/90 font-medium tracking-wide whitespace-nowrap"
                   >

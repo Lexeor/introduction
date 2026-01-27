@@ -1,10 +1,9 @@
+import Container from '@/components/Container';
+import IconPlaceholder from '@/components/IconPlaceholder';
+import InlineSvg from '@/components/InlineSvg';
 import { t } from 'i18next';
 import { motion, type Variants } from 'motion/react';
 import { type FC, useEffect, useState } from 'react';
-import Container from '@/components/Container';
-import InlineSvg from '@/components/InlineSvg';
-
-import IconPlaceholder from '@/components/IconPlaceholder';
 
 
 const skillCategories = [
@@ -167,7 +166,7 @@ const CardStack: FC<CardStackProps> = ({ cards }) => {
           <div
             key={index}
             className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${stack[0] === index ? 'bg-white/80 scale-125' : 'bg-white/20'
-              }`}
+            }`}
           />
         ))}
       </div>

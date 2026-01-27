@@ -1,12 +1,12 @@
-import { motion } from 'framer-motion';
-import { Send } from 'lucide-react';
-import { type FC, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import Container from '@/components/Container';
 import CVDownloadWidget from '@/components/CVDownloadWidget';
 import Multilingual from '@/components/Multilingual';
 import SvgIcon from '@/components/SvgIcon';
 import { cn } from '@/lib/utils';
+import { motion } from 'framer-motion';
+import { Send } from 'lucide-react';
+import { type FC, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 interface ContactSlideProps {
 }
@@ -47,7 +47,7 @@ const ContactSlide: FC<ContactSlideProps> = () => {
   };
 
   return (
-    <Container>
+    <Container className="pb-10">
       <div
         className={cn(
           'px-6 sm:px-12 py-12 rounded-[42px]',

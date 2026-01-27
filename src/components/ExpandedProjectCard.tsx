@@ -154,7 +154,7 @@ const ExpandedProjectCard: FC<ExpandedProjectCardProps> = ({ project, onClose })
                     {project.title}
                   </h2>
 
-                  <h3 className="text-lg text-text-400 mb-6">
+                  <h3 className="text-lg text-text-400 mb-6 leading-5.5">
                     {project.subtitle}
                   </h3>
                 </motion.div>
@@ -170,7 +170,7 @@ const ExpandedProjectCard: FC<ExpandedProjectCardProps> = ({ project, onClose })
                   {project.description && (
                     <div>
                       {typeof project.description === 'string' ? (
-                        <p className="text-text-300 leading-relaxed text-lg">{project.description}</p>
+                        <p className="text-text-300 leading-5.5 text-lg">{project.description}</p>
                       ) : (
                         project.description
                       )}

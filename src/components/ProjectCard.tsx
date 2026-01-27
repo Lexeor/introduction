@@ -53,7 +53,7 @@ const ProjectCard: FC<ProjectCardProps> = ({ project, isSelected, onClick }) => 
         className={cn(
           'relative -mt-6 z-10',
           'flex flex-col gap-2 grow',
-          'rounded-3xl p-2!',
+          'rounded-3xl p-2 pb-14',
           !isSelected && 'transition-all duration-600',
           hovered && !isSelected ? 'bg-primary-500 -mt-10' : 'bg-background-100',
           isSelected && 'bg-background-100 -mt-6',

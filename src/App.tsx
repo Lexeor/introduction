@@ -1,16 +1,16 @@
-import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
-import { useRef } from 'react';
 import Menu from '@/components/Menu';
 import ParallaxSlide from '@/components/ParallaxSlide';
 import { useLanguageSelection } from '@/hooks/useLanguageSelection';
 import { useOverlayScrollbarsOptions } from '@/hooks/useOverlayScrollbarsOptions';
 import { useScrollTracking } from '@/hooks/useScrollTracking';
 import { useSmoothScroll } from '@/hooks/useSmoothScroll';
-import { Toaster } from 'sonner';
 import AboutMeSlide from '@/pages/AboutMeSlide';
 import ContactSlide from '@/pages/ContactSlide';
 import GreetingsSlide from '@/pages/GreetingsSlide';
 import ProjectsSlide from '@/pages/ProjectsSlide';
+import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
+import { useRef } from 'react';
+import { Toaster } from 'sonner';
 
 function App() {
   const sectionsRef = useRef<(HTMLElement | null)[]>([]);
@@ -84,7 +84,7 @@ function App() {
               <ContactSlide />
               <div
                 className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-background-500 to-transparent w-full text-center">
-                <div className="p-2">© 2026</div>
+                <div className="p-2 text-sm text-text-400">Designed and developed by Alexander Tarasov © 2026</div>
               </div>
             </ParallaxSlide>
           </section>

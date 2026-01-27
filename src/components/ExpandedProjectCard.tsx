@@ -1,9 +1,9 @@
+import type { Project } from '@/data/projects';
+import { cn } from '@/lib/utils';
 import { X } from 'lucide-react';
 import { AnimatePresence, motion } from 'motion/react';
 import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
 import { type FC, useEffect, useRef, useState } from 'react';
-import type { Project } from '@/data/projects';
-import { cn } from '@/lib/utils';
 
 interface ExpandedProjectCardProps {
   project: Project;
@@ -205,12 +205,14 @@ const ExpandedProjectCard: FC<ExpandedProjectCardProps> = ({ project, onClose })
                         <div
                           key={item.name}
                           className={cn(
-                            'flex items-center gap-2 px-4 py-2 rounded-xl',
-                            'bg-background-200/50 text-text-400 border border-background-300/50',
-                            'hover:bg-background-200 transition-colors',
+                            'flex items-center gap-2 px-3 py-2 rounded-xl',
+                            'bg-background-200/50 text-text-400',
+                            'hover:bg-background-200 transition-colors select-none',
                           )}
                         >
-                          {item.icon}
+                          <div className="w-6 h-6">
+                            {item.icon}
+                          </div>
                           <span className="text-sm font-medium">{item.name}</span>
                         </div>
                       ))}
@@ -224,7 +226,7 @@ const ExpandedProjectCard: FC<ExpandedProjectCardProps> = ({ project, onClose })
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0 }}
                   transition={{ delay: 0.4, duration: 0.3 }}
-                  className="flex gap-3 mt-8 pt-6 border-t border-background-200"
+                  className="flex justify-end gap-3 mt-8 pt-6 border-t border-background-200"
                 >
                   {project.url && (
                     <a
@@ -241,16 +243,6 @@ const ExpandedProjectCard: FC<ExpandedProjectCardProps> = ({ project, onClose })
                       View Live
                     </a>
                   )}
-                  <button
-                    className={cn(
-                      'px-6 py-3 rounded-xl',
-                      'bg-background-200 text-text-500',
-                      'hover:bg-background-300 transition-colors',
-                      'font-medium text-center flex-1 md:flex-none',
-                    )}
-                  >
-                    Source Code
-                  </button>
                 </motion.div>
               </div>
             </OverlayScrollbarsComponent>

@@ -1,8 +1,9 @@
-import { motion } from 'motion/react';
-import { type FC, useState } from 'react';
-import { IconPlaceholder } from '@/pages/AboutMeSlide';
 import type { Project } from '@/data/projects';
 import { cn } from '@/lib/utils';
+import { motion } from 'motion/react';
+import { type FC, useState } from 'react';
+import TechStack from './TechStack';
+
 
 interface ProjectCardProps {
   project: Project;
@@ -21,7 +22,7 @@ const ProjectCard: FC<ProjectCardProps> = ({ project, isSelected, onClick }) => 
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       className={cn(
-        'flex flex-col rounded-3xl cursor-pointer overflow-hidden',
+        'flex flex-col rounded-3xl cursor-pointer overflow-hidden group',
         'transition-colors duration-600',
         hovered && !isSelected ? 'bg-background-100' : 'bg-background-50',
         isSelected && 'pointer-events-none',
@@ -71,10 +72,9 @@ const ProjectCard: FC<ProjectCardProps> = ({ project, isSelected, onClick }) => 
             {project.subtitle}
           </h3>
           <div className="px-4 pb-4 flex flex-col gap-2">
-            {project.keyPoints.map((point) => (
-              <div>
+            {project.keyPoints.map((point: string) => (
+              <div key={point}>
                 <span
-                  key={point}
                   className={cn(
                     'inline-block px-3 py-1 rounded-full text-[12px] font-medium transition-colors duration-600',
                     hovered && !isSelected ? 'bg-white/20 text-white' : 'bg-white/5 text-white/40',
@@ -86,20 +86,11 @@ const ProjectCard: FC<ProjectCardProps> = ({ project, isSelected, onClick }) => 
             ))}
           </div>
         </motion.div>
-        {/* Stack panel */}
-        <div className="absolute bottom-4 right-4 max-h-10 flex flex-row">
-          {project.stack.map((item, i) => (
-            <div key={item.name}
-              className={cn('-mx-0.5 p-1 text-white/60 w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-white/20 transition-all group-hover:bg-white/10 group-hover:text-white',
-                `z-${10 + i}`)}>
-              <IconPlaceholder
-                label={item.name}
-                className="text-white/60 group-hover:text-white/90 transition-colors"
-              />
-              {/*<InlineSvg name={item.name} />*/}
-            </div>
-          ))}
-        </div>
+        <TechStack
+          stack={project.stack}
+          hovered={hovered}
+          className="absolute bottom-4 right-4 max-h-10"
+        />
       </motion.div>
     </motion.div>
   );

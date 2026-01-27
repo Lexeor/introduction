@@ -1,62 +1,74 @@
 import { t } from 'i18next';
 import { motion, type Variants } from 'motion/react';
-import { type FC, type SVGProps, useEffect, useState } from 'react';
+import { type FC, type ReactNode, type SVGProps, useEffect, useState } from 'react';
 import Container from '../components/Container';
+import InlineSvg from '../components/InlineSvg';
 
-const IconPlaceholder: FC<SVGProps<SVGSVGElement> & { label?: string }> = ({ label, ...props }) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} {...props}>
-    <rect x="3" y="3" width="18" height="18" rx="4" strokeDasharray="4 2" />
-    <text x="12" y="16" textAnchor="middle" fontSize="8" fill="currentColor" stroke="none">
-      {label?.slice(0, 2).toUpperCase()}
-    </text>
-  </svg>
-);
+const IconPlaceholder: FC<SVGProps<SVGSVGElement> & { label?: string | ReactNode }> = ({ label, ...props }) => {
+  if (typeof label === 'object' && label !== null) {
+    return <>{label}</>;
+  }
+
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} {...props}>
+      <rect x="3" y="3" width="18" height="18" rx="4" strokeDasharray="4 2" />
+      <text x="12" y="16" textAnchor="middle" fontSize="8" fill="currentColor" stroke="none">
+        {/* @ts-expect-error - label is string */}
+        {label?.slice(0, 2).toUpperCase()}
+      </text>
+    </svg>
+  );
+};
 
 const skillCategories = [
   {
-    title: 'Языки',
+    title: 'Core',
     items: [
-      { name: 'JavaScript', icon: 'JS' },
-      { name: 'TypeScript', icon: 'TS' },
+      {
+        name: 'JavaScript',
+        icon: <InlineSvg name="tech/javascript" />,
+      },
+      { name: 'TypeScript', icon: <InlineSvg name="/tech/typescript" /> },
     ],
   },
   {
     title: 'Фреймворки',
     items: [
-      { name: 'React', icon: 'Re' },
-      { name: 'Next.js', icon: 'Nx' },
-      { name: 'Remix', icon: 'Rx' },
+      { name: 'React', icon: <InlineSvg name="/tech/react" /> },
+      { name: 'Next.js', icon: <InlineSvg name="/tech/nextjs" /> },
+      { name: 'Remix', icon: <InlineSvg name="/tech/remix" /> },
     ],
   },
   {
     title: 'Стейт',
     items: [
-      { name: 'Zustand', icon: 'Zu' },
-      { name: 'MobX', icon: 'Mx' },
-      { name: 'Redux Toolkit', icon: 'Rd' },
+      { name: 'Zustand', icon: <InlineSvg name="/tech/zustand" /> },
+      { name: 'MobX', icon: <InlineSvg name="/tech/mobx" /> },
+      { name: 'Redux Toolkit', icon: <InlineSvg name="/tech/redux" /> },
     ],
   },
   {
-    title: 'Стили',
+    title: 'Styling',
     items: [
-      { name: 'Tailwind CSS', icon: 'Tw' },
-      { name: 'CSS Modules', icon: 'Cs' },
+      { name: 'Tailwind CSS', icon: <InlineSvg name="/tech/tailwind" /> },
+      { name: 'CSS Modules', icon: <InlineSvg name="/tech/css" /> },
       { name: 'CSS-in-JS', icon: 'Js' },
+      { name: 'Framer/Motion', icon: <InlineSvg name="/tech/motion" className="w-10" /> },
     ],
   },
   {
     title: 'Инструменты',
     items: [
-      { name: 'Git', icon: 'Gi' },
-      { name: 'Vite', icon: 'Vi' },
-      { name: 'Webpack', icon: 'Wp' },
+      { name: 'Git', icon: <InlineSvg name="/tech/git" /> },
+      { name: 'Vite', icon: <InlineSvg name="/tech/vite" /> },
+      { name: 'Webpack', icon: <InlineSvg name="/tech/webpack" /> },
     ],
   },
   {
     title: 'API',
     items: [
-      { name: 'REST', icon: 'Rs' },
-      { name: 'WebSockets', icon: 'Ws' },
+      { name: 'REST', icon: <InlineSvg name="/tech/api" /> },
+      { name: 'WebSockets', icon: <InlineSvg name="/tech/websocket" /> },
     ],
   },
 ];
@@ -168,7 +180,7 @@ const CardStack: FC<CardStackProps> = ({ cards }) => {
           <div
             key={index}
             className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${stack[0] === index ? 'bg-white/80 scale-125' : 'bg-white/20'
-              }`}
+            }`}
           />
         ))}
       </div>
@@ -315,10 +327,10 @@ const AboutMeSlide = () => {
                         className="group flex items-center gap-3 py-1 cursor-default"
                       >
                         <div
-                          className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-white/20 transition-all group-hover:bg-white/10">
+                          className="p-1 text-white/60 w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-white/20 transition-all group-hover:bg-white/10 group-hover:text-white">
                           <IconPlaceholder
                             label={skill.icon}
-                            className="w-6 h-6 text-white/60 group-hover:text-white/90 transition-colors"
+                            className="text-white/60 group-hover:text-white/90 transition-colors"
                           />
                         </div>
                         <span

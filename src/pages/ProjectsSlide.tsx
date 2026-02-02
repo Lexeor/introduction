@@ -1,11 +1,10 @@
-import { AnimatePresence, LayoutGroup, motion } from 'motion/react';
-import { type FC, useEffect, useState } from 'react';
 import Container from '@/components/Container';
 import ExpandedProjectCard from '@/components/ExpandedProjectCard';
 import Multilingual from '@/components/Multilingual';
-import ParticlesBackground from '@/components/ParticlesBackground';
 import ProjectCard from '@/components/ProjectCard';
 import { type Project, projects } from '@/data/projects';
+import { AnimatePresence, LayoutGroup, motion } from 'motion/react';
+import { type FC, useEffect, useState } from 'react';
 
 interface ProjectsSlideProps {
   scrollRef?: React.RefObject<any>;
@@ -59,13 +58,12 @@ const ProjectsSlide: FC<ProjectsSlideProps> = ({ scrollRef }) => {
   };
 
   return (
-    <section className="flex flex-col gap-2 w-full min-h-screen">
+    <section className="relative flex flex-col gap-2 w-full min-h-screen">
+      {/* Rounded corners */}
+      <div className="absolute w-full -top-8 h-8 z-10 bg-background-500 rounded-t-4xl" />
+      <div className="absolute w-full -bottom-8 h-8 z-11 bg-background-500 rounded-b-4xl" />
+
       <Container className="flex flex-col gap-2 justify-center items-center min-h-screen relative overflow-hidden">
-        <ParticlesBackground
-          id="projects-particles"
-          active
-          className="z-0"
-        />
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

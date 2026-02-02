@@ -1,9 +1,10 @@
 import Container from '@/components/Container';
+import FlippingCard from '@/components/FlippingCard';
 import IconPlaceholder from '@/components/IconPlaceholder';
 import InlineSvg from '@/components/InlineSvg';
 import { t } from 'i18next';
 import { motion, type Variants } from 'motion/react';
-import { type FC, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 
 const skillCategories = [
@@ -87,123 +88,6 @@ const achievements = [
   },
 ];
 
-interface CardStackProps {
-  cards: typeof achievements;
-}
-
-const CardStack: FC<CardStackProps> = ({ cards }) => {
-  const [stack, setStack] = useState(cards.map((_, i) => i));
-  const [isAnimating, setIsAnimating] = useState(false);
-
-  const handleNext = () => {
-    if (isAnimating) return;
-    setIsAnimating(true);
-    setTimeout(() => {
-      setStack((prev) => {
-        const [top, ...rest] = prev;
-        return [...rest, top];
-      });
-      setIsAnimating(false);
-    }, 300);
-  };
-
-  return (
-    <div className="relative w-72 h-44">
-      {stack.slice(0, 4).map((cardIndex, stackPosition) => {
-        const card = cards[cardIndex];
-        const isTop = stackPosition === 0;
-        const offset = stackPosition * 6;
-        const scale = 1 - stackPosition * 0.05;
-        const zIndex = stack.length - stackPosition;
-
-        return (
-          <motion.div
-            key={cardIndex}
-            layout
-            className="absolute inset-0 p-5 rounded-2xl border border-white/10 backdrop-blur-sm select-none"
-            style={{
-              background: `linear-gradient(135deg, ${card.accent}15 0%, rgba(0,0,0,0.4) 100%)`,
-              zIndex,
-            }}
-            initial={false}
-            animate={{
-              y: offset,
-              scale,
-              rotate: stackPosition * -1.5,
-              opacity: 1 - stackPosition * 0.2,
-              x: isTop && isAnimating ? 200 : 0,
-            }}
-            transition={{
-              type: 'spring',
-              stiffness: 300,
-              damping: 25,
-            }}
-            onClick={isTop ? handleNext : undefined}
-            whileHover={isTop ? { scale: 1.03, y: -4 } : undefined}
-            whileTap={isTop ? { scale: 0.98 } : undefined}
-          >
-            <div
-              className="w-6 h-1 rounded-full mb-3"
-              style={{ backgroundColor: card.accent }}
-            />
-            <h3 className="text-base font-medium text-white mb-2">
-              {card.title}
-            </h3>
-            <p className="text-xs font-light text-white/80 leading-relaxed line-clamp-3">
-              {card.description}
-            </p>
-            {isTop && (
-              <div className="absolute bottom-3 right-3 text-[10px] text-white/30">
-                tap to next
-              </div>
-            )}
-          </motion.div>
-        );
-      })}
-
-      <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 flex gap-1.5">
-        {cards.map((_, index) => (
-          <div
-            key={index}
-            className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${stack[0] === index ? 'bg-white/80 scale-125' : 'bg-white/20'
-            }`}
-          />
-        ))}
-      </div>
-    </div>
-  );
-};
-
-const LinearAchievements: FC<CardStackProps> = ({ cards }) => {
-  return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 w-full">
-      {cards.map((card, index) => (
-        <motion.div
-          key={index}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: index * 0.1 }}
-          whileHover={{ y: -5, backgroundColor: 'rgba(255,255,255,0.05)' }}
-          className="p-5 rounded-2xl border border-white/10 backdrop-blur-sm transition-colors flex flex-col h-full"
-          style={{
-            background: `linear-gradient(135deg, ${card.accent}10 0%, rgba(0,0,0,0.2) 100%)`,
-          }}
-        >
-          <div
-            className="w-8 h-1 rounded-full mb-4 shrink-0"
-            style={{ backgroundColor: card.accent }}
-          />
-          <h3 className="text-sm font-medium text-white mb-3">
-            {card.title}
-          </h3>
-          <p className="text-[11px] font-light text-white/60 leading-relaxed">
-            {card.description}
-          </p>
-        </motion.div>
-      ))}
-    </div>
-  );
-};
 
 const AboutMeSlide = () => {
   const [visibleBlocks, setVisibleBlocks] = useState(0);
@@ -236,8 +120,8 @@ const AboutMeSlide = () => {
   };
 
   return (
-    <Container className="min-h-screen w-full flex items-center justify-center py-20">
-      <div className="w-full max-w-6xl flex flex-col gap-16 lg:gap-24 px-4 mt-16 md:mt-0">
+    <Container className="min-h-[calc(100vh+4rem)] w-full flex items-center justify-center py-20">
+      <div className="w-full flex flex-col gap-16 lg:gap-24 px-4 mt-16 md:mt-0">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
           <motion.div
             className="flex flex-col justify-center lg:border-r lg:border-white/10 lg:pr-12"
@@ -343,11 +227,21 @@ const AboutMeSlide = () => {
             <div className="h-px flex-1 bg-gradient-to-r from-white/10 to-transparent" />
           </div>
 
-          <div className="lg:hidden flex justify-center">
-            <CardStack cards={achievements} />
-          </div>
-          <div className="hidden lg:block">
-            <LinearAchievements cards={achievements} />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 w-full">
+            {achievements.map((card, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+              >
+                <FlippingCard
+                  title={card.title}
+                  description={card.description}
+                  accent={card.accent}
+                />
+              </motion.div>
+            ))}
           </div>
         </motion.div>
       </div>

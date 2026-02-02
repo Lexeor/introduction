@@ -37,6 +37,7 @@ export const projects: Project[] = [
       'Scalable notification system',
     ],
     stack: [
+      { name: 'React', icon: <InlineSvg name="/tech/react" /> },
       { name: 'Next.js', icon: <InlineSvg name="/tech/nextjs" /> },
       { name: 'TypeScript', icon: <InlineSvg name="/tech/typescript" /> },
       { name: 'CSS-in-JS (Styled Components)', icon: <InlineSvg name="/tech/styled" /> },

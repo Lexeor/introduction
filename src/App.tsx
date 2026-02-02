@@ -8,6 +8,7 @@ import AboutMeSlide from '@/pages/AboutMeSlide';
 import ContactSlide from '@/pages/ContactSlide';
 import GreetingsSlide from '@/pages/GreetingsSlide';
 import ProjectsSlide from '@/pages/ProjectsSlide';
+import { motion } from 'framer-motion';
 import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
 import { useRef } from 'react';
 import { Toaster } from 'sonner';
@@ -84,7 +85,19 @@ function App() {
               <ContactSlide />
               <div
                 className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-background-500 to-transparent w-full text-center">
-                <div className="p-2 text-sm text-text-400">Designed and developed by Alexander Tarasov © 2026</div>
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{
+                    type: 'spring',
+                    damping: 12,
+                    stiffness: 90,
+                    delay: 1,
+                    mass: 0.8,
+                  }}
+                  className="p-2 text-xs sm:text-sm text-text-400">Designed and developed by Alexander Tarasov © 2026
+                </motion.div>
               </div>
             </ParallaxSlide>
           </section>

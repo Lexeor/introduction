@@ -47,7 +47,7 @@ const ContactSlide: FC<ContactSlideProps> = () => {
   };
 
   return (
-    <Container className="pb-10">
+    <Container className="pb-10 pt-16">
       <div
         className={cn(
           'px-6 sm:px-12 py-12 rounded-[42px]',

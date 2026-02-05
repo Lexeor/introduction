@@ -18,5 +18,11 @@
     "WriteMe": "Right here :)",
     "FindMeOn": "Find me on",
     "DropMeAMessage": "or drop me a message"
+  },
+  "loading": {
+    "tipOfTheDayTitle": "Tip of the day",
+    "tipOfTheDay": "As you can see, I really love animations!",
+    "loading": "Loading",
+    "reloadProjects": "Reload projects"
   }
 }

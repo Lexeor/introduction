@@ -1,3 +1,4 @@
+import LoadingScreen from '@/components/experimental/LoadingScreen.tsx';
 import Menu from '@/components/Menu';
 import ParallaxSlide from '@/components/ParallaxSlide';
 import { useLanguageSelection } from '@/hooks/useLanguageSelection';
@@ -12,12 +13,13 @@ import { motion } from 'framer-motion';
 import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
 import { useRef } from 'react';
 import { Toaster } from 'sonner';
+import { useUIStore } from '@/store/useUIStore';
 
 function App() {
   const sectionsRef = useRef<(HTMLElement | null)[]>([]);
   const scrollRef = useRef<any>(null);
-
-  const isLanguageSelected = useLanguageSelection();
+  const { isGlobalLoading, isLanguageSelected } = useUIStore();
+  useLanguageSelection(); // Initializing event listeners
   const scrollToSection = useSmoothScroll(sectionsRef);
   const activeIndex = useScrollTracking({
     scrollRef,
@@ -25,9 +27,11 @@ function App() {
     enabled: isLanguageSelected,
   });
 
+  const isScrollEnabled = isLanguageSelected && !isGlobalLoading;
+
   useOverlayScrollbarsOptions({
     scrollRef,
-    enabled: isLanguageSelected,
+    enabled: isScrollEnabled,
   });
 
   const setSectionRef = (index: number) => (el: HTMLDivElement | null) => {
@@ -46,12 +50,13 @@ function App() {
         },
         overflow: {
           x: 'hidden',
-          y: isLanguageSelected ? 'scroll' : 'hidden',
+          y: isScrollEnabled ? 'scroll' : 'hidden',
         },
       }}
       className="h-screen"
     >
-      <div className="bg-background-500 w-full min-h-screen">
+      <div className="relative bg-background-500 w-full min-h-screen">
+        <LoadingScreen />
         <Menu
           activeIndex={activeIndex}
           onItemClick={scrollToSection}
@@ -61,7 +66,6 @@ function App() {
         <main className="w-full">
           <section ref={setSectionRef(0)}>
             <GreetingsSlide
-              isInitialLanguageSelected={isLanguageSelected}
               moveToNextSlide={scrollToSection}
             />
           </section>

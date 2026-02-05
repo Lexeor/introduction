@@ -43,12 +43,13 @@ const FlippingCard: FC<FlippingCardProps> = ({ title, description, accent = '#3b
 
         {/* Back Side */}
         <div
-          className="absolute inset-0 backface-hidden rounded-2xl backdrop-blur-md p-6 flex flex-col justify-center items-center text-center rotate-y-180"
+          className="absolute inset-0 backface-hidden rounded-2xl backdrop-blur-md p-6 flex flex-col justify-center items-center text-center rotate-y-180 overflow-hidden"
           style={{ background: `${accent}40` }}
         >
           <p className="text-sm md:text-base font-light text-white/90 leading-relaxed">
             {description}
           </p>
+          <RefreshCwIcon className="absolute -bottom-2 -right-2 text-black opacity-10" size={92} strokeWidth={3} />
         </div>
       </motion.div>
     </div>

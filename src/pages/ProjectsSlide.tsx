@@ -1,8 +1,11 @@
 import Container from '@/components/Container';
 import ExpandedProjectCard from '@/components/ExpandedProjectCard';
+import InlineSvg from '@/components/InlineSvg';
 import Multilingual from '@/components/Multilingual';
 import ProjectCard from '@/components/ProjectCard';
 import { type Project, projects } from '@/data/projects';
+import { useUIStore } from '@/store/useUIStore';
+import { t } from 'i18next';
 import { AnimatePresence, LayoutGroup, motion } from 'motion/react';
 import { type FC, useEffect, useState } from 'react';
 
@@ -11,6 +14,7 @@ interface ProjectsSlideProps {
 }
 
 const ProjectsSlide: FC<ProjectsSlideProps> = ({ scrollRef }) => {
+  const triggerLoading = useUIStore((state) => state.triggerLoading);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   // Lock scroll when project is expanded
@@ -64,15 +68,30 @@ const ProjectsSlide: FC<ProjectsSlideProps> = ({ scrollRef }) => {
       <div className="absolute w-full -bottom-8 h-8 z-11 bg-background-500 rounded-b-4xl" />
 
       <Container className="flex flex-col gap-2 justify-center items-center min-h-screen relative overflow-hidden">
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-[36px] md:text-[36px] lg:text-[48px] mb-12 lg:mb-24 relative font-light z-10 mt-12 w-full"
-        >
-          <Multilingual translationKey="projects.title" />
-        </motion.h1>
+        <div
+          className="flex flex-col md:flex-row justify-between items-start md:items-center mb-12 lg:mb-24 w-full gap-4 relative z-10 mt-12">
+          <motion.h1
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-[36px] md:text-[36px] lg:text-[48px] font-light"
+          >
+            <Multilingual translationKey="projects.title" />
+          </motion.h1>
+
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
+            onClick={triggerLoading}
+            className="flex items-center gap-2 px-4 py-2 rounded-full border border-neutral-800 text-neutral-400 hover:text-primary-500 hover:border-primary-500 transition-colors text-sm font-medium select-none cursor-pointer"
+          >
+            <InlineSvg name="refresh" className="w-4 h-4 group-hover:rotate-180 transition-transform duration-500" />
+            {t('loading.reloadProjects')}
+          </motion.div>
+        </div>
 
         <LayoutGroup>
           <motion.div

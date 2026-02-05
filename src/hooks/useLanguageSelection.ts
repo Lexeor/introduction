@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { useUIStore } from '@/store/useUIStore';
 
 const LANGUAGE_SELECTED_KEY = 'i18nextUserSelected';
 
 export const useLanguageSelection = () => {
-  const [isLanguageSelected, setIsLanguageSelected] = useState(() => {
-    return localStorage.getItem(LANGUAGE_SELECTED_KEY) === 'true';
-  });
+  const setIsLanguageSelected = useUIStore((state) => state.setIsLanguageSelected);
+  const isLanguageSelected = useUIStore((state) => state.isLanguageSelected);
 
   useEffect(() => {
     const handleLanguageSelected = () => {
@@ -24,7 +24,7 @@ export const useLanguageSelection = () => {
       window.removeEventListener('languageSelected', handleLanguageSelected);
       window.removeEventListener('storage', handleStorageChange);
     };
-  }, []);
+  }, [setIsLanguageSelected]);
 
   return isLanguageSelected;
 };

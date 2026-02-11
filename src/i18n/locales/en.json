@@ -24,5 +24,21 @@
     "tipOfTheDay": "As you can see, I really love animations!",
     "loading": "Loading",
     "reloadProjects": "Reload projects"
-  }
+  },
+  "luckyDay": {
+    "title": "How lucky I'm ",
+    "role": "React developer",
+    "experience": "with 4+ years",
+    "years": "of experience!"
+  },
+  "skills": "Skills",
+  "skill": {
+    "core": "Core",
+    "frameworks": "Frameworks",
+    "states": "States",
+    "styling": "Styling",
+    "tools": "Tools",
+    "api": "API"
+  },
+  "approach": "Approach"
 }

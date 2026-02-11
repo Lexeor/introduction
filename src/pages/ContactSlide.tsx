@@ -162,7 +162,7 @@ const ContactSlide: FC<ContactSlideProps> = () => {
                   'flex flex-row items-center justify-center gap-3',
                   'font-medium text-base',
                   'transition-all duration-300',
-                  'bg-blue-500! rounded-2xl! px-4! py-2!',
+                  'bg-primary-500! rounded-2xl! px-4! py-2!',
                   message.trim()
                     ? 'bg-white text-gray-900 hover:bg-white/90'
                     : 'bg-white/10 text-white/40 cursor-not-allowed',

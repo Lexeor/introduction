@@ -223,28 +223,28 @@ const AboutMeSlide = () => {
                   frontSide={{
                     node: (
                       <>
-                        <FloatingElement depth={30} className="text-xl font-medium text-white mb-12">
+                        <FloatingElement depth={30} className="text-xl font-medium text-white align-top">
                           {card.title}
                         </FloatingElement>
                         <FloatingElement depth={60} className="absolute left-4 bottom-4">
-                          <RefreshCwIcon size={56} className="text-white opacity-20" />
+                          <RefreshCwIcon size={64} strokeWidth={2.5} className="text-white opacity-20" />
                         </FloatingElement>
                       </>
                     ),
-                    style: 'bg-primary-500/80 border border-white/20',
+                    style: 'bg-primary-500/80 border border-white/20 justify-start',
                   }}
                   backSide={{
                     node: (
                       <>
-                        <FloatingElement depth={30} className="text-md leading-tight font-light text-white mb-12">
+                        <FloatingElement depth={30} className="text-md leading-tight font-light text-white align-top">
                           {card.description}
                         </FloatingElement>
                         <FloatingElement depth={60} className="absolute right-4 bottom-4">
-                          <RefreshCwIcon size={56} className="text-white opacity-20" />
+                          <RefreshCwIcon size={64} strokeWidth={2.5} className="text-white opacity-20" />
                         </FloatingElement>
                       </>
                     ),
-                    style: 'bg-primary-500/80 border border-white/20',
+                    style: 'bg-background-500/20 border border-white/20',
                   }}
                   className="w-full h-48"
                 />

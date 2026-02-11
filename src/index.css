@@ -5,7 +5,7 @@
 @tailwind utilities;
 
 @theme inline {
-  --color-primary-500: #1b8353;
+  --color-primary-500: #41bd98;
   --color-background-50: #1a1a1a;
   --color-background-100: #2a2a2a;
   --color-background-200: #3a3a3a;

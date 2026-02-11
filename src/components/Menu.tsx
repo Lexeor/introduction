@@ -1,10 +1,10 @@
-import { Contact2Icon, FileTextIcon, HandshakeIcon, UserIcon } from 'lucide-react';
+import MenuItem from '@/components/MenuItem';
+import { Contact2Icon, FileTextIcon, FolderOpenDotIcon, HandshakeIcon, StarIcon } from 'lucide-react';
 import { motion } from 'motion/react';
 import { type FC } from 'react';
 import ReactCountryFlag from 'react-country-flag';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'sonner';
-import MenuItem from '@/components/MenuItem';
 
 interface MenuProps {
   activeIndex: number;
@@ -40,12 +40,15 @@ const Menu: FC<MenuProps> = ({ activeIndex, onItemClick, isVisible }) => {
           <HandshakeIcon className="h-5 md:h-6 lg:h-8" strokeWidth={1} />
         </MenuItem>
         <MenuItem isActive={activeIndex === 1} onClick={() => onItemClick(1)}>
-          <UserIcon className="h-5 md:h-6 lg:h-8" strokeWidth={1} />
+          <StarIcon className="h-5 md:h-6 lg:h-8" strokeWidth={1} />
         </MenuItem>
         <MenuItem isActive={activeIndex === 2} onClick={() => onItemClick(2)}>
           <FileTextIcon className="h-5 md:h-6 lg:h-8" strokeWidth={1} />
         </MenuItem>
         <MenuItem isActive={activeIndex === 3} onClick={() => onItemClick(3)}>
+          <FolderOpenDotIcon className="h-5 md:h-6 lg:h-8" strokeWidth={1} />
+        </MenuItem>
+        <MenuItem isActive={activeIndex === 4} onClick={() => onItemClick(4)}>
           <Contact2Icon className="h-5 md:h-6 lg:h-8" strokeWidth={1} />
         </MenuItem>
       </div>

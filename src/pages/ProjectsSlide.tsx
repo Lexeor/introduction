@@ -63,10 +63,6 @@ const ProjectsSlide: FC<ProjectsSlideProps> = ({ scrollRef }) => {
 
   return (
     <section className="relative flex flex-col gap-2 w-full min-h-screen">
-      {/* Rounded corners */}
-      <div className="absolute w-full -top-8 h-8 z-10 bg-background-500 rounded-t-4xl" />
-      <div className="absolute w-full -bottom-8 h-8 z-11 bg-background-500 rounded-b-4xl" />
-
       <Container className="flex flex-col gap-2 justify-center items-center min-h-screen relative overflow-hidden">
         <div
           className="flex flex-col md:flex-row justify-between items-start md:items-center mb-12 lg:mb-24 w-full gap-4 relative z-10 mt-12">

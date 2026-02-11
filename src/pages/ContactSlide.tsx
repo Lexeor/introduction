@@ -64,7 +64,7 @@ const ContactSlide: FC<ContactSlideProps> = () => {
           viewport={{ once: true }}
           className="text-4xl md:text-5xl font-light mb-12 text-white"
         >
-          <Multilingual translationKey="projects.contact-me" />
+          <Multilingual translationKey="projects.contact-me" align="left" />
         </motion.h1>
 
         <CVDownloadWidget />

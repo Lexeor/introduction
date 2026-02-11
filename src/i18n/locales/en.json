@@ -40,5 +40,27 @@
     "tools": "Tools",
     "api": "API"
   },
-  "approach": "Approach"
+  "approach": "Approach",
+  "achievements": {
+    "problem_solving": {
+      "title": "Solution-Oriented",
+      "description": "Breaking complex problems into simple, efficient, and scalable logic. I don't just write code, I solve tasks."
+    },
+    "learning": {
+      "title": "Lifelong Learner",
+      "description": "Constantly evolving my skill set and staying at the forefront of modern web technologies and best practices."
+    },
+    "quality": {
+      "title": "Clean Code & Quality",
+      "description": "Committed to writing readable, well-documented code and delivering polished, consistent user experiences."
+    },
+    "user_focus": {
+      "title": "User-Centric Mindset",
+      "description": "Prioritizing accessibility and usability to create products that people actually love using."
+    },
+    "reliability": {
+      "title": "Reliable & Scalable",
+      "description": "Building robust systems that are easy to maintain, test, and grow over the long term."
+    }
+  }
 }

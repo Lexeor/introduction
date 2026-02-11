@@ -60,13 +60,13 @@ const LuckyDay: FC<LuckyDayProps> = ({ scrollRef }) => {
       >
         <div className="max-w-5xl">
           <h1
-            className="relative text-4xl md:text-6xl lg:text-7xl font-bold text-center leading-[1.1] text-primary-500  tracking-tight">
+            className="relative text-4xl md:text-6xl lg:text-7xl font-bold text-center leading-[1.1] text-primary-500  tracking-[-2.46px]">
             <span
-              className="absolute font-light -top-[0.8em] text-3xl md:text-3xl lg:text-5xl text-white block sm:inline drop-shadow-[0_0_20px_rgba(27,131,83,0.4)]">
+              className="absolute font-light -top-[0.8em] text-3xl md:text-3xl lg:text-5xl text-white block  tracking-[-1.46px] sm:inline drop-shadow-[0_0_20px_rgba(27,131,83,0.4)]">
               {t('luckyDay.title')}
             </span>
             <span
-              className="absolute font-light -bottom-[1em] right-0 text-2xl md:text-4xl lg:text-5xl mt-6 block text-white/90">
+              className="absolute font-light -bottom-[1em] right-0 text-2xl md:text-4xl lg:text-5xl mt-6 block text-white/90 tracking-[-1.46px]">
             {t('luckyDay.experience')}
             </span>
             <span

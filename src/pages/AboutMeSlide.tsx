@@ -3,96 +3,92 @@ import FlippingCard, { FloatingElement } from '@/components/experimental/Flippin
 import IconPlaceholder from '@/components/IconPlaceholder';
 import InlineSvg from '@/components/InlineSvg';
 import Multilingual from '@/components/Multilingual.tsx';
-import { t } from 'i18next';
 import { RefreshCwIcon } from 'lucide-react';
 import { motion, type Variants } from 'motion/react';
-import { useEffect, useState } from 'react';
-
-const skillCategories = [
-  {
-    title: t('skill.core'),
-    items: [
-      {
-        name: 'JavaScript',
-        icon: <InlineSvg name="tech/javascript" />,
-      },
-      { name: 'TypeScript', icon: <InlineSvg name="/tech/typescript" /> },
-    ],
-  },
-  {
-    title: t('skill.frameworks'),
-    items: [
-      { name: 'React', icon: <InlineSvg name="/tech/react" /> },
-      { name: 'Next.js', icon: <InlineSvg name="/tech/nextjs" /> },
-      { name: 'Remix', icon: <InlineSvg name="/tech/remix" /> },
-    ],
-  },
-  {
-    title: t('skill.states'),
-    items: [
-      { name: 'Zustand', icon: <InlineSvg name="/tech/zustand" /> },
-      { name: 'MobX', icon: <InlineSvg name="/tech/mobx" /> },
-      { name: 'Redux Toolkit', icon: <InlineSvg name="/tech/redux" /> },
-    ],
-  },
-  {
-    title: t('skill.styling'),
-    items: [
-      { name: 'Tailwind CSS', icon: <InlineSvg name="/tech/tailwind" /> },
-      { name: 'CSS Modules', icon: <InlineSvg name="/tech/css" /> },
-      { name: 'CSS-in-JS', icon: <InlineSvg name="/tech/styled" className="w-6" /> },
-      { name: 'Framer/Motion', icon: <InlineSvg name="/tech/motion" className="w-10" /> },
-    ],
-  },
-  {
-    title: t('skill.tools'),
-    items: [
-      { name: 'Git', icon: <InlineSvg name="/tech/git" /> },
-      { name: 'Vite', icon: <InlineSvg name="/tech/vite" className="w-6" /> },
-      { name: 'Webpack', icon: <InlineSvg name="/tech/webpack" className="w-6" /> },
-      { name: 'Jest', icon: <InlineSvg name="/tech/jest" className="w-6" /> },
-      { name: 'Playwright', icon: <InlineSvg name="/tech/playwright" className="w-6" /> },
-    ],
-  },
-  {
-    title: t('skill.api'),
-    items: [
-      { name: 'REST', icon: <InlineSvg name="/tech/api" /> },
-      { name: 'WebSockets', icon: <InlineSvg name="/tech/websocket" className="w-6" /> },
-    ],
-  },
-];
-
-const achievements = [
-  {
-    title: 'Компонентная архитектура',
-    description: 'Проектирую масштабируемые и переиспользуемые UI-компоненты с чистым API',
-    accent: '#3b82f6',
-  },
-  {
-    title: 'Производительность',
-    description: 'Оптимизация рендеринга, code-splitting, ленивая загрузка для быстрых приложений',
-    accent: '#10b981',
-  },
-  {
-    title: 'Современный стек',
-    description: 'TypeScript, React 18+, хуки, серверные компоненты, современный CSS',
-    accent: '#8b5cf6',
-  },
-  {
-    title: 'Адаптивный дизайн',
-    description: 'Mobile-first подход, fluid typography, гибкие layouts для любых устройств',
-    accent: '#f59e0b',
-  },
-  {
-    title: 'Анимации и UX',
-    description: 'Плавные переходы, микроинтеракции, skeleton-загрузки для отзывчивого интерфейса',
-    accent: '#ec4899',
-  },
-];
+import { useEffect, useMemo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const AboutMeSlide = () => {
+  const { i18n } = useTranslation();
   const [visibleBlocks, setVisibleBlocks] = useState(0);
+
+  const skillCategories = useMemo(() => [
+    {
+      title: i18n.t('skill.core'),
+      items: [
+        {
+          name: 'JavaScript',
+          icon: <InlineSvg name="tech/javascript" />,
+        },
+        { name: 'TypeScript', icon: <InlineSvg name="tech/typescript" /> },
+      ],
+    },
+    {
+      title: i18n.t('skill.frameworks'),
+      items: [
+        { name: 'React', icon: <InlineSvg name="tech/react" /> },
+        { name: 'Next.js', icon: <InlineSvg name="tech/nextjs" /> },
+        { name: 'Remix', icon: <InlineSvg name="tech/remix" /> },
+      ],
+    },
+    {
+      title: i18n.t('skill.states'),
+      items: [
+        { name: 'Zustand', icon: <InlineSvg name="tech/zustand" /> },
+        { name: 'MobX', icon: <InlineSvg name="tech/mobx" /> },
+        { name: 'Redux Toolkit', icon: <InlineSvg name="tech/redux" /> },
+      ],
+    },
+    {
+      title: i18n.t('skill.styling'),
+      items: [
+        { name: 'Tailwind CSS', icon: <InlineSvg name="tech/tailwind" /> },
+        { name: 'CSS Modules', icon: <InlineSvg name="tech/css" /> },
+        { name: 'CSS-in-JS', icon: <InlineSvg name="tech/styled" className="w-6" /> },
+        { name: 'Framer/Motion', icon: <InlineSvg name="tech/motion" className="w-10" /> },
+      ],
+    },
+    {
+      title: i18n.t('skill.tools'),
+      items: [
+        { name: 'Git', icon: <InlineSvg name="tech/git" /> },
+        { name: 'Vite', icon: <InlineSvg name="tech/vite" className="w-6" /> },
+        { name: 'Webpack', icon: <InlineSvg name="tech/webpack" className="w-6" /> },
+        { name: 'Jest', icon: <InlineSvg name="tech/jest" className="w-6" /> },
+        { name: 'Playwright', icon: <InlineSvg name="tech/playwright" className="w-6" /> },
+      ],
+    },
+    {
+      title: i18n.t('skill.api'),
+      items: [
+        { name: 'REST', icon: <InlineSvg name="tech/api" /> },
+        { name: 'WebSockets', icon: <InlineSvg name="tech/websocket" className="w-6" /> },
+      ],
+    },
+  ], [i18n.language]);
+
+  const achievements = useMemo(() => [
+    {
+      id: 'problem_solving',
+      accent: '#3b82f6',
+    },
+    {
+      id: 'learning',
+      accent: '#10b981',
+    },
+    {
+      id: 'quality',
+      accent: '#8b5cf6',
+    },
+    {
+      id: 'user_focus',
+      accent: '#f59e0b',
+    },
+    {
+      id: 'reliability',
+      accent: '#ec4899',
+    },
+  ], []);
 
   useEffect(() => {
     const timers = [
@@ -214,7 +210,7 @@ const AboutMeSlide = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 w-full">
             {achievements.map((card, index) => (
               <motion.div
-                key={index}
+                key={card.id}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
@@ -223,8 +219,8 @@ const AboutMeSlide = () => {
                   frontSide={{
                     node: (
                       <>
-                        <FloatingElement depth={30} className="text-xl font-medium text-white align-top">
-                          {card.title}
+                        <FloatingElement depth={30} className="text-xl font-medium text-white align-top w-full">
+                          <Multilingual translationKey={`achievements.${card.id}.title`} align="left" />
                         </FloatingElement>
                         <FloatingElement depth={60} className="absolute left-4 bottom-4">
                           <RefreshCwIcon size={64} strokeWidth={2.5} className="text-white opacity-20" />
@@ -236,8 +232,9 @@ const AboutMeSlide = () => {
                   backSide={{
                     node: (
                       <>
-                        <FloatingElement depth={30} className="text-md leading-tight font-light text-white align-top">
-                          {card.description}
+                        <FloatingElement depth={30}
+                          className="text-sm md:text-base leading-5 tracking-tight font-light text-white align-top w-full">
+                          <Multilingual translationKey={`achievements.${card.id}.description`} align="left" />
                         </FloatingElement>
                         <FloatingElement depth={60} className="absolute right-4 bottom-4">
                           <RefreshCwIcon size={64} strokeWidth={2.5} className="text-white opacity-20" />

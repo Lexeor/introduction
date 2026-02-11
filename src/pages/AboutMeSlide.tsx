@@ -1,15 +1,16 @@
 import Container from '@/components/Container';
-import FlippingCard from '@/components/FlippingCard';
+import FlippingCard, { FloatingElement } from '@/components/experimental/FlippingCard';
 import IconPlaceholder from '@/components/IconPlaceholder';
 import InlineSvg from '@/components/InlineSvg';
+import Multilingual from '@/components/Multilingual.tsx';
 import { t } from 'i18next';
+import { RefreshCwIcon } from 'lucide-react';
 import { motion, type Variants } from 'motion/react';
 import { useEffect, useState } from 'react';
 
-
 const skillCategories = [
   {
-    title: 'Core',
+    title: t('skill.core'),
     items: [
       {
         name: 'JavaScript',
@@ -19,7 +20,7 @@ const skillCategories = [
     ],
   },
   {
-    title: 'Фреймворки',
+    title: t('skill.frameworks'),
     items: [
       { name: 'React', icon: <InlineSvg name="/tech/react" /> },
       { name: 'Next.js', icon: <InlineSvg name="/tech/nextjs" /> },
@@ -27,7 +28,7 @@ const skillCategories = [
     ],
   },
   {
-    title: 'Стейт',
+    title: t('skill.states'),
     items: [
       { name: 'Zustand', icon: <InlineSvg name="/tech/zustand" /> },
       { name: 'MobX', icon: <InlineSvg name="/tech/mobx" /> },
@@ -35,27 +36,29 @@ const skillCategories = [
     ],
   },
   {
-    title: 'Styling',
+    title: t('skill.styling'),
     items: [
       { name: 'Tailwind CSS', icon: <InlineSvg name="/tech/tailwind" /> },
       { name: 'CSS Modules', icon: <InlineSvg name="/tech/css" /> },
-      { name: 'CSS-in-JS', icon: 'Js' },
+      { name: 'CSS-in-JS', icon: <InlineSvg name="/tech/styled" className="w-6" /> },
       { name: 'Framer/Motion', icon: <InlineSvg name="/tech/motion" className="w-10" /> },
     ],
   },
   {
-    title: 'Инструменты',
+    title: t('skill.tools'),
     items: [
       { name: 'Git', icon: <InlineSvg name="/tech/git" /> },
-      { name: 'Vite', icon: <InlineSvg name="/tech/vite" /> },
-      { name: 'Webpack', icon: <InlineSvg name="/tech/webpack" /> },
+      { name: 'Vite', icon: <InlineSvg name="/tech/vite" className="w-6" /> },
+      { name: 'Webpack', icon: <InlineSvg name="/tech/webpack" className="w-6" /> },
+      { name: 'Jest', icon: <InlineSvg name="/tech/jest" className="w-6" /> },
+      { name: 'Playwright', icon: <InlineSvg name="/tech/playwright" className="w-6" /> },
     ],
   },
   {
-    title: 'API',
+    title: t('skill.api'),
     items: [
       { name: 'REST', icon: <InlineSvg name="/tech/api" /> },
-      { name: 'WebSockets', icon: <InlineSvg name="/tech/websocket" /> },
+      { name: 'WebSockets', icon: <InlineSvg name="/tech/websocket" className="w-6" /> },
     ],
   },
 ];
@@ -87,7 +90,6 @@ const achievements = [
     accent: '#ec4899',
   },
 ];
-
 
 const AboutMeSlide = () => {
   const [visibleBlocks, setVisibleBlocks] = useState(0);
@@ -121,46 +123,12 @@ const AboutMeSlide = () => {
 
   return (
     <Container className="min-h-[calc(100vh+4rem)] w-full flex items-center justify-center py-20">
-      <div className="w-full flex flex-col gap-16 lg:gap-24 px-4 mt-16 md:mt-0">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
-          <motion.div
-            className="flex flex-col justify-center lg:border-r lg:border-white/10 lg:pr-12"
-            variants={blockVariants}
-            initial="hidden"
-            animate={visibleBlocks >= 1 ? 'visible' : 'hidden'}
-          >
-            <div className="mb-8">
-              <div className="relative inline-block">
-                <div className="absolute left-3 -top-4 md:-top-2 text-xl text-white/80 tracking-wider">
-                  {t`frontend.oneup`}
-                </div>
-                <h1 className="text-7xl md:text-8xl lg:text-9xl font-semibold tracking-tighter text-white">
-                  React
-                </h1>
-                <span className="absolute -right-2  text-xl text-white/80 tracking-wider">
-                  developer
-                </span>
-              </div>
-            </div>
+      {/* Rounded corners */}
+      <div className="absolute w-full -top-8 h-8 z-10 bg-background-500 rounded-t-4xl" />
+      <div className="absolute w-full -bottom-8 h-8 z-11 bg-background-500 rounded-b-4xl" />
 
-            <div className="flex items-baseline gap-4">
-              <span className="text-xl font-thin text-white leading-none">
-                with
-              </span>
-              <span className="text-8xl md:text-9xl lg:text-[10rem] font-thin text-white leading-none">
-                4
-              </span>
-              <div className="flex flex-col">
-                <span className="text-2xl md:text-3xl font-extralight text-white/70">года</span>
-                <span className="text-lg font-light text-white/80">опыта</span>
-              </div>
-            </div>
-
-            <div className="flex gap-3 mt-8 text-sm font-light text-white/80">
-              <span className="px-3 py-1 rounded-full border border-white/10">JavaScript / TypeScript</span>
-            </div>
-          </motion.div>
-
+      <div className="w-full flex flex-col gap-16 lg:gap-24 px-4">
+        <div className="grid grid-cols-1 gap-12 lg:gap-20">
           <motion.div
             variants={blockVariants}
             initial="hidden"
@@ -168,7 +136,15 @@ const AboutMeSlide = () => {
             className="flex flex-col justify-center"
           >
             <div className="flex items-center gap-4 mb-8">
-              <h2 className="text-2xl font-light text-white/80 tracking-wide">Навыки</h2>
+              <motion.h1
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
+                className="text-[36px] md:text-[36px] lg:text-[48px] font-light"
+              >
+                <Multilingual translationKey="skills" align="left" />
+              </motion.h1>
               <div className="h-px flex-1 bg-gradient-to-r from-white/10 to-transparent" />
             </div>
 
@@ -223,7 +199,15 @@ const AboutMeSlide = () => {
           className="w-full"
         >
           <div className="flex items-center gap-4 mb-8">
-            <h2 className="text-2xl font-light text-white/80 tracking-wide">Подход</h2>
+            <motion.h1
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="text-[36px] md:text-[36px] lg:text-[48px] font-light"
+            >
+              <Multilingual translationKey="approach" align="left" />
+            </motion.h1>
             <div className="h-px flex-1 bg-gradient-to-r from-white/10 to-transparent" />
           </div>
 
@@ -236,9 +220,33 @@ const AboutMeSlide = () => {
                 transition={{ delay: index * 0.1 }}
               >
                 <FlippingCard
-                  title={card.title}
-                  description={card.description}
-                  accent={card.accent}
+                  frontSide={{
+                    node: (
+                      <>
+                        <FloatingElement depth={30} className="text-xl font-medium text-white mb-12">
+                          {card.title}
+                        </FloatingElement>
+                        <FloatingElement depth={60} className="absolute left-4 bottom-4">
+                          <RefreshCwIcon size={56} className="text-white opacity-20" />
+                        </FloatingElement>
+                      </>
+                    ),
+                    style: 'bg-primary-500/80 border border-white/20',
+                  }}
+                  backSide={{
+                    node: (
+                      <>
+                        <FloatingElement depth={30} className="text-md leading-tight font-light text-white mb-12">
+                          {card.description}
+                        </FloatingElement>
+                        <FloatingElement depth={60} className="absolute right-4 bottom-4">
+                          <RefreshCwIcon size={56} className="text-white opacity-20" />
+                        </FloatingElement>
+                      </>
+                    ),
+                    style: 'bg-primary-500/80 border border-white/20',
+                  }}
+                  className="w-full h-48"
                 />
               </motion.div>
             ))}

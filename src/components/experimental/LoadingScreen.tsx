@@ -65,7 +65,7 @@ const LoadingScreen: FC = () => {
         initial={{ y: '-100%' }}
         animate={{ y: isGateClosed ? '0%' : '-100%' }}
         transition={gateTransition}
-        className="absolute top-0 flex flex-col gap-1 items-center justify-end bg-background-500 w-screen h-1/2 p-2 pointer-events-auto"
+        className="absolute top-0 flex flex-col gap-1 items-center justify-end bg-background-500 w-screen h-1/2 p-2 pointer-events-auto before:absolute before:-top-100 before:h-100 before:z-1001 before:bg-background-500 before:w-screen"
       >
         <div className="absolute bottom-0 h-0.5 bg-neutral-800 w-screen" />
         <motion.div
@@ -101,7 +101,7 @@ const LoadingScreen: FC = () => {
         initial={{ y: '100%' }}
         animate={{ y: isGateClosed ? '0%' : '100%' }}
         transition={gateTransition}
-        className="absolute bottom-0 flex items-start justify-center bg-background-500 w-screen h-1/2 p-2 pointer-events-auto"
+        className="absolute bottom-0 flex items-start justify-center bg-background-500 w-screen h-1/2 p-2 pointer-events-auto after:absolute after:-bottom-100 after:h-100 after:z-1001 after:bg-background-500 after:w-screen"
       >
         <div className="absolute top-0 h-0.5 bg-neutral-800 w-screen" />
         <div className="text-lg text-neutral-600 font-medium">

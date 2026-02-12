@@ -11,6 +11,7 @@ interface ParticlesBackgroundProps {
   speed?: number;
   density?: number;
   quantity?: number;
+  limit?: number;
   className?: string;
 }
 
@@ -21,6 +22,7 @@ const ParticlesBackground = ({
   speed = 1,
   density = 800,
   quantity = 120,
+  limit = 180,
   className,
 }: ParticlesBackgroundProps) => {
   const [init, setInit] = useState(false);
@@ -91,6 +93,9 @@ const ParticlesBackground = ({
             area: density,
           },
           value: quantity,
+          limit: {
+            value: limit,
+          },
         },
         opacity: {
           value: 0.3,
@@ -107,7 +112,7 @@ const ParticlesBackground = ({
         enable: false,
       },
     }),
-    [color, speed, density, quantity],
+    [color, speed, density, quantity, limit],
   );
 
   if (!init) return null;

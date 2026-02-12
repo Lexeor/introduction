@@ -41,7 +41,7 @@ const LuckyDay: FC<LuckyDayProps> = ({ scrollRef }) => {
   const y = useTransform(scrollYProgress, [0.1, 0.5, 0.9], [60, 0, -60]);
   const blur = useTransform(
     scrollYProgress,
-    [0.3, 0.4, 0.6, 0.7],
+    [0.3, 0.35, 0.65, 0.7],
     ['blur(12px)', 'blur(0px)', 'blur(0px)', 'blur(12px)'],
   );
 
@@ -61,11 +61,11 @@ const LuckyDay: FC<LuckyDayProps> = ({ scrollRef }) => {
           <h1
             className="relative text-4xl md:text-6xl lg:text-8xl xl:text-9xl font-bold text-center leading-[1] text-primary-500 tracking-[-0.04em]">
             <span
-              className="absolute font-light -top-[0.7em] left-0 text-3xl md:text-3xl lg:text-6xl xl:text-7xl text-white block tracking-[-0.02em] sm:inline drop-shadow-[0_0_20px_rgba(27,131,83,0.4)]">
+              className="absolute font-caveat font-light -top-[0.8em] left-0 text-3xl md:text-3xl lg:text-6xl xl:text-7xl text-white block tracking-[-0.02em] sm:inline drop-shadow-[0_0_20px_rgba(27,131,83,0.4)]">
               {t('luckyDay.title')}
             </span>
             <span
-              className="absolute font-light -bottom-[0.9em] right-0 text-2xl md:text-4xl lg:text-5xl xl:text-6xl mt-6 block text-white/90 tracking-[-0.02em]">
+              className="absolute font-caveat font-light -bottom-[0.9em] right-0 text-2xl md:text-4xl lg:text-5xl xl:text-6xl mt-6 block text-white/90 tracking-[-0.02em]">
               {t('luckyDay.experience')}
             </span>
             <span

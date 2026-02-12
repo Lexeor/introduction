@@ -4,12 +4,12 @@ import MaskedText from '@/components/MaskedText';
 import Multilingual from '@/components/Multilingual';
 import ParticlesBackground from '@/components/ParticlesBackground';
 import { cn } from '@/lib/utils';
+
+import { useUIStore } from '@/store/useUIStore';
 import { ArrowDownIcon } from 'lucide-react';
 import { type FC, type ReactNode, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'sonner';
-
-import { useUIStore } from '@/store/useUIStore';
 
 interface GreetingsSlideProps {
   moveToNextSlide(index: number): void;
@@ -55,9 +55,9 @@ const GreetingsSlide: FC<GreetingsSlideProps> = ({ moveToNextSlide }) => {
       />
       <div className="flex-grow flex flex-col items-center justify-end w-full relative z-10 select-none">
         <Multilingual as="h2" translationKey="greeting"
-          className="mb-2 text-[24px] sm:text-[32px] md:text-[32px] lg:text-[48px] font-light" />
+                      className="text-[24px] sm:text-[32px] md:text-[32px] lg:text-[64px] font-light font-caveat" />
         <Multilingual as="h2" translationKey="frontend.intro"
-          className="mb-8 text-[24px] sm:text-[32px] md:text-[32px] lg:text-[48px] font-light" />
+                      className="mb-8 text-[24px] sm:text-[32px] md:text-[32px] lg:text-[64px] font-light font-caveat" />
 
         <div className="flex flex-col items-center min-h-[200px] justify-center text-center w-full">
 
@@ -82,7 +82,7 @@ const GreetingsSlide: FC<GreetingsSlideProps> = ({ moveToNextSlide }) => {
             onClick={() => moveToNextSlide(1)}
           >
             <ArrowDownIcon strokeWidth={1}
-              className="border-1 border-text-500 rounded-full p-1 w-12 h-12 opacity-50 hover:opacity-100 transition-opacity" />
+                           className="border-1 border-text-500 rounded-full p-1 w-12 h-12 opacity-50 hover:opacity-100 transition-opacity" />
           </button>
         )}
       </div>

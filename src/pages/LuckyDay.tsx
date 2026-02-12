@@ -36,13 +36,12 @@ const LuckyDay: FC<LuckyDayProps> = ({ scrollRef }) => {
     offset: ['start end', 'end start'],
   });
 
-  // Сужаем диапазоны, чтобы текст жил только в центре своего слайда
-  const opacity = useTransform(scrollYProgress, [0.35, 0.48, 0.52, 0.65], [0, 1, 1, 0]);
-  const scale = useTransform(scrollYProgress, [0.35, 0.5, 0.65], [0.92, 1, 1.08]);
-  const y = useTransform(scrollYProgress, [0.35, 0.5, 0.65], [40, 0, -40]);
+  const opacity = useTransform(scrollYProgress, [0.3, 0.4, 0.6, 0.7], [0, 1, 1, 0]);
+  const scale = useTransform(scrollYProgress, [0.1, 0.5, 0.9], [0.9, 1, 1.1]);
+  const y = useTransform(scrollYProgress, [0.1, 0.5, 0.9], [60, 0, -60]);
   const blur = useTransform(
     scrollYProgress,
-    [0.35, 0.45, 0.55, 0.65],
+    [0.3, 0.4, 0.6, 0.7],
     ['blur(12px)', 'blur(0px)', 'blur(0px)', 'blur(12px)'],
   );
 
@@ -58,20 +57,20 @@ const LuckyDay: FC<LuckyDayProps> = ({ scrollRef }) => {
         }}
         className="fixed inset-0 flex flex-col items-center justify-center px-4 z-0 pointer-events-none"
       >
-        <div className="max-w-5xl">
+        <div className="max-w-7xl">
           <h1
-            className="relative text-4xl md:text-6xl lg:text-7xl font-bold text-center leading-[1.1] text-primary-500  tracking-[-2.46px]">
+            className="relative text-4xl md:text-6xl lg:text-8xl xl:text-9xl font-bold text-center leading-[1] text-primary-500 tracking-[-0.04em]">
             <span
-              className="absolute font-light -top-[0.8em] text-3xl md:text-3xl lg:text-5xl text-white block  tracking-[-1.46px] sm:inline drop-shadow-[0_0_20px_rgba(27,131,83,0.4)]">
+              className="absolute font-light -top-[0.7em] left-0 text-3xl md:text-3xl lg:text-6xl xl:text-7xl text-white block tracking-[-0.02em] sm:inline drop-shadow-[0_0_20px_rgba(27,131,83,0.4)]">
               {t('luckyDay.title')}
             </span>
             <span
-              className="absolute font-light -bottom-[1em] right-0 text-2xl md:text-4xl lg:text-5xl mt-6 block text-white/90 tracking-[-1.46px]">
-            {t('luckyDay.experience')}
+              className="absolute font-light -bottom-[0.9em] right-0 text-2xl md:text-4xl lg:text-5xl xl:text-6xl mt-6 block text-white/90 tracking-[-0.02em]">
+              {t('luckyDay.experience')}
             </span>
             <span
-              className="absolute -bottom-[2em] right-0 text-2xl md:text-4xl lg:text-5xl mt-6 block">
-                {t('luckyDay.years')}
+              className="absolute -bottom-[1.8em] right-0 text-2xl md:text-4xl lg:text-5xl xl:text-6xl mt-6 block">
+              {t('luckyDay.years')}
             </span>
             {t('luckyDay.role')}
           </h1>

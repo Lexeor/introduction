@@ -78,9 +78,8 @@ const ContactSlide: FC<ContactSlideProps> = () => {
             viewport={{ once: true }}
             className="space-y-6"
           >
-            <p className="text-white/60 text-sm uppercase tracking-wider mb-8">
-              <Multilingual translationKey="contacts.FindMeOn" align="left" />
-            </p>
+            <Multilingual as="p" translationKey="contacts.FindMeOn" align="left"
+                          className="text-white/60 text-sm uppercase tracking-wider mb-8" />
 
             <div className="space-y-4">
               {socialLinks.map((link, index) => (
@@ -122,9 +121,8 @@ const ContactSlide: FC<ContactSlideProps> = () => {
             transition={{ duration: 0.6, delay: 0.4 }}
             viewport={{ once: true }}
           >
-            <p className="text-white/60 text-sm uppercase tracking-wider mb-8">
-              <Multilingual translationKey="contacts.DropMeAMessage" align="left" />
-            </p>
+            <Multilingual as="p" translationKey="contacts.DropMeAMessage" align="left"
+                          className="text-white/60 text-sm uppercase tracking-wider mb-8" />
 
             <form onSubmit={handleSubmit} className="space-y-4">
               <div

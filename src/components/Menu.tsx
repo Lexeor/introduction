@@ -5,6 +5,7 @@ import { type FC } from 'react';
 import ReactCountryFlag from 'react-country-flag';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'sonner';
+import { LANGUAGES } from '@/i18n/languages';
 
 interface MenuProps {
   activeIndex: number;
@@ -14,11 +15,6 @@ interface MenuProps {
 
 const Menu: FC<MenuProps> = ({ activeIndex, onItemClick, isVisible }) => {
   const { i18n } = useTranslation();
-
-  const languages = [
-    { code: 'en', label: 'English' },
-    { code: 'ru', label: 'Русский' },
-  ];
 
   const changeLanguage = (lng: string) => {
     i18n.changeLanguage(lng);
@@ -55,7 +51,7 @@ const Menu: FC<MenuProps> = ({ activeIndex, onItemClick, isVisible }) => {
 
       <div
         className="bg-black/30 backdrop-blur-lg flex flex-col gap-0 md:gap-2 rounded-r-xl rounded-l-none md:rounded-xl p-1 pointer-events-auto">
-        {languages.map((lang) => (
+        {LANGUAGES.map((lang) => (
           <MenuItem
             key={lang.code}
             isActive={i18n.language === lang.code}
@@ -63,7 +59,7 @@ const Menu: FC<MenuProps> = ({ activeIndex, onItemClick, isVisible }) => {
             showChildrenOnMobile={true}
           >
             <ReactCountryFlag
-              countryCode={lang.code === 'en' ? 'GB' : lang.code}
+              countryCode={lang.countryCode}
               svg
               className="w-4 h-4 md:w-8 md:h-8 lg:w-10 lg:h-10"
             />

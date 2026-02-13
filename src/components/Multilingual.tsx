@@ -1,8 +1,9 @@
 import { AnimatePresence, motion } from 'motion/react';
 import { type ElementType, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { LANGUAGE_CODES } from '@/i18n/languages';
 
-const languageOrder = ['en', 'ru'];
+const languageOrder = LANGUAGE_CODES;
 
 interface MultilingualProps<T extends ElementType = 'span'> {
   translationKey: string;

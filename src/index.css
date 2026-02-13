@@ -207,4 +207,10 @@ button {
   .glow:hover {
     text-shadow: 0 0 8px var(--color-primary-500), 0 0 14px var(--color-primary-500);
   }
+
+  .parallax {
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+  }
 }

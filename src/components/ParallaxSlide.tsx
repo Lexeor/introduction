@@ -8,7 +8,7 @@ const ParallaxSlide: FC<PropsWithChildren<ParallaxSlideProps>> = ({ imageUrl, ch
   return (
     <div className="relative overflow-hidden w-full">
       <div
-        className="absolute inset-0 z-0 bg-fixed bg-cover bg-center"
+        className="absolute inset-0 z-0 bg-fixed bg-cover bg-center parallax"
         style={{
           backgroundImage: `url(${imageUrl})`,
         }}

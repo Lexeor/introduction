@@ -199,4 +199,12 @@ button {
   .font-caveat {
     font-family: Caveat, sans-serif;
   }
+
+  .glow {
+    transition: text-shadow 0.3s ease-in-out;
+  }
+
+  .glow:hover {
+    text-shadow: 0 0 8px var(--color-primary-500), 0 0 14px var(--color-primary-500);
+  }
 }

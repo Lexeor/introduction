@@ -6,7 +6,8 @@ import Multilingual from '@/components/Multilingual.tsx';
 import PanelBorders from '@/components/PanelBorders.tsx';
 import { RefreshCwIcon } from 'lucide-react';
 import { motion, type Variants } from 'motion/react';
-import { useEffect, useMemo, useState, type FC } from 'react';
+import { useReward } from 'partycles';
+import { type FC, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 interface AboutMeSlideProps {
@@ -122,6 +123,17 @@ const AboutMeSlide: FC<AboutMeSlideProps> = ({ scrollToSection }) => {
     },
   };
 
+  const { reward } = useReward('magic', 'stars', {
+    particleCount: 100,
+    spread: 120,
+    startVelocity: 10,
+    colors: ['#FFD700', '#FFA500', '#FF8C00'],
+    physics: {
+      gravity: 0.5,
+      wind: 0.1,
+    },
+  });
+
   return (
     <Container className="relative min-h-[calc(100vh+4rem)] w-full flex items-center justify-center py-20">
       <PanelBorders
@@ -130,7 +142,33 @@ const AboutMeSlide: FC<AboutMeSlideProps> = ({ scrollToSection }) => {
       />
 
       <div className="w-full flex flex-col gap-16 lg:gap-24 px-4">
-        <div className="grid grid-cols-1 gap-12 lg:gap-20">
+        <div className="relative flex flex-col gap-12 lg:gap-20">
+          <motion.div
+            layout
+            className="absolute -top-20 flex flex-wrap items-baseline gap-x-2 md:gap-x-4"
+          >
+            <Multilingual
+              inline
+              translationKey="skill.pretitle-1"
+              align="left"
+              className="text-[24px] sm:text-[32px] md:text-[48px] font-light font-caveat -mb-2"
+            />
+            <Multilingual
+              elemId="magic"
+              inline
+              translationKey="skill.pretitle-2"
+              align="center"
+              className="text-primary-500 text-[24px] sm:text-[32px] md:text-[48px] font-light font-caveat hover:cursor-pointer glow px-3 -mx-4 overflow-auto -mb-2"
+              onClick={reward}
+            />
+            <Multilingual
+              inline
+              translationKey="skill.pretitle-3"
+              align="left"
+              className="text-[24px] sm:text-[32px] md:text-[48px] font-light font-caveat -mb-2"
+            />
+          </motion.div>
+
           <motion.div
             variants={blockVariants}
             initial="hidden"
@@ -239,7 +277,7 @@ const AboutMeSlide: FC<AboutMeSlideProps> = ({ scrollToSection }) => {
                     node: (
                       <>
                         <FloatingElement depth={30}
-                          className="text-sm md:text-base leading-5 tracking-tight font-light text-white align-top w-full">
+                                         className="text-sm md:text-base leading-5 tracking-tight font-light text-white align-top w-full">
                           <Multilingual translationKey={`achievements.${card.id}.description`} align="left" />
                         </FloatingElement>
                         <FloatingElement depth={60} className="absolute right-4 bottom-4">

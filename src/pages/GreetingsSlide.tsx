@@ -58,11 +58,11 @@ const GreetingsSlide: FC<GreetingsSlideProps> = ({ scrollToSection }) => {
       />
       <div className="flex-grow flex flex-col items-center justify-end w-full relative z-10 select-none">
         <Multilingual as="h2" translationKey="greeting"
-                      className="text-[24px] sm:text-[32px] md:text-[32px] lg:text-[64px] font-light font-caveat" />
+                      className="text-[32px] md:text-[48px] font-light font-caveat" />
         <Multilingual as="h2" translationKey="frontend.intro"
-                      className="mb-8 text-[24px] sm:text-[32px] md:text-[32px] lg:text-[64px] font-light font-caveat" />
+                      className="mb-4 md:mb-8 text-[32px] md:text-[48px] font-light font-caveat" />
 
-        <div className="flex flex-col items-center min-h-[200px] justify-center text-center w-full">
+        <div className="flex flex-col items-center min-h-[80px] md:min-h-[200px] justify-center text-center w-full">
 
           <div className="flex flex-col items-center animate-in fade-in duration-1000 w-full overflow-hidden">
             <MaskedText
@@ -71,7 +71,8 @@ const GreetingsSlide: FC<GreetingsSlideProps> = ({ scrollToSection }) => {
             />
             <span
               className="text-3xl sm:text-5xl md:text-6xl font-light tracking-[0.3em] uppercase text-text-500 w-full">
-              <Multilingual translationKey="frontend.developer" className="w-full" />
+              <Multilingual translationKey="frontend.developer"
+                            className="w-full text-[18px] sm:text-[32px] md:text-[48px]" />
             </span>
           </div>
         </div>

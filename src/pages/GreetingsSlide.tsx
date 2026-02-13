@@ -2,6 +2,7 @@ import Container from '@/components/Container';
 import LanguageSelectionToast from '@/components/LanguageSelectionToast';
 import MaskedText from '@/components/MaskedText';
 import Multilingual from '@/components/Multilingual';
+import PanelBorders from '@/components/PanelBorders.tsx';
 import ParticlesBackground from '@/components/ParticlesBackground';
 import { cn } from '@/lib/utils';
 
@@ -12,11 +13,11 @@ import { useTranslation } from 'react-i18next';
 import { toast } from 'sonner';
 
 interface GreetingsSlideProps {
-  moveToNextSlide(index: number): void;
+  scrollToSection(index: number): void;
   children?: ReactNode;
 }
 
-const GreetingsSlide: FC<GreetingsSlideProps> = ({ moveToNextSlide }) => {
+const GreetingsSlide: FC<GreetingsSlideProps> = ({ scrollToSection }) => {
   const isLanguageSelected = useUIStore((state) => state.isLanguageSelected);
   const { t } = useTranslation();
 
@@ -45,8 +46,10 @@ const GreetingsSlide: FC<GreetingsSlideProps> = ({ moveToNextSlide }) => {
   return (
     <Container
       className="min-h-screen flex flex-col items-center justify-center gap-2 relative">
-      {/* Rounded corners */}
-      <div className="absolute w-full -bottom-8 h-8 z-11 bg-background-500 rounded-b-4xl" />
+      <PanelBorders
+        top={false}
+        onBottomClick={() => scrollToSection?.(0)}
+      />
 
       <ParticlesBackground
         id="greeting-particles"
@@ -79,7 +82,7 @@ const GreetingsSlide: FC<GreetingsSlideProps> = ({ moveToNextSlide }) => {
         {isLanguageSelected && (
           <button
             className="h-full flex items-center justify-center motion-safe:animate-bounce mt-10"
-            onClick={() => moveToNextSlide(1)}
+            onClick={() => scrollToSection(1)}
           >
             <ArrowDownIcon strokeWidth={1}
                            className="border-1 border-text-500 rounded-full p-1 w-12 h-12 opacity-50 hover:opacity-100 transition-opacity" />

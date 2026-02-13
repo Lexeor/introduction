@@ -3,12 +3,17 @@ import FlippingCard, { FloatingElement } from '@/components/experimental/Flippin
 import IconPlaceholder from '@/components/IconPlaceholder';
 import InlineSvg from '@/components/InlineSvg';
 import Multilingual from '@/components/Multilingual.tsx';
+import PanelBorders from '@/components/PanelBorders.tsx';
 import { RefreshCwIcon } from 'lucide-react';
 import { motion, type Variants } from 'motion/react';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState, type FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
-const AboutMeSlide = () => {
+interface AboutMeSlideProps {
+  scrollToSection?: (index: number) => void;
+}
+
+const AboutMeSlide: FC<AboutMeSlideProps> = ({ scrollToSection }) => {
   const { i18n } = useTranslation();
   const [visibleBlocks, setVisibleBlocks] = useState(0);
 
@@ -118,10 +123,11 @@ const AboutMeSlide = () => {
   };
 
   return (
-    <Container className="min-h-[calc(100vh+4rem)] w-full flex items-center justify-center py-20">
-      {/* Rounded corners */}
-      <div className="absolute w-full -top-8 h-8 z-10 bg-background-500 rounded-t-4xl" />
-      <div className="absolute w-full -bottom-8 h-8 z-11 bg-background-500 rounded-b-4xl" />
+    <Container className="relative min-h-[calc(100vh+4rem)] w-full flex items-center justify-center py-20">
+      <PanelBorders
+        onTopClick={() => scrollToSection?.(2)}
+        onBottomClick={() => scrollToSection?.(2)}
+      />
 
       <div className="w-full flex flex-col gap-16 lg:gap-24 px-4">
         <div className="grid grid-cols-1 gap-12 lg:gap-20">

@@ -67,7 +67,7 @@ function App() {
         <main className="w-full">
           <section ref={setSectionRef(0)}>
             <GreetingsSlide
-              moveToNextSlide={scrollToSection}
+              scrollToSection={scrollToSection}
             />
           </section>
 
@@ -79,7 +79,7 @@ function App() {
           </section>
 
           <section ref={setSectionRef(2)}>
-            <AboutMeSlide />
+            <AboutMeSlide scrollToSection={scrollToSection} />
           </section>
 
           <section ref={setSectionRef(3)}>

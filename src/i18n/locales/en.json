@@ -6,8 +6,12 @@
   "frontend.developer": "developer",
   "frontend.oneup": "Luckily I'm",
   "menu": {
-    "handshake": "Handshake",
-    "user": "User"
+    "user": "User",
+    "intro": "Hi!",
+    "bio": "React Developer",
+    "skills": "Skills",
+    "projects": "Recent projects",
+    "contact": "Contacts"
   },
   "projects": {
     "title": "Recent Projects",

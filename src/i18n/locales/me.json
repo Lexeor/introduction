@@ -1,69 +1,74 @@
 {
-    "greeting": "Zdravo, ja sam Alex!",
-    "selectLanguage": "Hajde prvo da izaberemo jezik, da bismo se bolje razumjeli :)",
-    "frontend.intro": "Čuo sam da tražite",
-    "frontend.mask": "FRONTEND",
-    "frontend.developer": "programera",
-    "frontend.oneup": "Srećom, ja sam",
-    "menu": {
-        "handshake": "Rukovanje",
-        "user": "Korisnik"
+  "greeting": "Zdravo, ja sam Alex!",
+  "selectLanguage": "Hajde prvo da izaberemo jezik, da bismo se bolje razumjeli :)",
+  "frontend.intro": "Čuo sam da tražite",
+  "frontend.mask": "FRONTEND",
+  "frontend.developer": "programera",
+  "frontend.oneup": "Srećom, ja sam",
+  "menu": {
+    "handshake": "Rukovanje",
+    "user": "Korisnik",
+    "intro": "Ćao!",
+    "bio": "React Developer",
+    "skills": "Veštine",
+    "projects": "Nedavni projekti",
+    "contact": "Kontakti"
+  },
+  "projects": {
+    "title": "Nedavni projekti",
+    "contact-me": "Kontakti"
+  },
+  "contacts": {
+    "SendMessage": "Pošalji",
+    "WriteMe": "Upravo ovdje :)",
+    "FindMeOn": "Pronađite me na",
+    "DropMeAMessage": "ili mi ostavite poruku"
+  },
+  "loading": {
+    "tipOfTheDayTitle": "Savjet dana",
+    "tipOfTheDay": "Kao što vidite, zaista volim animacije!",
+    "loading": "Učitavanje",
+    "reloadProjects": "Ponovo učitaj projekte"
+  },
+  "luckyDay": {
+    "title": "Koliko sam srećan što sam ",
+    "role": "React programer",
+    "experience": "sa više od 4 godine",
+    "years": "iskustva!"
+  },
+  "skills": "Vještine",
+  "skill": {
+    "core": "Osnova",
+    "frameworks": "Okviri",
+    "states": "Stanja",
+    "styling": "Stilizacija",
+    "tools": "Alati",
+    "api": "API",
+    "pretitle-1": "Preferiram da stvaram",
+    "pretitle-2": "magiju",
+    "pretitle-3": "koristeći neke"
+  },
+  "approach": "Pristup",
+  "achievements": {
+    "problem_solving": {
+      "title": "Orijentisan na rješenja",
+      "description": "Razbijam složene probleme na jednostavnu, efikasnu i skalabilnu logiku. Ne pišem samo kod, rješavam zadatke."
     },
-    "projects": {
-        "title": "Nedavni projekti",
-        "contact-me": "Kontakti"
+    "learning": {
+      "title": "Stalno učenje",
+      "description": "Kontinuirano razvijam svoje vještine i pratim najnovije web tehnologije i najbolje prakse."
     },
-    "contacts": {
-        "SendMessage": "Pošalji",
-        "WriteMe": "Upravo ovdje :)",
-        "FindMeOn": "Pronađite me na",
-        "DropMeAMessage": "ili mi ostavite poruku"
+    "quality": {
+      "title": "Čist kod i kvalitet",
+      "description": "Posvećen pisanju čitljivog, dobro dokumentovanog koda i pružanju uglađenih, konzistentnih korisničkih iskustava."
     },
-    "loading": {
-        "tipOfTheDayTitle": "Savjet dana",
-        "tipOfTheDay": "Kao što vidite, zaista volim animacije!",
-        "loading": "Učitavanje",
-        "reloadProjects": "Ponovo učitaj projekte"
+    "user_focus": {
+      "title": "Fokus na korisniku",
+      "description": "Prioritet dajem pristupačnosti i upotrebljivosti kako bih kreirao proizvode koje ljudi zaista vole koristiti."
     },
-    "luckyDay": {
-        "title": "Koliko sam srećan što sam ",
-        "role": "React programer",
-        "experience": "sa više od 4 godine",
-        "years": "iskustva!"
-    },
-    "skills": "Vještine",
-    "skill": {
-        "core": "Osnova",
-        "frameworks": "Okviri",
-        "states": "Stanja",
-        "styling": "Stilizacija",
-        "tools": "Alati",
-        "api": "API",
-        "pretitle-1": "Preferiram da stvaram",
-        "pretitle-2": "magiju",
-        "pretitle-3": "koristeći neke"
-    },
-    "approach": "Pristup",
-    "achievements": {
-        "problem_solving": {
-            "title": "Orijentisan na rješenja",
-            "description": "Razbijam složene probleme na jednostavnu, efikasnu i skalabilnu logiku. Ne pišem samo kod, rješavam zadatke."
-        },
-        "learning": {
-            "title": "Stalno učenje",
-            "description": "Kontinuirano razvijam svoje vještine i pratim najnovije web tehnologije i najbolje prakse."
-        },
-        "quality": {
-            "title": "Čist kod i kvalitet",
-            "description": "Posvećen pisanju čitljivog, dobro dokumentovanog koda i pružanju uglađenih, konzistentnih korisničkih iskustava."
-        },
-        "user_focus": {
-            "title": "Fokus na korisniku",
-            "description": "Prioritet dajem pristupačnosti i upotrebljivosti kako bih kreirao proizvode koje ljudi zaista vole koristiti."
-        },
-        "reliability": {
-            "title": "Pouzdan i skalabilan",
-            "description": "Gradim robusne sisteme koji su laki za održavanje, testiranje i razvoj na dugi rok."
-        }
+    "reliability": {
+      "title": "Pouzdan i skalabilan",
+      "description": "Gradim robusne sisteme koji su laki za održavanje, testiranje i razvoj na dugi rok."
     }
+  }
 }

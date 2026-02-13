@@ -6,8 +6,12 @@
   "frontend.developer": "разработчика",
   "frontend.oneup": "К счастью, я",
   "menu": {
-    "handshake": "Рукопожатие",
-    "user": "Пользователь"
+    "user": "Пользователь",
+    "intro": "Привет!",
+    "bio": "React Разработчик",
+    "skills": "Навыки",
+    "projects": "Недавние проекты",
+    "contact": "Контакты"
   },
   "projects": {
     "title": "Недавние проекты",

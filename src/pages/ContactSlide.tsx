@@ -53,7 +53,7 @@ const ContactSlide: FC<ContactSlideProps> = () => {
           'px-6 sm:px-12 py-12 rounded-[42px]',
           'bg-cover bg-bottom-right footer__bg sm:bg-none',
           'bg-white/10 backdrop-blur-xl',
-          'bg-[url(/exclude.svg)]! pb-62! md:pb-42! lg:pb-22!',
+          'bg-[url(/exclude-sm.svg)] sm:bg-[url(/exclude-md.svg)] lg:bg-[url(/exclude-lg.svg)] pb-62! md:pb-42! lg:pb-22!',
         )}
       >
         {/* Header */}
@@ -79,7 +79,7 @@ const ContactSlide: FC<ContactSlideProps> = () => {
             className="space-y-6"
           >
             <Multilingual as="p" translationKey="contacts.FindMeOn" align="left"
-                          className="text-white/60 text-sm uppercase tracking-wider" />
+                          className="text-white/60 text-sm uppercase tracking-wider mb-2" />
 
             <div className="space-y-4">
               {socialLinks.map((link, index) => (

@@ -128,18 +128,6 @@ button {
   color: #585858;
 }
 
-/* Стили для Swiper - скрываем скроллбар и улучшаем внешний вид */
-.swiper {
-  width: 100%;
-  height: 100%;
-}
-
-.swiper-slide {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 /* Скрываем стандартный скроллбар */
 .swiper-wrapper {
   -webkit-overflow-scrolling: touch;

@@ -99,7 +99,7 @@ const ExpandedProjectCard: FC<ExpandedProjectCardProps> = ({ project, onClose })
                 className={cn(
                   'absolute bottom-10 left-4',
                   'px-4 py-1 rounded-full',
-                  'bg-primary-500 text-white',
+                  'bg-primary-500 text-white text-[16px]',
                   'hover:bg-primary-600 transition-colors',
                   'font-medium text-center flex-1 md:flex-none z-22',
                 )}

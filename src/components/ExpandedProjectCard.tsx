@@ -49,7 +49,7 @@ const ExpandedProjectCard: FC<ExpandedProjectCardProps> = ({ project, onClose })
         exit={{ opacity: 0 }}
         transition={{ duration: 0.3 }}
         onClick={onClose}
-        className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[100]"
+        className="fixed inset-0 bg-black/70 z-[100]"
       />
 
       {/* Expanded card container */}
@@ -62,7 +62,7 @@ const ExpandedProjectCard: FC<ExpandedProjectCardProps> = ({ project, onClose })
             'bg-background-50 w-full h-full max-w-5xl max-h-[90vh]',
             'md:max-h-[85vh]',
           )}
-          style={{ originX: 0.5, originY: 0.5 }}
+          style={{ originX: 0.5, originY: 0.5, willChange: 'transform' }}
         >
           {/* Close button */}
           <motion.div
@@ -85,7 +85,7 @@ const ExpandedProjectCard: FC<ExpandedProjectCardProps> = ({ project, onClose })
 
           {/* Image section */}
           <motion.div
-            layout
+            layout="position"
             layoutId={`card-image-container-${project.id}`}
             className="relative overflow-hidden shrink-0"
             style={{ height: '40vh', minHeight: '250px' }}
@@ -144,7 +144,7 @@ const ExpandedProjectCard: FC<ExpandedProjectCardProps> = ({ project, onClose })
 
           {/* Content section */}
           <motion.div
-            layout
+            layout="position"
             layoutId={`card-content-${project.id}`}
             className={cn(
               'relative -mt-6 z-10 flex-1',

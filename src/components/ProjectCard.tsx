@@ -23,7 +23,7 @@ const ProjectCard: FC<ProjectCardProps> = ({ project, isSelected, onClick }) => 
       onMouseLeave={() => setHovered(false)}
       className={cn(
         'flex flex-col rounded-3xl cursor-pointer overflow-hidden group',
-        'transition-colors duration-600',
+        'transition-colors duration-600 select-none',
         hovered && !isSelected ? 'bg-background-100' : 'bg-background-50',
         isSelected && 'pointer-events-none',
       )}

@@ -4,6 +4,7 @@ import { X } from 'lucide-react';
 import { AnimatePresence, motion } from 'motion/react';
 import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
 import { type FC, useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 
 interface ExpandedProjectCardProps {
   project: Project;
@@ -39,7 +40,7 @@ const ExpandedProjectCard: FC<ExpandedProjectCardProps> = ({ project, onClose })
     return () => clearInterval(timer);
   }, []);
 
-  return (
+  return createPortal(
     <>
       {/* Backdrop overlay */}
       <motion.div
@@ -48,11 +49,11 @@ const ExpandedProjectCard: FC<ExpandedProjectCardProps> = ({ project, onClose })
         exit={{ opacity: 0 }}
         transition={{ duration: 0.3 }}
         onClick={onClose}
-        className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40"
+        className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[100]"
       />
 
       {/* Expanded card container */}
-      <div className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8 lg:p-12 pointer-events-none">
+      <div className="fixed inset-0 z-[101] flex items-center justify-center p-4 md:p-8 lg:p-12 pointer-events-none">
         <motion.div
           layout
           layoutId={`card-container-${project.id}`}
@@ -89,6 +90,26 @@ const ExpandedProjectCard: FC<ExpandedProjectCardProps> = ({ project, onClose })
             className="relative overflow-hidden shrink-0"
             style={{ height: '40vh', minHeight: '250px' }}
           >
+            {/* Live demo button */}
+            {project.url && (
+              <a
+                href={project.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={cn(
+                  'absolute bottom-10 left-4',
+                  'px-4 py-1 rounded-full',
+                  'bg-primary-500 text-white',
+                  'hover:bg-primary-600 transition-colors',
+                  'font-medium text-center flex-1 md:flex-none z-22',
+                )}
+              >
+                It's alive!
+                <span
+                  className="absolute inset-0 scale-x-108 scale-y-121 inline-flex h-full w-full animate-pulse rounded-full bg-primary-500 opacity-0 -z-1"></span>
+              </a>
+            )}
+
             <motion.img
               layoutId={`card-image-${project.id}`}
               src={project.thumbnail}
@@ -219,37 +240,13 @@ const ExpandedProjectCard: FC<ExpandedProjectCardProps> = ({ project, onClose })
                     </div>
                   </div>
                 </motion.div>
-
-                {/* Action buttons */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ delay: 0.4, duration: 0.3 }}
-                  className="flex justify-end gap-3 mt-8 pt-6 border-t border-background-200"
-                >
-                  {project.url && (
-                    <a
-                      href={project.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={cn(
-                        'px-6 py-3 rounded-xl',
-                        'bg-primary-500 text-white',
-                        'hover:bg-primary-600 transition-colors',
-                        'font-medium text-center flex-1 md:flex-none',
-                      )}
-                    >
-                      View Live
-                    </a>
-                  )}
-                </motion.div>
               </div>
             </OverlayScrollbarsComponent>
           </motion.div>
         </motion.div>
       </div>
-    </>
+    </>,
+    document.body,
   );
 };
 

@@ -1,9 +1,5 @@
 @import "tailwindcss";
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 @theme inline {
   --color-primary-500: #41bd98;
   --color-background-50: #1a1a1a;
@@ -17,39 +13,27 @@
   --color-background-800: #050505;
   --color-background-900: #000000;
   --color-background-950: #000000;
-}
-
-@layer base {
-
-  html,
-  body {
-    font-family: "Noto Sans", sans-serif;
-  }
-}
-
-:root {
-  font-family: "Noto Sans", sans-serif;
-  line-height: 1.5;
-
-  color: #e7e7e7;
-  --background: #181818;
-  --primary: #1b8353;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-body,
-html {
-  background-color: var(--background);
+  --color-panel: #1c1c1c;
+  --color-panel-hover: #252525;
+  --color-panel-active: #3c8000;
+  --font-caveat: Caveat, sans-serif;
 }
 
 @layer base {
   :root {
     --type-max-width: 72ch;
     --type-leading: 1.6;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html,
+  body {
+    font-family: "Noto Sans", sans-serif;
+    color: #e7e7e7;
+    background-color: var(--color-background-500);
   }
 
   body {
@@ -75,15 +59,6 @@ html {
     margin: 0;
   }
 
-  /*h1 {*/
-  /*  font-size: clamp(2rem, 2vw + 1.5rem, 3rem);*/
-  /*}*/
-  /*h2 {*/
-  /*  font-size: clamp(1.5rem, 1.5vw + 1.2rem, 2.2rem);*/
-  /*}*/
-  /*h3 {*/
-  /*  font-size: clamp(1.25rem, 1vw + 1rem, 1.6rem);*/
-  /*}*/
   @media (max-width: 768px) {
     body {
       font-size: clamp(14px, 0.5vw + 13px, 16px);
@@ -109,7 +84,7 @@ button {
 }
 
 .bg-panel {
-  background-color: #1c1c1c;
+  background-color: var(--color-panel);
 }
 
 .bg-panel-item {
@@ -117,18 +92,13 @@ button {
 }
 
 .bg-panel-item:hover {
-  background-color: #252525;
+  background-color: var(--color-panel-hover);
 }
 
 .bg-panel-item-active {
-  background-color: #3c8000;
+  background-color: var(--color-panel-active);
 }
 
-.text-secondary {
-  color: #585858;
-}
-
-/* Скрываем стандартный скроллбар */
 .swiper-wrapper {
   -webkit-overflow-scrolling: touch;
 }
@@ -146,7 +116,7 @@ button {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 600'%3E%3Cfilter id='a'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeComponentTransfer%3E%3CfeFuncR type='discrete' tableValues='0 1'/%3E%3CfeFuncG type='discrete' tableValues='0 1'/%3E%3CfeFuncB type='discrete' tableValues='0 1'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23a)'/%3E%3C/svg%3E");
   background-repeat: repeat;
   background-size: 182px;
-  opacity: 0.04;
+  opacity: 0.03;
   top: 0;
   left: 0;
   position: absolute;
@@ -155,7 +125,7 @@ button {
   pointer-events: none;
 }
 
-/* Кастомизация OverlayScrollbars для темной темы */
+/* OverlayScrollbars */
 .os-scrollbar-handle {
   background: var(--color-primary-500) !important;
   border-radius: 10px;
@@ -173,7 +143,6 @@ button {
   background: rgba(255, 255, 255, 0.05) !important;
 }
 
-/* Если хочешь более яркий скроллбар */
 .os-theme-dark .os-scrollbar-handle {
   background: var(--color-primary-500) !important;
 }
@@ -189,18 +158,6 @@ button {
 
   .preserve-3d {
     transform-style: preserve-3d;
-  }
-
-  .backface-hidden {
-    backface-visibility: hidden;
-  }
-
-  .rotate-y-180 {
-    transform: rotateY(180deg);
-  }
-
-  .font-caveat {
-    font-family: Caveat, sans-serif;
   }
 
   .glow {

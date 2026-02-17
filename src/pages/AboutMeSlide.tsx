@@ -124,12 +124,12 @@ const AboutMeSlide: FC<AboutMeSlideProps> = ({ scrollToSection }) => {
   };
 
   const { reward } = useReward('magic', 'stars', {
-    particleCount: 100,
+    particleCount: 40,
     spread: 120,
     startVelocity: 10,
     colors: ['#FFD700', '#FFA500', '#FF8C00'],
     physics: {
-      gravity: 0.5,
+      gravity: 0.8,
       wind: 0.1,
     },
   });

@@ -36,12 +36,12 @@ const LuckyDay: FC<LuckyDayProps> = ({ scrollRef }) => {
     offset: ['start end', 'end start'],
   });
 
-  const opacity = useTransform(scrollYProgress, [0.3, 0.4, 0.6, 0.7], [0, 1, 1, 0]);
+  const opacity = useTransform(scrollYProgress, [0.3, 0.4, 0.6, 0.65], [0, 1, 1, 0]);
   const scale = useTransform(scrollYProgress, [0.1, 0.5, 0.9], [0.9, 1, 1.1]);
   const y = useTransform(scrollYProgress, [0.1, 0.5, 0.9], [60, 0, -60]);
   const blur = useTransform(
     scrollYProgress,
-    [0.3, 0.35, 0.65, 0.7],
+    [0.3, 0.35, 0.60, 0.65],
     ['blur(12px)', 'blur(0px)', 'blur(0px)', 'blur(12px)'],
   );
 

@@ -6,16 +6,14 @@ type ParallaxSlideProps = {
 
 const ParallaxSlide: FC<PropsWithChildren<ParallaxSlideProps>> = ({ imageUrl, children }) => {
   return (
-    <div className="relative overflow-hidden w-full">
+    <div className="relative w-full" style={{ clipPath: 'inset(0)' }}>
       <div
-        className="absolute inset-0 z-0 bg-fixed bg-cover bg-center parallax"
-        style={{
-          backgroundImage: `url(${imageUrl})`,
-        }}
+        className="fixed inset-0 bg-cover bg-center"
+        style={{ backgroundImage: `url(${imageUrl})` }}
       />
 
       <div
-        className="absolute inset-0 z-10"
+        className="fixed inset-0"
         style={{
           backdropFilter: 'blur(3px)',
           WebkitBackdropFilter: 'blur(3px)',
@@ -23,7 +21,7 @@ const ParallaxSlide: FC<PropsWithChildren<ParallaxSlideProps>> = ({ imageUrl, ch
         }}
       />
 
-      <div className="relative z-30 w-full">
+      <div className="relative z-10 w-full">
         {children}
       </div>
     </div>

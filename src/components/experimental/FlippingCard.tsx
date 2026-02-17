@@ -57,7 +57,7 @@ const FlippingCard: FC<FlippingCardProps> = ({
       >
         {/* Front Side */}
         <motion.div
-          className={cn('absolute inset-0 w-full h-full flex flex-col items-center justify-center p-8 rounded-2xl bg-white preserve-3d', frontSide.style)}
+          className={cn('absolute inset-0 w-full h-full flex flex-col items-center justify-center p-8 rounded-2xl bg-white grainy before:rounded-2xl preserve-3d', frontSide.style)}
           style={{
             backfaceVisibility: 'hidden',
             WebkitBackfaceVisibility: 'hidden',
@@ -72,7 +72,7 @@ const FlippingCard: FC<FlippingCardProps> = ({
 
         {/* Back Side */}
         <motion.div
-          className={cn('absolute inset-0 w-full h-full flex flex-col items-center justify-center p-8 rounded-2xl bg-white preserve-3d', backSide.style)}
+          className={cn('absolute inset-0 w-full h-full flex flex-col items-center justify-center p-8 rounded-2xl bg-white grainy before:rounded-2xl preserve-3d', backSide.style)}
           style={{
             backfaceVisibility: 'hidden',
             WebkitBackfaceVisibility: 'hidden',

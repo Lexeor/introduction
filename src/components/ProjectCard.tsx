@@ -51,11 +51,11 @@ const ProjectCard: FC<ProjectCardProps> = ({ project, isSelected, onClick }) => 
         layout
         layoutId={`card-content-${project.id}`}
         className={cn(
-          'relative -mt-6 z-10',
+          'relative -mt-6 z-10 grainy before:rounded-3xl',
           'flex flex-col gap-2 grow',
           'rounded-3xl p-2 pb-14',
           !isSelected && 'transition-all duration-600',
-          hovered && !isSelected ? 'bg-primary-500 -mt-10' : 'bg-background-100',
+          hovered && !isSelected ? 'bg-primary-500 -mt-10' : 'bg-background-500',
           isSelected && 'bg-background-100 -mt-6',
         )}
       >

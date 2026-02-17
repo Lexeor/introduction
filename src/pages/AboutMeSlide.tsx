@@ -135,7 +135,8 @@ const AboutMeSlide: FC<AboutMeSlideProps> = ({ scrollToSection }) => {
   });
 
   return (
-    <Container className="relative min-h-[calc(100vh+4rem)] w-full flex items-center justify-center py-20">
+    <Container
+      className="relative min-h-[calc(100vh+4rem)] w-full flex items-center justify-center py-20 grainy">
       <PanelBorders
         onTopClick={() => scrollToSection?.(2)}
         onBottomClick={() => scrollToSection?.(2)}

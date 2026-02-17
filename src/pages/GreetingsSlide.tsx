@@ -45,7 +45,7 @@ const GreetingsSlide: FC<GreetingsSlideProps> = ({ scrollToSection }) => {
 
   return (
     <Container
-      className="min-h-screen flex flex-col items-center justify-center gap-2 relative">
+      className="min-h-screen flex flex-col items-center justify-center gap-2 relative grainy">
       <PanelBorders
         top={false}
         onBottomClick={() => scrollToSection?.(0)}

@@ -7,11 +7,11 @@ import { useScrollTracking } from '@/hooks/useScrollTracking';
 import { useSmoothScroll } from '@/hooks/useSmoothScroll';
 import AboutMeSlide from '@/pages/AboutMeSlide';
 import ContactSlide from '@/pages/ContactSlide';
+import Footer from '@/pages/Footer.tsx';
 import GreetingsSlide from '@/pages/GreetingsSlide';
 import LuckyDay from '@/pages/LuckyDay.tsx';
 import ProjectsSlide from '@/pages/ProjectsSlide';
 import { useUIStore } from '@/store/useUIStore';
-import { motion } from 'framer-motion';
 import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
 import { useRef } from 'react';
 import { Toaster } from 'sonner';
@@ -95,22 +95,7 @@ function App() {
             <ParallaxSlide
               imageUrl="https://images.unsplash.com/photo-1629319890842-323e7ac7347d?q=80&w=2874&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
               <ContactSlide />
-              <div
-                className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-background-500 to-transparent w-full text-center">
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{
-                    type: 'spring',
-                    damping: 12,
-                    stiffness: 90,
-                    delay: 1,
-                    mass: 0.8,
-                  }}
-                  className="p-2 text-xs sm:text-sm text-text-400">Designed and developed by Alexander Tarasov © 2026
-                </motion.div>
-              </div>
+              <Footer />
             </ParallaxSlide>
           </section>
         </main>

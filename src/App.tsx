@@ -7,6 +7,7 @@ import { useScrollTracking } from '@/hooks/useScrollTracking';
 import { useSmoothScroll } from '@/hooks/useSmoothScroll';
 import AboutMeSlide from '@/pages/AboutMeSlide';
 import ContactSlide from '@/pages/ContactSlide';
+import ExpSlide from '@/pages/ExpSlide.tsx';
 import Footer from '@/pages/Footer.tsx';
 import GreetingsSlide from '@/pages/GreetingsSlide';
 import LuckyDay from '@/pages/LuckyDay.tsx';
@@ -92,6 +93,10 @@ function App() {
           </section>
 
           <section ref={setSectionRef(4)}>
+            <ExpSlide scrollToSection={scrollToSection} />
+          </section>
+
+          <section ref={setSectionRef(5)}>
             <ParallaxSlide
               imageUrl="https://images.unsplash.com/photo-1629319890842-323e7ac7347d?q=80&w=2874&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
               <ContactSlide />

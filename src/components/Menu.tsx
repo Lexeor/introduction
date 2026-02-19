@@ -18,6 +18,7 @@ interface MenuProps {
 const HiIcon = (props: any) => <InlineSvg name="hi" {...props} />;
 const BioIcon = (props: any) => <InlineSvg name="skills" {...props} />;
 const ProjectsIcon = (props: any) => <InlineSvg name="projects" {...props} />;
+const ExperienceIcon = (props: any) => <InlineSvg name="idea" {...props} />;
 const ContactsIcon = (props: any) => <InlineSvg name="contacts" {...props} />;
 const StarIcon = (props: any) => <InlineSvg name="star" {...props} />;
 
@@ -43,7 +44,8 @@ const Menu: FC<MenuProps> = ({ activeIndex, onItemClick, isVisible }) => {
     { icon: StarIcon, label: t('menu.bio'), onClick: () => onItemClick(1), isActive: activeIndex === 1 },
     { icon: BioIcon, label: t('menu.skills'), onClick: () => onItemClick(2), isActive: activeIndex === 2 },
     { icon: ProjectsIcon, label: t('menu.projects'), onClick: () => onItemClick(3), isActive: activeIndex === 3 },
-    { icon: ContactsIcon, label: t('menu.contact'), onClick: () => onItemClick(4), isActive: activeIndex === 4 },
+    { icon: ExperienceIcon, label: t('menu.experience'), onClick: () => onItemClick(4), isActive: activeIndex === 4 },
+    { icon: ContactsIcon, label: t('menu.contact'), onClick: () => onItemClick(5), isActive: activeIndex === 5 },
   ], [activeIndex, onItemClick, t]);
 
   return (

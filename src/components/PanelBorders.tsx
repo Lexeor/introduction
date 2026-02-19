@@ -39,7 +39,7 @@ const PanelBorders: FC<PanelBordersProps> = ({
     <div className="absolute inset-x-0 h-full pointer-events-none">
       {top && (
         <div
-          className="absolute flex items-center justify-center w-full -top-8 h-8 z-31 bg-background-500 rounded-t-4xl cursor-pointer group grainy overflow-hidden pointer-events-auto"
+          className="absolute flex items-center justify-center w-full -top-7 h-8 z-31 bg-background-500 rounded-t-4xl cursor-pointer group grainy overflow-hidden pointer-events-auto"
           onClick={onTopClick}
         >
           <motion.div
@@ -54,7 +54,7 @@ const PanelBorders: FC<PanelBordersProps> = ({
       )}
       {bottom && (
         <div
-          className="absolute flex items-center justify-center w-full -bottom-8 h-8 z-31 bg-background-500 rounded-b-4xl cursor-pointer group grainy overflow-hidden pointer-events-auto"
+          className="absolute flex items-center justify-center w-full -bottom-7 h-8 z-31 bg-background-500 rounded-b-4xl cursor-pointer group grainy overflow-hidden pointer-events-auto"
           onClick={onBottomClick}
         >
           <motion.div

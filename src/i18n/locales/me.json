@@ -12,7 +12,8 @@
     "bio": "React Developer",
     "skills": "Veštine",
     "projects": "Nedavni projekti",
-    "contact": "Kontakti"
+    "contact": "Kontakti",
+    "experience": "Iskustvo"
   },
   "projects": {
     "title": "Nedavni projekti",
@@ -70,5 +71,30 @@
       "title": "Pouzdan i skalabilan",
       "description": "Gradim robusne sisteme koji su laki za održavanje, testiranje i razvoj na dugi rok."
     }
+  },
+  "work": {
+    "treenity": {
+      "name": "Treenity LLC",
+      "position": "Middle Frontend Developer",
+      "description": "Razvoj interaktivnog konfiguratora stanova i Telegram MiniApps. Implementacija složenih UI interakcija, glatkih animacija i data-driven interfejsa sa integracijom Telegram API-ja (bot i MiniApp).",
+      "years": "2023 — Danas"
+    },
+    "kvarum": {
+      "name": "Kvarum.app",
+      "position": "Frontend Developer",
+      "description": "Razvoj platforme za upravljanje događajima za predavače i učesnike. Sveobuhvatan rad s kalendarom, virtualnim listama i učitavanjem podataka u realnom vremenu putem WebSocket-a.",
+      "years": "2021 — 2023"
+    },
+    "sandvik": {
+      "name": "Sandvik",
+      "position": "IT Infrastructure Manager / Inhouse Software Developer",
+      "description": "12 godina upravljanja IT infrastrukturom preduzeća, uključujući iskustvo vođenja malog tima. Razvoj internih web aplikacija za obradu korporativnih podataka i izvještavanje, spajajući IT operacije sa poslovnim potrebama.",
+      "years": "2009 — 2021"
+    }
+  },
+  "final": {
+    "title": "Iskustvo",
+    "tagline": "koje će mi koristiti u mojoj",
+    "taglineAccent": "novoj avanturi"
   }
 }

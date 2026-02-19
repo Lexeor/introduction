@@ -11,7 +11,8 @@
     "bio": "React Developer",
     "skills": "Skills",
     "projects": "Recent projects",
-    "contact": "Contacts"
+    "contact": "Contacts",
+    "experience": "Experience"
   },
   "projects": {
     "title": "Recent Projects",
@@ -69,5 +70,30 @@
       "title": "Reliable & Scalable",
       "description": "Building robust systems that are easy to maintain, test, and grow over the long term."
     }
+  },
+  "work": {
+    "treenity": {
+      "name": "Treenity LLC",
+      "position": "Middle Frontend Developer",
+      "description": "Developed an interactive apartment configurator and Telegram MiniApps. Implemented complex UI interactions, smooth animations, and data-driven interfaces with Telegram API integration (bot and MiniApp).",
+      "years": "2023 — Present"
+    },
+    "kvarum": {
+      "name": "Kvarum.app",
+      "position": "Frontend Developer",
+      "description": "Developed an event management platform for speakers and attendees. Worked extensively with calendars, virtual lists, and real-time data loading via WebSockets.",
+      "years": "2021 — 2023"
+    },
+    "sandvik": {
+      "name": "Sandvik",
+      "position": "IT Infrastructure Manager / Inhouse Software Developer",
+      "description": "12 years managing enterprise IT infrastructure, including experience leading a small team. Developed internal web applications for corporate data processing and reporting, bridging IT operations with business needs.",
+      "years": "2009 — 2021"
+    }
+  },
+  "final": {
+    "title": "Experience",
+    "tagline": "that will come in handy in my",
+    "taglineAccent": "new adventure"
   }
 }

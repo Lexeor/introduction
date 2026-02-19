@@ -56,6 +56,7 @@ const Menu: FC<MenuProps> = ({ activeIndex, onItemClick, isVisible }) => {
         arrow={false}
         animation={false}
         hideOnClick={false}
+        touch={false}
         popperOptions={{
           strategy: 'fixed',
           modifiers: [

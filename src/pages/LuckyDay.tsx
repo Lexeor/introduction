@@ -19,22 +19,11 @@ const LuckyDay: FC<LuckyDayProps> = ({ scrollRef }) => {
   const opacity = useTransform(scrollYProgress, [0.3, 0.4, 0.6, 0.65], [0, 1, 1, 0]);
   const scale = useTransform(scrollYProgress, [0.1, 0.5, 0.9], [0.9, 1, 1.1]);
   const y = useTransform(scrollYProgress, [0.1, 0.5, 0.9], [60, 0, -60]);
-  const blur = useTransform(
-    scrollYProgress,
-    [0.3, 0.35, 0.60, 0.65],
-    ['blur(12px)', 'blur(0px)', 'blur(0px)', 'blur(12px)'],
-  );
 
   return (
     <div ref={containerRef} className="h-screen w-full relative">
       <motion.div
-        style={{
-          opacity,
-          scale,
-          y,
-          filter: blur,
-          willChange: 'transform, opacity, filter',
-        }}
+        style={{ opacity, scale, y }}
         className="fixed inset-0 flex flex-col items-center justify-center px-4 z-0 pointer-events-none"
       >
         <div className="max-w-7xl">

@@ -4,7 +4,6 @@ import './index.css';
 import '@/i18n/config';
 import { HashRouter } from 'react-router-dom';
 import App from '@/App';
-import 'overlayscrollbars/overlayscrollbars.css';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

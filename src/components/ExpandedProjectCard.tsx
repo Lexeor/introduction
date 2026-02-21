@@ -2,7 +2,6 @@ import type { Project } from '@/data/projects';
 import { cn } from '@/lib/utils';
 import { X } from 'lucide-react';
 import { AnimatePresence, motion } from 'motion/react';
-import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
 import { type FC, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 
@@ -13,31 +12,20 @@ interface ExpandedProjectCardProps {
 
 const ExpandedProjectCard: FC<ExpandedProjectCardProps> = ({ project, onClose }) => {
   const [showFloatingTitle, setShowFloatingTitle] = useState(false);
-  const scrollRef = useRef<any>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Wait for OverlayScrollbars to initialize
-    const timer = setInterval(() => {
-      const osInstance = scrollRef.current?.osInstance();
-      const viewport = osInstance?.elements().viewport;
+    const container = scrollRef.current;
+    if (!container) return;
 
-      if (viewport) {
-        clearInterval(timer);
+    const handleScroll = () => {
+      setShowFloatingTitle(container.scrollTop > 20);
+    };
 
-        const handleScroll = () => {
-          setShowFloatingTitle(viewport.scrollTop > 20);
-        };
-
-        viewport.addEventListener('scroll', handleScroll, { passive: true });
-        handleScroll(); // Initial check
-
-        return () => {
-          viewport.removeEventListener('scroll', handleScroll);
-        };
-      }
-    }, 50);
-
-    return () => clearInterval(timer);
+    container.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      container.removeEventListener('scroll', handleScroll);
+    };
   }, []);
 
   return createPortal(
@@ -152,19 +140,8 @@ const ExpandedProjectCard: FC<ExpandedProjectCardProps> = ({ project, onClose })
               'bg-background-100 overflow-hidden',
             )}
           >
-            <OverlayScrollbarsComponent
-              ref={scrollRef}
-              defer
-              className="flex-1"
-              options={{
-                scrollbars: {
-                  autoHide: 'scroll',
-                  theme: 'os-theme-dark',
-                },
-              }}
-            >
+            <div ref={scrollRef} className="flex-1 overflow-y-auto">
               <div className="p-6">
-                {/* Текст появляется после завершения layout-анимации */}
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
@@ -241,7 +218,7 @@ const ExpandedProjectCard: FC<ExpandedProjectCardProps> = ({ project, onClose })
                   </div>
                 </motion.div>
               </div>
-            </OverlayScrollbarsComponent>
+            </div>
           </motion.div>
         </motion.div>
       </div>

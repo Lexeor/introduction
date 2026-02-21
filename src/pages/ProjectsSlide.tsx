@@ -10,38 +10,29 @@ import { AnimatePresence, LayoutGroup, motion } from 'motion/react';
 import { type FC, useEffect, useState } from 'react';
 
 interface ProjectsSlideProps {
-  scrollRef?: React.RefObject<any>;
+  scrollRef?: React.RefObject<HTMLDivElement | null>;
 }
 
 const ProjectsSlide: FC<ProjectsSlideProps> = ({ scrollRef }) => {
   const triggerLoading = useUIStore((state) => state.triggerLoading);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
-  // Lock scroll when project is expanded
   useEffect(() => {
+    const container = scrollRef?.current;
     if (selectedProject) {
-      // Lock OverlayScrollbars if available
-      const osInstance = scrollRef?.current?.osInstance();
-      if (osInstance) {
-        osInstance.options({ overflow: { y: 'hidden' } });
-      }
-      // Also lock body scroll as fallback
+      if (container) container.style.overflowY = 'hidden';
       document.body.style.overflow = 'hidden';
     } else {
-      // Unlock OverlayScrollbars
-      const osInstance = scrollRef?.current?.osInstance();
-      if (osInstance) {
-        osInstance.options({ overflow: { y: 'scroll' } });
-      }
+      if (container) container.style.overflowY = '';
       document.body.style.overflow = '';
     }
 
     return () => {
+      if (container) container.style.overflowY = '';
       document.body.style.overflow = '';
     };
   }, [selectedProject, scrollRef]);
 
-  // Close on escape key
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape' && selectedProject) {

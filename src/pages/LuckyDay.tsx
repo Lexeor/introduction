@@ -1,38 +1,18 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { type FC, useEffect, useRef, useState } from 'react';
+import { type FC, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 
 interface LuckyDayProps {
-  scrollRef: any;
+  scrollRef: React.RefObject<HTMLDivElement | null>;
 }
 
 const LuckyDay: FC<LuckyDayProps> = ({ scrollRef }) => {
   const { t } = useTranslation();
   const containerRef = useRef<HTMLDivElement>(null);
-  const [viewport, setViewport] = useState<HTMLElement | null>(null);
-
-  useEffect(() => {
-    const getViewport = () => {
-      const osInstance = scrollRef.current?.osInstance();
-      const el = osInstance?.elements().viewport;
-      if (el) {
-        setViewport(el);
-        return true;
-      }
-      return false;
-    };
-
-    if (!getViewport()) {
-      const timer = setInterval(() => {
-        if (getViewport()) clearInterval(timer);
-      }, 50);
-      return () => clearInterval(timer);
-    }
-  }, [scrollRef]);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    container: viewport ? { current: viewport } : undefined,
+    container: scrollRef,
     offset: ['start end', 'end start'],
   });
 

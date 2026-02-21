@@ -1,7 +1,7 @@
 import { type RefObject, useEffect, useState } from 'react';
 
 interface UseScrollTrackingOptions {
-  scrollRef: RefObject<any>;
+  scrollRef: RefObject<HTMLDivElement | null>;
   sectionsRef: RefObject<(HTMLElement | null)[]>;
   enabled?: boolean;
 }
@@ -16,27 +16,23 @@ export const useScrollTracking = ({
   useEffect(() => {
     if (!enabled) return;
 
+    const container = scrollRef.current;
+    if (!container) return;
+
     const handleScroll = () => {
       const sections = sectionsRef.current;
-      const osInstance = scrollRef.current?.osInstance();
-      const viewport = osInstance?.elements().viewport;
+      if (!sections?.length) return;
 
-      if (!sections?.length || !viewport) return;
-
-      const scrollTop = viewport.scrollTop;
-      const viewportHeight = viewport.clientHeight;
-      const viewportCenter = scrollTop + viewportHeight / 2;
+      const scrollTop = container.scrollTop;
+      const viewportCenter = scrollTop + container.clientHeight / 2;
 
       let closestIndex = 0;
       let closestDistance = Infinity;
 
       sections.forEach((section, index) => {
         if (!section) return;
-
-        const sectionTop = section.offsetTop;
-        const sectionCenter = sectionTop + section.offsetHeight / 2;
+        const sectionCenter = section.offsetTop + section.offsetHeight / 2;
         const distance = Math.abs(sectionCenter - viewportCenter);
-
         if (distance < closestDistance) {
           closestDistance = distance;
           closestIndex = index;
@@ -46,25 +42,11 @@ export const useScrollTracking = ({
       setActiveIndex(closestIndex);
     };
 
-    // Wait for OverlayScrollbars to initialize
-    const timer = setInterval(() => {
-      const osInstance = scrollRef.current?.osInstance();
-      const viewport = osInstance?.elements().viewport;
-
-      if (viewport) {
-        clearInterval(timer);
-        handleScroll(); // Initial calculation
-        viewport.addEventListener('scroll', handleScroll, { passive: true });
-      }
-    }, 50);
+    handleScroll();
+    container.addEventListener('scroll', handleScroll, { passive: true });
 
     return () => {
-      clearInterval(timer);
-      const osInstance = scrollRef.current?.osInstance();
-      const viewport = osInstance?.elements().viewport;
-      if (viewport) {
-        viewport.removeEventListener('scroll', handleScroll);
-      }
+      container.removeEventListener('scroll', handleScroll);
     };
   }, [enabled, scrollRef, sectionsRef]);
 

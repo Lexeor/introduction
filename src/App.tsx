@@ -2,7 +2,6 @@ import LoadingScreen from '@/components/experimental/LoadingScreen.tsx';
 import Menu from '@/components/Menu';
 import ParallaxSlide from '@/components/ParallaxSlide';
 import { useLanguageSelection } from '@/hooks/useLanguageSelection';
-import { useOverlayScrollbarsOptions } from '@/hooks/useOverlayScrollbarsOptions';
 import { useScrollTracking } from '@/hooks/useScrollTracking';
 import { useSmoothScroll } from '@/hooks/useSmoothScroll';
 import AboutMeSlide from '@/pages/AboutMeSlide';
@@ -13,15 +12,14 @@ import GreetingsSlide from '@/pages/GreetingsSlide';
 import LuckyDay from '@/pages/LuckyDay.tsx';
 import ProjectsSlide from '@/pages/ProjectsSlide';
 import { useUIStore } from '@/store/useUIStore';
-import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
 import { useRef } from 'react';
 import { Toaster } from 'sonner';
 
 function App() {
   const sectionsRef = useRef<(HTMLElement | null)[]>([]);
-  const scrollRef = useRef<any>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
   const { isGlobalLoading, isLanguageSelected } = useUIStore();
-  useLanguageSelection(); // Initializing event listeners
+  useLanguageSelection();
   const scrollToSection = useSmoothScroll(sectionsRef);
   const activeIndex = useScrollTracking({
     scrollRef,
@@ -31,31 +29,14 @@ function App() {
 
   const isScrollEnabled = isLanguageSelected && !isGlobalLoading;
 
-  useOverlayScrollbarsOptions({
-    scrollRef,
-    enabled: isScrollEnabled,
-  });
-
   const setSectionRef = (index: number) => (el: HTMLDivElement | null) => {
     sectionsRef.current[index] = el;
   };
 
   return (
-    <OverlayScrollbarsComponent
+    <div
       ref={scrollRef}
-      defer
-      options={{
-        scrollbars: {
-          autoHide: 'leave',
-          autoHideDelay: 800,
-          theme: 'os-theme-dark',
-        },
-        overflow: {
-          x: 'hidden',
-          y: isScrollEnabled ? 'scroll' : 'hidden',
-        },
-      }}
-      className="h-screen"
+      className={`h-screen overflow-x-hidden ${isScrollEnabled ? 'overflow-y-auto' : 'overflow-y-hidden'}`}
     >
       <div className="relative bg-background-500 w-full min-h-screen">
         <LoadingScreen />
@@ -105,7 +86,7 @@ function App() {
           </section>
         </main>
       </div>
-    </OverlayScrollbarsComponent>
+    </div>
   );
 }
 

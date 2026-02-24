@@ -150,6 +150,46 @@ button {
 }
 
 
+.underline-1 {
+  position: relative;
+}
+
+.underline-1 .underline-1::before {
+  display: none;
+}
+
+.underline-1::before {
+  content: '';
+  position: absolute;
+  bottom: -0.1em;
+  left: 0;
+  width: 100%;
+  height: 0.35em;
+  background-color: currentColor;
+  mask: url('/icons/underline-1.svg') no-repeat center / 100% 100%;
+  pointer-events: none;
+}
+
+.underline-2 {
+  position: relative;
+}
+
+.underline-2 .underline-2::before {
+  display: none;
+}
+
+.underline-2::before {
+  content: '';
+  position: absolute;
+  bottom: 0.1em;
+  left: 20%;
+  width: 60%;
+  height: 0.35em;
+  background-color: currentColor;
+  mask: url('/icons/underline-2.svg') no-repeat center / 100% 100%;
+  pointer-events: none;
+}
+
 @layer utilities {
   .perspective-1000 {
     perspective: 1000px;
@@ -163,7 +203,15 @@ button {
     transition: text-shadow 0.3s ease-in-out;
   }
 
+  .glow::before {
+    transition: filter 0.3s ease-in-out;
+  }
+
   .glow:hover {
     text-shadow: 0 0 8px var(--color-primary-500), 0 0 14px var(--color-primary-500);
+  }
+
+  .glow:hover::before {
+    filter: drop-shadow(0 0 4px var(--color-primary-500)) drop-shadow(0 0 8px var(--color-primary-500));
   }
 }

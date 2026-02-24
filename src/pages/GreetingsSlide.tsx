@@ -70,7 +70,7 @@ const GreetingsSlide: FC<GreetingsSlideProps> = ({ scrollToSection }) => {
               className="text-[16vw] leading-[0.8]"
             />
             <span
-              className="text-3xl sm:text-5xl md:text-6xl font-light tracking-[0.3em] uppercase text-text-500 w-full">
+              className="absolute bottom-1 text-3xl sm:text-5xl md:text-6xl font-light tracking-[0.3em] font-caveat uppercase text-text-500 w-full">
               <Multilingual translationKey="frontend.developer"
                             className="w-full text-[18px] sm:text-[32px] md:text-[48px]" />
             </span>

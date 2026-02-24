@@ -159,7 +159,7 @@ const AboutMeSlide: FC<AboutMeSlideProps> = ({ scrollToSection }) => {
               inline
               translationKey="skill.pretitle-2"
               align="center"
-              className="text-primary-500 text-[24px] sm:text-[32px] md:text-[48px] font-light font-caveat hover:cursor-pointer glow px-3 -mx-4 overflow-auto -mb-2"
+              className="text-primary-500 text-[24px] sm:text-[32px] md:text-[48px] font-light font-caveat hover:cursor-pointer glow px-3 -mx-4 overflow-visible -mb-2 underline-1"
               onClick={reward}
             />
             <Multilingual

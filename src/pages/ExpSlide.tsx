@@ -3,6 +3,7 @@ import WorkTimeline from '@/components/experimental/WorkTimeline.tsx';
 import Multilingual from '@/components/Multilingual.tsx';
 import PanelBorders from '@/components/PanelBorders.tsx';
 import { motion } from 'motion/react';
+import { useReward } from 'partycles';
 import { type FC } from 'react';
 
 interface FinalProps {
@@ -10,6 +11,17 @@ interface FinalProps {
 }
 
 const ExpSlide: FC<FinalProps> = ({ scrollToSection }) => {
+  const { reward } = useReward('adventure', 'confetti', {
+    particleCount: 30,
+    spread: 120,
+    startVelocity: 15,
+    colors: ['#FFD700', '#FFA500', '#FF8C00'],
+    physics: {
+      gravity: 1.8,
+      wind: 0.1,
+    },
+  });
+
   return (
     <Container className="relative min-h-[calc(100vh+4rem)] w-full flex items-center justify-center py-10 grainy">
       <PanelBorders
@@ -43,9 +55,11 @@ const ExpSlide: FC<FinalProps> = ({ scrollToSection }) => {
               className="font-caveat font-light text-[28px] sm:text-[36px] md:text-[36px]"
             />
             <Multilingual
+              elemId="adventure"
               translationKey="final.taglineAccent"
               align="center"
-              className="text-primary-500 font-caveat font-light text-[28px] sm:text-[36px] md:text-[36px] -mt-4 md:-mt-6"
+              className="text-primary-500 underline-2 glow font-caveat font-light text-[28px] sm:text-[36px] md:text-[36px] -mt-4 md:-mt-6 cursor-pointer"
+              onClick={reward}
             />
           </motion.div>
         </div>

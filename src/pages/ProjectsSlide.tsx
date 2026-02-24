@@ -5,13 +5,13 @@ import Multilingual from '@/components/Multilingual';
 import ProjectCard from '@/components/ProjectCard';
 import { type Project, projects } from '@/data/projects';
 import { useUIStore } from '@/store/useUIStore';
-import { t } from 'i18next';
 import { AnimatePresence, LayoutGroup, motion } from 'motion/react';
 import { type FC, memo, useCallback, useEffect, useState } from 'react';
 
 
 const ProjectsHeader: FC<{ onTriggerLoading: () => void }> = memo(({ onTriggerLoading }) => (
-  <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-12 lg:mb-24 w-full gap-4 relative z-10 mt-12">
+  <div
+    className="flex flex-col md:flex-row justify-between items-start md:items-center mb-12 lg:mb-24 w-full gap-4 relative z-10 mt-12">
     <motion.h1
       initial={{ opacity: 0, x: -20 }}
       whileInView={{ opacity: 1, x: 0 }}
@@ -31,7 +31,7 @@ const ProjectsHeader: FC<{ onTriggerLoading: () => void }> = memo(({ onTriggerLo
       className="flex items-center gap-2 px-4 py-2 rounded-full border border-neutral-800 text-neutral-400 hover:text-primary-500 hover:border-primary-500 transition-colors text-sm font-medium select-none cursor-pointer"
     >
       <InlineSvg name="refresh" className="w-4 h-4 group-hover:rotate-180 transition-transform duration-500" />
-      {t('loading.reloadProjects')}
+      <Multilingual translationKey={'loading.reloadProjects'} />
     </motion.div>
   </div>
 ));
@@ -41,7 +41,9 @@ const ProjectGrid: FC = memo(() => {
 
   useEffect(() => {
     document.body.style.overflow = selectedProject ? 'hidden' : '';
-    return () => { document.body.style.overflow = ''; };
+    return () => {
+      document.body.style.overflow = '';
+    };
   }, [selectedProject]);
 
   useEffect(() => {

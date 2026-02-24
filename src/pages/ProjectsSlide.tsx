@@ -9,9 +9,6 @@ import { t } from 'i18next';
 import { AnimatePresence, LayoutGroup, motion } from 'motion/react';
 import { type FC, memo, useCallback, useEffect, useState } from 'react';
 
-interface ProjectsSlideProps {
-  scrollRef?: React.RefObject<HTMLDivElement | null>;
-}
 
 const ProjectsHeader: FC<{ onTriggerLoading: () => void }> = memo(({ onTriggerLoading }) => (
   <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-12 lg:mb-24 w-full gap-4 relative z-10 mt-12">
@@ -39,24 +36,13 @@ const ProjectsHeader: FC<{ onTriggerLoading: () => void }> = memo(({ onTriggerLo
   </div>
 ));
 
-const ProjectGrid: FC<{ scrollRef?: React.RefObject<HTMLDivElement | null> }> = memo(({ scrollRef }) => {
+const ProjectGrid: FC = memo(() => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   useEffect(() => {
-    const container = scrollRef?.current;
-    if (selectedProject) {
-      if (container) container.style.overflowY = 'hidden';
-      document.body.style.overflow = 'hidden';
-    } else {
-      if (container) container.style.overflowY = '';
-      document.body.style.overflow = '';
-    }
-
-    return () => {
-      if (container) container.style.overflowY = '';
-      document.body.style.overflow = '';
-    };
-  }, [selectedProject, scrollRef]);
+    document.body.style.overflow = selectedProject ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [selectedProject]);
 
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
@@ -102,14 +88,14 @@ const ProjectGrid: FC<{ scrollRef?: React.RefObject<HTMLDivElement | null> }> = 
   );
 });
 
-const ProjectsSlide: FC<ProjectsSlideProps> = ({ scrollRef }) => {
+const ProjectsSlide: FC = () => {
   const triggerLoading = useUIStore((state) => state.triggerLoading);
 
   return (
     <section className="relative flex flex-col gap-2 w-full min-h-screen">
       <Container className="flex flex-col gap-2 justify-center items-center min-h-screen relative overflow-hidden">
         <ProjectsHeader onTriggerLoading={triggerLoading} />
-        <ProjectGrid scrollRef={scrollRef} />
+        <ProjectGrid />
       </Container>
     </section>
   );

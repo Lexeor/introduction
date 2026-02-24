@@ -21,4 +21,14 @@ export function initConsoleEasterEgg() {
     ].join('\n'),
     'color: #41bd98; font-family: monospace;',
   );
+  console.log(
+    '%c' + [
+      '',
+      '  P.S. The Tippy.js warnings below are a known resident.',
+      '  We\'ve reached an agreement: I ignore them, they stay quiet. ;)',
+      '                          \u2193',
+      '          ',
+    ].join('\n'),
+    'color: #ff0000; font-family: monospace;',
+  );
 }

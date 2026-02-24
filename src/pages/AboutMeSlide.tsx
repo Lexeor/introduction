@@ -4,7 +4,7 @@ import IconPlaceholder from '@/components/IconPlaceholder';
 import InlineSvg from '@/components/InlineSvg';
 import Multilingual from '@/components/Multilingual.tsx';
 import PanelBorders from '@/components/PanelBorders.tsx';
-import { RefreshCwIcon } from 'lucide-react';
+import { RefreshCwIcon, SparklesIcon } from 'lucide-react';
 import { motion, type Variants } from 'motion/react';
 import { useReward } from 'partycles';
 import { type FC, useEffect, useMemo, useState } from 'react';
@@ -65,10 +65,11 @@ const AboutMeSlide: FC<AboutMeSlideProps> = ({ scrollToSection }) => {
       ],
     },
     {
-      title: i18n.t('skill.api'),
+      title: i18n.t('skill.other'),
       items: [
         { name: 'REST', icon: <InlineSvg name="tech/api" /> },
         { name: 'WebSockets', icon: <InlineSvg name="tech/websocket" className="w-6" /> },
+        { name: 'AI', icon: <SparklesIcon size={18} />, iconClass: 'ai-gradient-border' },
       ],
     },
   ], [i18n.language]);
@@ -214,7 +215,7 @@ const AboutMeSlide: FC<AboutMeSlideProps> = ({ scrollToSection }) => {
                         className="group flex items-center gap-3 py-1 cursor-default"
                       >
                         <div
-                          className="p-1 text-white/60 w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-white/20 transition-all group-hover:bg-white/10 group-hover:text-white">
+                          className={`p-1 text-white/60 w-10 h-10 rounded-xl flex items-center justify-center transition-all group-hover:text-white ${'iconClass' in skill && skill.iconClass ? skill.iconClass : 'bg-white/5 border border-white/10 group-hover:border-white/20 group-hover:bg-white/10'}`}>
                           <IconPlaceholder
                             label={skill.icon}
                             className="text-white/60 group-hover:text-white/90 transition-colors"
@@ -265,7 +266,7 @@ const AboutMeSlide: FC<AboutMeSlideProps> = ({ scrollToSection }) => {
                     node: (
                       <>
                         <FloatingElement depth={30} className="text-xl font-medium text-white align-top w-full">
-                          <Multilingual translationKey={`achievements.${card.id}.title`} align="left" />
+                          <Multilingual translationKey={`achievements.${card.id}.title`} align="left" valign="start" />
                         </FloatingElement>
                         <FloatingElement depth={60} className="absolute left-4 bottom-4">
                           <RefreshCwIcon size={64} strokeWidth={2.5} className="text-white opacity-20" />

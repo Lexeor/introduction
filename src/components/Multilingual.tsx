@@ -10,6 +10,7 @@ interface MultilingualProps<T extends ElementType = 'span'> {
   interval?: number;
   selectedLanguage?: number;
   align?: 'left' | 'center' | 'right';
+  valign?: 'center' | 'start';
   as?: T;
   className?: string;
   inline?: boolean;
@@ -22,6 +23,7 @@ const Multilingual = <T extends ElementType = 'span'>({
   interval = 5000,
   selectedLanguage,
   align = 'center',
+  valign = 'center',
   as,
   className,
   inline = false,
@@ -125,7 +127,7 @@ const Multilingual = <T extends ElementType = 'span'>({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -5 }}
             transition={{ duration: 0.2, ease: 'easeOut' }}
-            className={`absolute inset-0 flex items-center ${justifyClass} whitespace-pre-wrap`}
+            className={`absolute inset-0 flex ${valign === 'start' ? 'items-start' : 'items-center'} ${justifyClass} whitespace-pre-wrap`}
           >
             <Element className={className}>{values[renderIndex]}</Element>
           </motion.div>

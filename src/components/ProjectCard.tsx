@@ -1,24 +1,24 @@
 import type { Project } from '@/data/projects';
 import { cn } from '@/lib/utils';
 import { motion } from 'motion/react';
-import { type FC, useState } from 'react';
+import { memo, type FC, useState } from 'react';
 import TechStack from './TechStack';
 
 
 interface ProjectCardProps {
   project: Project;
   isSelected: boolean;
-  onClick(): void;
+  onSelect: (project: Project) => void;
 }
 
-const ProjectCard: FC<ProjectCardProps> = ({ project, isSelected, onClick }) => {
+const ProjectCard: FC<ProjectCardProps> = ({ project, isSelected, onSelect }) => {
   const [hovered, setHovered] = useState(false);
 
   return (
     <motion.div
       layout
       layoutId={`card-container-${project.id}`}
-      onClick={onClick}
+      onClick={() => onSelect(project)}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       className={cn(
@@ -54,8 +54,8 @@ const ProjectCard: FC<ProjectCardProps> = ({ project, isSelected, onClick }) => 
           'relative -mt-6 z-10 grainy before:rounded-3xl',
           'flex flex-col gap-2 grow',
           'rounded-3xl p-2 pb-14',
-          !isSelected && 'transition-all duration-600',
-          hovered && !isSelected ? 'bg-primary-500 -mt-10' : 'bg-background-500',
+          !isSelected && 'transition-colors duration-600',
+          hovered && !isSelected ? 'bg-primary-500' : 'bg-background-500',
           isSelected && 'bg-background-100 -mt-6',
         )}
       >
@@ -96,4 +96,4 @@ const ProjectCard: FC<ProjectCardProps> = ({ project, isSelected, onClick }) => 
   );
 };
 
-export default ProjectCard;
+export default memo(ProjectCard);

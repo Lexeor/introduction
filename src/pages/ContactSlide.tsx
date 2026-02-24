@@ -52,7 +52,7 @@ const ContactSlide: FC<ContactSlideProps> = () => {
         className={cn(
           'px-6 sm:px-12 py-12 rounded-[42px]',
           'bg-cover bg-bottom-right footer__bg sm:bg-none',
-          'bg-white/10 backdrop-blur-xl',
+          'bg-background-500/10 backdrop-blur-sm',
           'bg-[url(/exclude-sm.svg)] sm:bg-[url(/exclude-md.svg)] lg:bg-[url(/exclude-lg.svg)] pb-62! md:pb-42! lg:pb-22!',
         )}
       >

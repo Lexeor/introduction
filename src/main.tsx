@@ -1,9 +1,12 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
+import { scan } from 'react-scan';
 import './index.css';
 import '@/i18n/config';
 import { HashRouter } from 'react-router-dom';
 import App from '@/App';
+
+scan({ enabled: true });
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

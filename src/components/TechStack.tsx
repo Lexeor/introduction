@@ -3,7 +3,7 @@ import { cn } from '@/lib/utils';
 import Tippy, { useSingleton } from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
 import { AnimatePresence, motion } from 'motion/react';
-import { type FC, useState } from 'react';
+import { memo, type FC, useState } from 'react';
 import IconPlaceholder from './IconPlaceholder';
 
 interface TechStackProps {
@@ -91,4 +91,4 @@ const TechStack: FC<TechStackProps> = ({ stack, hovered, className }) => {
   );
 };
 
-export default TechStack;
+export default memo(TechStack);

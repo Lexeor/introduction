@@ -4,6 +4,7 @@ import { X } from 'lucide-react';
 import { AnimatePresence, motion } from 'motion/react';
 import { type FC, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
+import { useTranslation } from 'react-i18next';
 
 interface ExpandedProjectCardProps {
   project: Project;
@@ -11,8 +12,20 @@ interface ExpandedProjectCardProps {
 }
 
 const ExpandedProjectCard: FC<ExpandedProjectCardProps> = ({ project, onClose }) => {
+  const { t } = useTranslation();
   const [showFloatingTitle, setShowFloatingTitle] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
+
+  const subtitle = t(`projects.${project.id}.subtitle`, { defaultValue: project.subtitle });
+  const description = typeof project.description === 'string'
+    ? t(`projects.${project.id}.description`, { defaultValue: project.description })
+    : project.description;
+  const goal = typeof project.goal === 'string'
+    ? t(`projects.${project.id}.goal`, { defaultValue: project.goal })
+    : project.goal;
+  const solution = typeof project.solution === 'string'
+    ? t(`projects.${project.id}.solution`, { defaultValue: project.solution })
+    : project.solution;
 
   useEffect(() => {
     const container = scrollRef.current;
@@ -92,7 +105,7 @@ const ExpandedProjectCard: FC<ExpandedProjectCardProps> = ({ project, onClose })
                   'font-medium text-center flex-1 md:flex-none z-22',
                 )}
               >
-                It's alive!
+                {t('projects.labels.liveDemo')}
                 <span
                   className="absolute inset-0 scale-x-108 scale-y-121 inline-flex h-full w-full animate-pulse rounded-full bg-primary-500 opacity-0 -z-1"></span>
               </a>
@@ -153,7 +166,7 @@ const ExpandedProjectCard: FC<ExpandedProjectCardProps> = ({ project, onClose })
                   </h2>
 
                   <h3 className="text-lg text-text-400 mb-6 leading-5.5">
-                    {project.subtitle}
+                    {subtitle}
                   </h3>
                 </motion.div>
 
@@ -165,39 +178,29 @@ const ExpandedProjectCard: FC<ExpandedProjectCardProps> = ({ project, onClose })
                   transition={{ delay: 0.3, duration: 0.3 }}
                   className="flex-1 space-y-8"
                 >
-                  {project.description && (
-                    <div>
-                      {typeof project.description === 'string' ? (
-                        <p className="text-text-300 leading-5.5 text-lg">{project.description}</p>
-                      ) : (
-                        project.description
-                      )}
-                    </div>
+                  {description && (
+                    <div className="text-text-300 leading-5.5 text-lg">{description}</div>
                   )}
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    {project.goal && (
+                    {goal && (
                       <div className="space-y-3">
-                        <h4 className="text-sm font-semibold uppercase tracking-wider text-text-500/50">Goal</h4>
-                        <div className="text-text-300 leading-5.5">
-                          {typeof project.goal === 'string' ? <p>{project.goal}</p> : project.goal}
-                        </div>
+                        <h4 className="text-sm font-semibold uppercase tracking-wider text-text-500/50">{t('projects.labels.goal')}</h4>
+                        <div className="text-text-300 leading-5.5">{goal}</div>
                       </div>
                     )}
 
-                    {project.solution && (
+                    {solution && (
                       <div className="space-y-3">
-                        <h4 className="text-sm font-semibold uppercase tracking-wider text-text-500/50">Solution</h4>
-                        <div className="text-text-300 leading-5.5">
-                          {typeof project.solution === 'string' ? <p>{project.solution}</p> : project.solution}
-                        </div>
+                        <h4 className="text-sm font-semibold uppercase tracking-wider text-text-500/50">{t('projects.labels.solution')}</h4>
+                        <div className="text-text-300 leading-5.5">{solution}</div>
                       </div>
                     )}
                   </div>
 
                   {/* Tech Stack Section */}
                   <div className="pt-6 border-t border-background-200/50">
-                    <h4 className="text-sm font-semibold uppercase tracking-wider text-text-500/50 mb-4">Tech Stack</h4>
+                    <h4 className="text-sm font-semibold uppercase tracking-wider text-text-500/50 mb-4">{t('projects.labels.techStack')}</h4>
                     <div className="flex flex-wrap gap-2">
                       {project.stack.map((item) => (
                         <div

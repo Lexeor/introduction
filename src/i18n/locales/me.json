@@ -17,7 +17,51 @@
   },
   "projects": {
     "title": "Nedavni projekti",
-    "contact-me": "Kontakti"
+    "contact-me": "Kontakti",
+    "labels": {
+      "goal": "Cilj",
+      "solution": "Rješenje",
+      "techStack": "Tehnologije",
+      "liveDemo": "Demo"
+    },
+    "kvarum": {
+      "subtitle": "Platforma za planiranje događaja za predavače i slušaoce",
+      "description": "Sveobuhvatna platforma koja povezuje predavače i njihovu publiku. Podržava složene scenarije vremenskih zona, sinhronizaciju kalendara u realnom vremenu i višekanalna obavještenja.",
+      "goal": "Omogućiti jednostavno planiranje između predavača i slušalaca, s praćenjem dostupnosti u realnom vremenu i alatima za komunikaciju.",
+      "solution": "Razvijen je responzivan interfejs s ažuriranjima u realnom vremenu putem WebSocket-a, više prikaza kalendara i sistem obavještenja za sinhronizaciju učesnika na svim uređajima.",
+      "keyPoints": [
+        "Sinhronizacija u realnom vremenu",
+        "Podrška za vremenske zone",
+        "Optimizovan prikaz kalendara",
+        "Desktop i mobilna verzija",
+        "Sistem obavještenja"
+      ]
+    },
+    "bus-tracker": {
+      "subtitle": "Praćenje autobusa po redu vožnje za gradove bez GPS-a u prevozu",
+      "description": "Gradski javni prevoz nema GPS opremu, što onemogućava praćenje autobusa u realnom vremenu. Platforma procjenjuje položaje autobusa na osnovu podataka rasporeda i istorijskih obrazaca, pružajući putnicima pouzdanu alternativu.",
+      "goal": "Pružiti putnicima precizne procjene lokacije autobusa u gradu gdje javni prevoz nema GPS praćenje.",
+      "solution": "Razvijen je algoritam interpolacije pozicija koristeći GTFS statičke podatke i obrasce kretanja, vizualizovane kroz optimizovan Leaflet interfejs s kompenzacijom kašnjenja.",
+      "keyPoints": [
+        "Interpolacija pozicija po rasporedu",
+        "Obrada GTFS podataka",
+        "Kompenzacija kašnjenja",
+        "Optimizovan prikaz mape",
+        "Responzivan interfejs"
+      ]
+    },
+    "craftistry": {
+      "subtitle": "E-commerce tržište za nezavisne majstore i ručno izrađene proizvode",
+      "description": "Specijalizovana e-commerce platforma napravljena za nezavisne majstore. Uključuje prilagodljivi graditelj izloga, upravljanje narudžbama i zalihama, te Telegram integraciju za direktnu komunikaciju s kupcima.",
+      "goal": "Dati nezavisnim majstorima namjensku platformu koja pojednostavljuje prodaju uz praktične alate za upravljanje proizvodima i kontakt s kupcima.",
+      "solution": "Implementiran drag-and-drop graditelj izloga, integrisani Telegram Bot API i Mini App za prodaju direktno u mesindžeru, te dizajnirana intuitivna kontrolna tabla za upravljanje zalihama i narudžbama.",
+      "keyPoints": [
+        "Drag-and-drop graditelj izloga",
+        "Kontrolna tabla majstora",
+        "Integracija Telegram Bot API-ja",
+        "Telegram Mini App"
+      ]
+    }
   },
   "contacts": {
     "SendMessage": "Pošalji",

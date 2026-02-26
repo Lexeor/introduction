@@ -16,7 +16,51 @@
   },
   "projects": {
     "title": "Recent Projects",
-    "contact-me": "Contacts"
+    "contact-me": "Contacts",
+    "labels": {
+      "goal": "Goal",
+      "solution": "Solution",
+      "techStack": "Tech Stack",
+      "liveDemo": "Live demo"
+    },
+    "kvarum": {
+      "subtitle": "Event scheduling platform connecting speakers and their audience",
+      "description": "A full-featured scheduling platform that bridges the gap between educators and their audience. Supports complex timezone scenarios, real-time calendar synchronization, and multi-channel notifications.",
+      "goal": "Enable seamless scheduling between expert speakers and their listeners, with real-time availability tracking and straightforward communication tools.",
+      "solution": "Built a responsive frontend with WebSocket-powered real-time updates, multiple calendar views, and a notification engine to keep all participants synchronized across devices.",
+      "keyPoints": [
+        "Real-time synchronization",
+        "Multi-timezone support",
+        "Optimized calendar rendering",
+        "Desktop and mobile versions",
+        "Notification system"
+      ]
+    },
+    "bus-tracker": {
+      "subtitle": "Schedule-based bus location tracker for cities without GPS transit",
+      "description": "Public transit in my city lacks GPS equipment, making real-time bus tracking impossible. This platform estimates bus positions using schedule data and historical patterns, giving commuters a reliable alternative.",
+      "goal": "Provide commuters with accurate, real-time bus location estimates in a city where public transit lacks GPS tracking.",
+      "solution": "Developed a position-interpolation algorithm using GTFS static data and transit patterns, visualized through an optimized Leaflet map interface with live delay compensation.",
+      "keyPoints": [
+        "Schedule-based position interpolation",
+        "GTFS data processing",
+        "Delay compensation logic",
+        "Optimized map rendering",
+        "Responsive UI"
+      ]
+    },
+    "craftistry": {
+      "subtitle": "E-commerce marketplace for independent artisans and handmade goods",
+      "description": "A specialized e-commerce platform built for independent artisans. Features a customizable storefront builder, order and inventory management, and Telegram integration for direct customer communication.",
+      "goal": "Give independent artisans a purpose-built platform that simplifies selling while offering practical tools for product management and customer outreach.",
+      "solution": "Implemented a drag-and-drop storefront builder, integrated the Telegram Bot API and Mini App for in-messenger storefronts, and designed an intuitive dashboard for managing inventory and orders.",
+      "keyPoints": [
+        "Drag-and-drop storefront builder",
+        "Artisan dashboard",
+        "Telegram Bot API integration",
+        "Telegram Mini App"
+      ]
+    }
   },
   "contacts": {
     "SendMessage": "Send",

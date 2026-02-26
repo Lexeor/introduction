@@ -1,7 +1,8 @@
 import type { Project } from '@/data/projects';
 import { cn } from '@/lib/utils';
 import { motion } from 'motion/react';
-import { memo, type FC, useState } from 'react';
+import { type FC, memo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import TechStack from './TechStack';
 
 
@@ -12,7 +13,14 @@ interface ProjectCardProps {
 }
 
 const ProjectCard: FC<ProjectCardProps> = ({ project, isSelected, onSelect }) => {
+  const { t } = useTranslation();
   const [hovered, setHovered] = useState(false);
+
+  const subtitle = t(`projects.${project.id}.subtitle`, { defaultValue: project.subtitle });
+  const keyPoints = t(`projects.${project.id}.keyPoints`, {
+    returnObjects: true,
+    defaultValue: project.keyPoints,
+  }) as string[];
 
   return (
     <motion.div
@@ -59,7 +67,6 @@ const ProjectCard: FC<ProjectCardProps> = ({ project, isSelected, onSelect }) =>
           isSelected && 'bg-background-100 -mt-6',
         )}
       >
-        {/* Текст быстро скрывается при выборе карточки */}
         <motion.div
           initial={false}
           animate={{ opacity: isSelected ? 0 : 1 }}
@@ -69,10 +76,10 @@ const ProjectCard: FC<ProjectCardProps> = ({ project, isSelected, onSelect }) =>
             {project.title}
           </h2>
           <h3 className="w-full p-4 pt-0 text-[18px] text-white/60">
-            {project.subtitle}
+            {subtitle}
           </h3>
           <div className="px-4 pb-4 flex flex-col gap-2">
-            {project.keyPoints.map((point: string) => (
+            {keyPoints.map((point: string) => (
               <div key={point}>
                 <span
                   className={cn(

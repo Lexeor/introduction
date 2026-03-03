@@ -8,6 +8,7 @@ export const LANGUAGES: Language[] = [
     { code: 'en', label: 'English', countryCode: 'GB' },
     { code: 'ru', label: 'Русский', countryCode: 'RU' },
     { code: 'me', label: 'Crnogorski', countryCode: 'ME' },
+    { code: 'de', label: 'Deutsch', countryCode: 'DE' },
 ];
 
 export const LANGUAGE_CODES = LANGUAGES.map((lang) => lang.code);

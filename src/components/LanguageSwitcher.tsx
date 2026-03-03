@@ -16,16 +16,16 @@ const LanguageSwitcher: FC = () => {
   };
 
   return (
-    <div className="flex gap-2 w-full">
+    <div className="flex gap-0 w-full">
       {LANGUAGES.map((lang) => (
         <motion.div
           whileHover={{ scale: 1.1 }}
           key={lang.code}
           onClick={() => changeLanguage(lang.code)}
-          className="flex flex-col gap-1 w-full items-center relative px-3! py-1! rounded! text-xs font-medium transition-colors cursor-pointer"
+          className="flex flex-col gap-1 w-full items-center relative px-3! py-1! rounded! text-[12px] text-nowrap font-medium transition-colors cursor-pointer"
         >
           <ReactCountryFlag countryCode={lang.countryCode} svg
-                            className="w-12! h-12!" />
+                            className="w-10! h-10!" />
           {lang.label}
         </motion.div>
       ))}

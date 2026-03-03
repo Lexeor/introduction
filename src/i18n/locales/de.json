@@ -1,0 +1,143 @@
+{
+  "greeting": "Hallo, ich bin Alex!",
+  "selectLanguage": "Lass uns zuerst eine Sprache wählen, damit wir uns besser verstehen :)",
+  "frontend.intro": "Ich höre, du suchst einen",
+  "frontend.mask": "FRONTEND",
+  "frontend.developer": "Entwickler",
+  "frontend.oneup": "Zum Glück bin ich",
+  "menu": {
+    "user": "Benutzer",
+    "intro": "Hallo!",
+    "bio": "React-Entwickler",
+    "skills": "Fähigkeiten",
+    "projects": "Aktuelle Projekte",
+    "contact": "Kontakt",
+    "experience": "Erfahrung"
+  },
+  "projects": {
+    "title": "Aktuelle Projekte",
+    "contact-me": "Kontakt",
+    "labels": {
+      "goal": "Ziel",
+      "solution": "Lösung",
+      "techStack": "Tech Stack",
+      "liveDemo": "Live-Demo"
+    },
+    "kvarum": {
+      "subtitle": "Terminplanungsplattform für Referenten und ihr Publikum",
+      "description": "Eine vollwertige Planungsplattform, die Dozenten und ihr Publikum verbindet. Unterstützt komplexe Zeitzonenszenarien, Echtzeit-Kalendersynchronisation und Mehrkanal-Benachrichtigungen.",
+      "goal": "Nahtlose Terminplanung zwischen Referenten und Zuhörern ermöglichen – mit Echtzeit-Verfügbarkeitsverfolgung und unkomplizierten Kommunikationswerkzeugen.",
+      "solution": "Responsives Frontend mit WebSocket-basierten Echtzeit-Updates, mehreren Kalenderansichten und einer Benachrichtigungsengine zur geräteübergreifenden Synchronisation aller Teilnehmer.",
+      "keyPoints": [
+        "Echtzeit-Synchronisation",
+        "Mehrere Zeitzonen",
+        "Optimiertes Kalender-Rendering",
+        "Desktop- und Mobilversion",
+        "Benachrichtigungssystem"
+      ]
+    },
+    "bus-tracker": {
+      "subtitle": "Fahrplanbasierter Bus-Tracker für Städte ohne GPS im ÖPNV",
+      "description": "Der ÖPNV meiner Stadt verfügt über keine GPS-Ausstattung, was eine Echtzeit-Busverfolgung unmöglich macht. Die Plattform schätzt Buspositionen anhand von Fahrplandaten und historischen Mustern und bietet Fahrgästen eine zuverlässige Alternative.",
+      "goal": "Fahrgästen genaue Echtzeit-Positionsschätzungen für Busse in einer Stadt ohne GPS-Tracking im ÖPNV bereitstellen.",
+      "solution": "Positions-Interpolationsalgorithmus auf Basis von statischen GTFS-Daten und Fahrtmustern, visualisiert über eine optimierte Leaflet-Kartenoberfläche mit Verspätungskompensation.",
+      "keyPoints": [
+        "Fahrplanbasierte Positionsinterpolation",
+        "GTFS-Datenverarbeitung",
+        "Verspätungskompensation",
+        "Optimiertes Karten-Rendering",
+        "Responsives UI"
+      ]
+    },
+    "craftistry": {
+      "subtitle": "E-Commerce-Marktplatz für unabhängige Handwerker und Handgemachtes",
+      "description": "Eine spezialisierte E-Commerce-Plattform für unabhängige Handwerker. Enthält einen anpassbaren Schaufenster-Baukasten, Bestell- und Lagerverwaltung sowie Telegram-Integration für direkte Kundenkommunikation.",
+      "goal": "Unabhängigen Handwerkern eine zweckgerichtete Plattform bieten, die den Verkauf vereinfacht und praktische Werkzeuge für Produktverwaltung und Kundenkontakt bereitstellt.",
+      "solution": "Drag-and-Drop-Schaufenster-Baukasten implementiert, Telegram Bot API und Mini App für Shops direkt im Messenger integriert und ein intuitives Dashboard für Lager- und Bestellverwaltung entwickelt.",
+      "keyPoints": [
+        "Drag-and-Drop-Schaufenster-Baukasten",
+        "Handwerker-Dashboard",
+        "Telegram Bot API-Integration",
+        "Telegram Mini App"
+      ]
+    }
+  },
+  "contacts": {
+    "SendMessage": "Senden",
+    "WriteMe": "Gleich hier :)",
+    "FindMeOn": "Finden Sie mich auf",
+    "DropMeAMessage": "oder hinterlassen Sie mir eine Nachricht"
+  },
+  "loading": {
+    "tipOfTheDayTitle": "Tipp des Tages",
+    "tipOfTheDay": "Wie Sie sehen, liebe ich Animationen wirklich!",
+    "loading": "Laden",
+    "reloadProjects": "Projekte neu laden"
+  },
+  "luckyDay": {
+    "title": "Wie praktisch, ich bin ",
+    "role": "React-Entwickler",
+    "experience": "mit über 4 Jahren",
+    "years": "Erfahrung!"
+  },
+  "skills": "Fähigkeiten",
+  "skill": {
+    "core": "Kern",
+    "frameworks": "Frameworks",
+    "states": "Zustände",
+    "styling": "Styling",
+    "tools": "Werkzeuge",
+    "other": "Sonstiges",
+    "pretitle-1": "Ich erschaffe am liebsten",
+    "pretitle-2": "Magie",
+    "pretitle-3": "mit einigen"
+  },
+  "approach": "Ansatz",
+  "achievements": {
+    "problem_solving": {
+      "title": "Lösungsorientiert",
+      "description": "Komplexe Probleme in einfache, effiziente und skalierbare Logik aufteilen. Ich schreibe nicht nur Code – ich löse Aufgaben."
+    },
+    "learning": {
+      "title": "Kontinuierliches Lernen",
+      "description": "Mein Skillset wird stetig weiterentwickelt, um mit modernen Webtechnologien und Best Practices auf dem neuesten Stand zu bleiben."
+    },
+    "quality": {
+      "title": "Sauberer Code & Qualität",
+      "description": "Lesbaren, gut strukturierten Code schreiben und durchgängig saubere, konsistente Nutzererfahrungen liefern."
+    },
+    "user_focus": {
+      "title": "Nutzerzentriertes Denken",
+      "description": "Barrierefreiheit und Benutzerfreundlichkeit haben Priorität – für Produkte, die Menschen gerne verwenden."
+    },
+    "reliability": {
+      "title": "Zuverlässig & Skalierbar",
+      "description": "Robuste Systeme entwickeln, die sich langfristig leicht warten, testen und erweitern lassen."
+    }
+  },
+  "work": {
+    "treenity": {
+      "name": "Treenity LLC",
+      "position": "Middle Frontend Developer",
+      "description": "Entwicklung eines interaktiven Wohnungskonfigurators und Telegram MiniApps. Implementierung komplexer UI-Interaktionen, flüssiger Animationen und datengetriebener Oberflächen mit Telegram API-Integration (Bot und MiniApp).",
+      "years": "2023 — Heute"
+    },
+    "kvarum": {
+      "name": "Kvarum.app",
+      "position": "Frontend Developer",
+      "description": "Entwicklung einer Veranstaltungsverwaltungsplattform für Referenten und Teilnehmer. Umfassende Arbeit mit Kalendern, virtuellen Listen und Echtzeit-Datenladen über WebSockets.",
+      "years": "2021 — 2023"
+    },
+    "sandvik": {
+      "name": "Sandvik",
+      "position": "IT Infrastructure Manager / Inhouse Software Developer",
+      "description": "12 Jahre Verwaltung von Unternehmens-IT-Infrastruktur, einschließlich Leitung eines kleinen Teams. Entwicklung interner Webanwendungen für Unternehmensdatenverarbeitung und Reporting, Verknüpfung von IT-Betrieb mit Geschäftsanforderungen.",
+      "years": "2009 — 2021"
+    }
+  },
+  "final": {
+    "title": "Erfahrung",
+    "tagline": "die mich auf mein",
+    "taglineAccent": "neues Abenteuer vorbereitet"
+  }
+}

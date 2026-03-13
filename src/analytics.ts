@@ -17,6 +17,7 @@ export function initAnalytics() {
 
   script.onload = () => {
     window.ym!(METRIKA_ID, 'init', {
+      defer: true,
       webvisor: true,
       clickmap: true,
       accurateTrackBounce: true,
